@@ -119,7 +119,7 @@ Most of the stack is chosen. The rest is decided as each part is built.
 | Frontend | Phone web page (HTML, CSS, plain JavaScript) served by Flask |
 | Backend | Python 3.12 + Flask |
 | Database | SQLite |
-| Computer Vision / OCR | To be decided |
+| Computer Vision / OCR | RapidOCR (PP-OCRv6 models) finds and reads the text; a small Keras CNN picks the date line |
 | Machine Learning Framework | TensorFlow Keras for the scanner (CNN, BERT); the GAN and VAE owners choose theirs |
 | Generative AI Integration | To be decided |
 | Deployment | Runs on the demo laptop; phones open it over Wi-Fi |
@@ -183,6 +183,11 @@ Detailed contribution guidelines will be added as the development workflow is fi
 PantryPilot is being developed as a team project exploring practical applications of artificial intelligence and generative modeling.
 
 The project emphasizes combining AI techniques with useful software functionality, handling real-world uncertainty, and evaluating the reliability of model-generated results.
+
+## Credits
+
+- ExpDate dataset (CC BY 4.0), created at the Korea Institute of Science and Technology (KIST). Seker, A. C., & Ahn, S. C. (2022). A generalized framework for recognition of expiration dates on product packages using fully convolutional networks. *Expert Systems with Applications*, 203, 117310. https://doi.org/10.1016/j.eswa.2022.117310
+- [RapidOCR](https://github.com/RapidAI/RapidOCR) (Apache-2.0), which runs PaddleOCR's PP-OCRv6 models.
 
 ## License
 
