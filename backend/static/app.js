@@ -750,6 +750,152 @@ async function confirmDelete(item) {
 }
 
 // ---------------------------------------------------------------------------
+// Assistant tab
+// ---------------------------------------------------------------------------
+
+// How the sample assistant says each label in a sentence.
+const LABEL_PHRASES = {
+  expiration: "use by",
+  best_before: "best before",
+  sell_by: "sell by",
+  manufacturing: "made on",
+};
+
+let askBusy = false;          // true while a question is being answered
+let offlineTriesLeft = 0;     // only for /?assistant=offline, to test the error and Try again
+
+// Find the words in a piece of text, in lower case: "My oats?" gives ["my", "oats"].
+function wordsIn(text) {
+  return text.toLowerCase().match(/[a-z]+/g) || [];
+}
+
+// The sample assistant's answer about one pantry item.
+function answerAboutItem(item) {
+  if (parseDate(item.date) === null) {
+    return "Your " + item.productName + " was saved without a date, so I don't know it. You can add it from the Pantry tab.";
+  }
+  const phrase = LABEL_PHRASES[item.labelType];
+  if (phrase) {
+    return "The label on your " + item.productName + " says " + phrase + " " + formatDate(item.date) + ".";
+  }
+  return "The label on your " + item.productName + " shows " + formatDate(item.date) + ".";
+}
+
+// The sample assistant: it answers from the pantry list and the sample answers.
+function sampleAnswer(question, items) {
+  const questionWords = wordsIn(question);
+
+  // Step 1: if the question names something in the pantry (any word of 3 or
+  // more letters from its name, like "oats"), I answer about that item.
+  for (const item of items) {
+    for (const word of wordsIn(item.productName)) {
+      if (word.length >= 3 && questionWords.includes(word)) {
+        return answerAboutItem(item);
+      }
+    }
+  }
+
+  // Step 2: otherwise I look for a label word and explain it.
+  const lowerQuestion = question.toLowerCase();
+  if (lowerQuestion.includes("best before")) {
+    return SAMPLE_ANSWERS.best_before;
+  }
+  if (lowerQuestion.includes("use by") || lowerQuestion.includes("expire") || lowerQuestion.includes("expiration")) {
+    return SAMPLE_ANSWERS.expiration;
+  }
+  if (lowerQuestion.includes("sell by")) {
+    return SAMPLE_ANSWERS.sell_by;
+  }
+  if (lowerQuestion.includes("made on") || lowerQuestion.includes("manufactur") || lowerQuestion.includes("mfg")) {
+    return SAMPLE_ANSWERS.manufacturing;
+  }
+  return SAMPLE_ANSWERS.fallback;
+}
+
+// Get an answer from the sample assistant, or from Sreeja's assistant API.
+async function askAssistant(question) {
+  if (USE_SAMPLE_ASSISTANT) {
+    if (offlineTriesLeft > 0) {
+      offlineTriesLeft = offlineTriesLeft - 1;
+      const error = new Error("The assistant isn't available right now.");
+      error.code = "try_again";
+      throw error;
+    }
+    const items = await loadPantry();
+    return sampleAnswer(question, items);
+  }
+  const data = await apiRequest("POST", "/assistant", { question: question });
+  return data.answer;
+}
+
+// Add a chat bubble. role is "user" or "assistant".
+function addBubble(role, text) {
+  const bubble = makeElement("p", "bubble bubble-" + role, text);
+  $("chat").appendChild(bubble);
+  bubble.scrollIntoView({ block: "nearest" });
+  return bubble;
+}
+
+// Add a bubble that says what went wrong, with a Try again button.
+function addErrorBubble(message, question) {
+  const bubble = makeElement("div", "bubble bubble-error", "");
+  bubble.appendChild(makeElement("span", "", message));
+  const retry = makeElement("button", "", "Try again");
+  retry.type = "button";
+  retry.addEventListener("click", function () {
+    bubble.remove();
+    sendQuestion(question, true);
+  });
+  bubble.appendChild(retry);
+  $("chat").appendChild(bubble);
+  bubble.scrollIntoView({ block: "nearest" });
+}
+
+// The Ask button only works when there is a question and nothing else is running.
+function updateSendButton() {
+  $("ask-send").disabled = askBusy || $("question").value.trim() === "";
+}
+
+// Ask one question and show the answer. On Try again, isRetry is true,
+// so the question is not shown a second time.
+async function sendQuestion(question, isRetry) {
+  const cleanQuestion = question.trim();
+  if (askBusy || cleanQuestion === "") {
+    return;
+  }
+  askBusy = true;
+  updateSendButton();
+  if (!isRetry) {
+    addBubble("user", cleanQuestion);
+  }
+  const thinking = addBubble("assistant", "Thinking…");
+  thinking.classList.add("bubble-thinking");
+
+  try {
+    const answer = await askAssistant(cleanQuestion);
+    thinking.remove();
+    addBubble("assistant", answer);
+  } catch (error) {
+    thinking.remove();
+    addErrorBubble(error.message, cleanQuestion);
+  } finally {
+    askBusy = false;
+    updateSendButton();
+  }
+}
+
+// Send what the user typed in the question box.
+function submitQuestion(event) {
+  event.preventDefault();
+  const question = $("question").value;
+  if (askBusy || question.trim() === "") {
+    return;
+  }
+  $("question").value = "";
+  sendQuestion(question, false);
+}
+
+// ---------------------------------------------------------------------------
 // Start the page
 // ---------------------------------------------------------------------------
 
@@ -789,6 +935,20 @@ function setUpPage() {
     showTab("scan");
   });
   $("pantry-retry").addEventListener("click", refreshPantry);
+
+  // Assistant tab
+  $("ask-form").addEventListener("submit", submitQuestion);
+  $("question").addEventListener("input", updateSendButton);
+  for (const chip of document.querySelectorAll("#suggestions .chip")) {
+    chip.addEventListener("click", function () {
+      sendQuestion(chip.textContent, false);
+    });
+  }
+  // /?assistant=offline makes the first question fail, so testers can see
+  // the error and Try again before Sreeja's real assistant is connected.
+  if (new URLSearchParams(window.location.search).get("assistant") === "offline") {
+    offlineTriesLeft = 1;
+  }
 
   // The badges tell testers the page is showing sample data, not the real APIs.
   $("sample-badge-pantry").hidden = !USE_SAMPLE_PANTRY;
