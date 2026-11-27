@@ -23,6 +23,7 @@ from werkzeug.exceptions import HTTPException
 from werkzeug.serving import is_running_from_reloader
 
 from errors import PantryError
+from scan import scan_blueprint
 
 load_dotenv()
 
@@ -87,6 +88,7 @@ def home():
 # ---------------------------------------------------------------------------
 
 # Each part of the API lives in its own file as a Flask blueprint.
+app.register_blueprint(scan_blueprint)
 # Blueprints: Yuhao and Sreeja register theirs here.
 
 
