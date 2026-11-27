@@ -439,6 +439,115 @@ h2 {
 }
 
 /* ------------------------------------------------------------------ */
+/* Pantry tab                                                          */
+/* ------------------------------------------------------------------ */
+
+/* Items sit on "shelves": plain rows with a line under each, not cards. */
+.shelf {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 14px;
+  padding: 16px 0 12px;
+  border-bottom: 2px solid var(--line);
+}
+
+.item-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.item-date {
+  text-align: right;
+}
+
+.item-date .stamp {
+  display: block;
+  font-size: 21px;
+  line-height: 1.15;
+}
+
+.item-date .no-date {
+  display: block;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.item-when {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.item-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.item-actions button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.item-actions .delete-button {
+  color: var(--error-ink);
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.badge-expiration { background: var(--badge-expiration-bg); color: var(--badge-expiration-ink); }
+.badge-best_before { background: var(--badge-best-bg); color: var(--badge-best-ink); }
+.badge-sell_by { background: var(--badge-sell-bg); color: var(--badge-sell-ink); }
+.badge-manufacturing { background: var(--badge-made-bg); color: var(--badge-made-ink); }
+.badge-other { background: var(--badge-other-bg); color: var(--badge-other-ink); }
+.badge-none { border: 1px dashed var(--shelf); color: var(--muted); }
+
+.empty {
+  padding: 12px 0;
+}
+
+.empty p {
+  margin: 0 0 16px;
+}
+
+dialog {
+  width: min(520px, calc(100vw - 32px));
+  padding: 22px 20px 20px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+dialog::backdrop {
+  background: rgba(12, 22, 20, 0.55);
+}
+
+/* ------------------------------------------------------------------ */
 /* Safety note, tab bar and toast                                      */
 /* ------------------------------------------------------------------ */
 
