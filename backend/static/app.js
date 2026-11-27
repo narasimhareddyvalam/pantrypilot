@@ -128,14 +128,232 @@ function showTab(name) {
 }
 
 // ---------------------------------------------------------------------------
+// Dates
+// ---------------------------------------------------------------------------
+
+const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+const ONE_DAY = 24 * 60 * 60 * 1000;
+
+// Turn "2027-01-05" into a Date at midnight on that day, in this phone's time zone.
+// I build it from the three parts on purpose: new Date("2027-01-05") is read as
+// UTC, and in the US that would show the day before.
+function parseDate(text) {
+  if (!text || !DATE_PATTERN.test(text)) {
+    return null;
+  }
+  const parts = text.split("-");
+  const year = Number(parts[0]);
+  const month = Number(parts[1]);
+  const day = Number(parts[2]);
+  const date = new Date(year, month - 1, day);
+  // A date like 2027-02-30 rolls over into March, so I check it stayed the same day.
+  if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
+    return null;
+  }
+  return date;
+}
+
+// "2027-01-05" becomes "Jan 5, 2027". A missing date becomes "No date".
+function formatDate(text) {
+  const date = parseDate(text);
+  if (date === null) {
+    return "No date";
+  }
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+// How many days from today until the date. A negative number means it has passed.
+function daysFromToday(text) {
+  const date = parseDate(text);
+  if (date === null) {
+    return null;
+  }
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  // Math.round also covers the days when the clocks change by one hour.
+  return Math.round((date - today) / ONE_DAY);
+}
+
+// Turn a number of days into words, like "In 3 days" or "Yesterday".
+function describeDays(days) {
+  if (days === null) {
+    return "";
+  }
+  if (days === 0) {
+    return "Today";
+  }
+  if (days === 1) {
+    return "Tomorrow";
+  }
+  if (days === -1) {
+    return "Yesterday";
+  }
+  if (days > 1) {
+    return "In " + days + " days";
+  }
+  return -days + " days ago";
+}
+
+// ---------------------------------------------------------------------------
 // Item forms (the scan review form and the edit form use the same fields)
 // ---------------------------------------------------------------------------
+
+// Read a product form and return a clean item.
+// If something is missing or wrong, I throw an error with a sentence to show.
+function readItemForm(form) {
+  const productName = form.elements.productName.value.trim();
+  const labelType = form.elements.labelType.value;
+  const date = form.elements.date.value.trim();
+
+  if (productName === "") {
+    throw new Error("Please add the product name.");
+  }
+  if (productName.length > 80) {
+    throw new Error("The product name can be at most 80 characters.");
+  }
+  // On a laptop, the date box can hold a half-typed date (like 01/05/yyyy). Its value
+  // is then empty, so I check for that instead of saving "no date" by mistake.
+  if (form.elements.date.validity.badInput) {
+    throw new Error("Please finish the date, or clear it if the package has no date.");
+  }
+  if (date !== "" && parseDate(date) === null) {
+    throw new Error("Date must look like 2027-01-05.");
+  }
+
+  // An empty label or date means "unknown", which the pantry stores as null.
+  let cleanLabel = labelType;
+  if (cleanLabel === "") {
+    cleanLabel = null;
+  }
+  let cleanDate = date;
+  if (cleanDate === "") {
+    cleanDate = null;
+  }
+  return { productName: productName, labelType: cleanLabel, date: cleanDate };
+}
 
 // Put an item's details into a product form.
 function fillItemForm(form, item) {
   form.elements.productName.value = item.productName || "";
   form.elements.labelType.value = item.labelType || "";
   form.elements.date.value = item.date || "";
+}
+
+// Show an error sentence under a form.
+function showFormError(elementId, message) {
+  const box = $(elementId);
+  box.textContent = message;
+  box.hidden = false;
+}
+
+// ---------------------------------------------------------------------------
+// Pantry storage: the sample list in this browser, or Yuhao's pantry API
+// ---------------------------------------------------------------------------
+
+const ITEM_FIELDS = ["productName", "labelType", "date"];
+
+// If the browser blocks storage (for example in private browsing), I keep the
+// list in memory instead, so the page still works until it is closed.
+let memoryPantry = null;
+let storageBlocked = false;
+
+// Make a separate copy of a list of items, so changing one never changes the other.
+function copyItems(items) {
+  return JSON.parse(JSON.stringify(items));
+}
+
+function readSampleItems() {
+  let saved = null;
+  try {
+    saved = localStorage.getItem(SAMPLE_PANTRY_KEY);
+  } catch (problem) {
+    storageBlocked = true;
+  }
+  if (saved !== null) {
+    try {
+      return JSON.parse(saved);
+    } catch (brokenData) {
+      // The saved list is broken, so I start again from the sample items below.
+    }
+  }
+  if (memoryPantry === null) {
+    memoryPantry = copyItems(SAMPLE_PANTRY);
+  }
+  return memoryPantry;
+}
+
+function writeSampleItems(items) {
+  memoryPantry = items;
+  try {
+    localStorage.setItem(SAMPLE_PANTRY_KEY, JSON.stringify(items));
+  } catch (problem) {
+    storageBlocked = true;
+  }
+}
+
+// Get every pantry item.
+async function loadPantry() {
+  if (USE_SAMPLE_PANTRY) {
+    return copyItems(readSampleItems());
+  }
+  return await apiRequest("GET", "/pantry/items");
+}
+
+// Save a new item and return it with the id it was given.
+async function addPantryItem(item) {
+  if (USE_SAMPLE_PANTRY) {
+    const items = readSampleItems();
+    // A new item gets the next id after the highest one, like a database would give.
+    let nextId = 1;
+    for (const existing of items) {
+      if (existing.id >= nextId) {
+        nextId = existing.id + 1;
+      }
+    }
+    const saved = { id: nextId, productName: item.productName, labelType: item.labelType, date: item.date };
+    items.push(saved);
+    writeSampleItems(items);
+    return copyItems(saved);
+  }
+  return await apiRequest("POST", "/pantry/items", item);
+}
+
+// Change some fields of one item and return the updated item.
+async function updatePantryItem(id, changes) {
+  if (USE_SAMPLE_PANTRY) {
+    const items = readSampleItems();
+    for (const item of items) {
+      if (item.id === id) {
+        // Only the fields that were sent change, the same way PATCH works.
+        for (const field of ITEM_FIELDS) {
+          if (field in changes) {
+            item[field] = changes[field];
+          }
+        }
+        writeSampleItems(items);
+        return copyItems(item);
+      }
+    }
+    const error = new Error("That item isn't in your pantry anymore.");
+    error.code = "not_found";
+    throw error;
+  }
+  return await apiRequest("PATCH", "/pantry/items/" + id, changes);
+}
+
+// Remove one item from the pantry.
+async function deletePantryItem(id) {
+  if (USE_SAMPLE_PANTRY) {
+    const kept = [];
+    for (const item of readSampleItems()) {
+      if (item.id !== id) {
+        kept.push(item);
+      }
+    }
+    writeSampleItems(kept);
+    return;
+  }
+  await apiRequest("DELETE", "/pantry/items/" + id);
 }
 
 // ---------------------------------------------------------------------------
@@ -295,6 +513,52 @@ function showReview(result) {
   $("review-title").focus();
 }
 
+// Let the user type the details in, without a photo.
+function startManualEntry() {
+  const form = $("review-form");
+  form.reset();
+  fillItemForm(form, { productName: "", labelType: null, date: null });
+  $("review-title").textContent = "Type in the details";
+  // There is no photo when the details are typed in.
+  $("review-photo").hidden = true;
+  $("raw-text-box").hidden = true;
+  $("review-notice").hidden = true;
+  $("review-error").hidden = true;
+  showScanStep("review");
+  $("review-title").focus();
+}
+
+// Save the checked item to the pantry.
+async function saveScannedItem(event) {
+  event.preventDefault();
+  if (saveBusy) {
+    return;
+  }
+
+  let item;
+  try {
+    item = readItemForm($("review-form"));
+  } catch (problem) {
+    showFormError("review-error", problem.message);
+    return;
+  }
+
+  saveBusy = true;
+  $("save-item").disabled = true;
+  try {
+    const saved = await addPantryItem(item);
+    showToast("Saved " + saved.productName + " to your pantry.");
+    resetScan();
+    // The form is gone, so the focus goes back to the first button of the Scan tab.
+    $("take-photo-button").focus();
+  } catch (error) {
+    showFormError("review-error", error.message);
+  } finally {
+    saveBusy = false;
+    $("save-item").disabled = false;
+  }
+}
+
 // Go back to the start of the Scan tab.
 function resetScan() {
   currentPhoto = null;
@@ -329,10 +593,12 @@ function setUpPage() {
   $("photo-choose").addEventListener("change", function (event) {
     choosePhoto(event.target.files[0]);
   });
+  $("manual-entry").addEventListener("click", startManualEntry);
   $("read-date").addEventListener("click", readDate);
   $("scan-retry").addEventListener("click", readDate);
   $("retake").addEventListener("click", resetScan);
   $("review-retake").addEventListener("click", resetScan);
+  $("review-form").addEventListener("submit", saveScannedItem);
 
   // The badges tell testers the page is showing sample data, not the real APIs.
   $("sample-badge-pantry").hidden = !USE_SAMPLE_PANTRY;
