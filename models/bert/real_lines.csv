@@ -1,0 +1,707 @@
+id,photo,date_class,real_date,text,label,keyword_language
+1,test_00001.jpg,exp,2021.08.03,2021.08.03 | 35 g/ 130 kcal | CEREAL BAR | 能130kcal能n1人人r,other,none
+2,test_00003.jpg,exp,2021.01.16,2021.01.16 21:56 | KRA2 | l,other,none
+3,test_00004.jpg,exp,2021.02.04,2021.02.04 | Tr205 | 人悟 | 圣出京,other,none
+4,test_00005.jpg,exp,2021.03.27,2021.03.27 | 100%星,other,none
+5,test_00006.jpg,exp,2021.06.09,2021.06.09M | 2020.12 | 10径 | 0mg 0% ,other,none
+6,test_00006.jpg,date,2020.12.10,2020.12 | 2021.06.09M | 2000kcal |201 | 0mg 0% ,other,none
+7,test_00007.jpg,exp,2021.08.14,2021.08.14 | Hemeplils | E | 强刘入动,other,none
+8,test_00008.jpg,exp,21.12.22,21122IF2C2 | gowtaueon,other,none
+9,test_00009.jpg,exp,02.2023,02.2023 | L303189 | 1802 0745 | Lagerung mindestens haltbar bis Ende:,best_before,other_language
+10,test_00010.jpg,exp,15.09.2024,15.09.2024 | L308698 | 15091204 | n ade:,other,none
+11,test_00012.jpg,exp,2021-11-30,2021-11-30 | 1 | 100 9  551 kcal | 4三号 30 mg 2% 量 53 g 16%  52 g 52%,other,none
+12,test_00013.jpg,exp,2021.10.31,2021.10.31 | (y年/m月/d日) | Whit choolate wit strawberries& ream and smot meltig fillin | 此日期前最佳,best_before,other_language
+13,test_00014.jpg,exp,2020.12.21,2020.12.21 | 23:26 至 | 提· | 3-10,other,none
+14,test_00015.jpg,exp,05/2022,(B)54859 EXP 05/2022 | 18bleAve.WarriwdNSW2102 | PharmaCare Laboratories PtyLtd. | 网,expiration,english
+15,test_00016.jpg,exp,02.03.2022,02.03.2022 | 毕：/8香:PP,other,none
+16,test_00017.jpg,exp,2022.01.20,2022.01.20 | 1+1 | G00 | 语,other,none
+17,test_00018.jpg,exp,18/05/2021,EXP:18/05/2021 B/N 02 | MFD:18/11/2019 13:10 | Jaim,expiration,english
+18,test_00018.jpg,date,18/11/2019,MFD:18/11/2019 13:10 | EXP:18/05/2021 B/N 02 | Jaim,manufacturing,english
+19,test_00019.jpg,exp,26.11.2022,Use By:26.11.2022,expiration,english
+20,test_00020.jpg,exp,22.06.2023,22.06.2023 | Use By:,expiration,english
+21,test_00021.jpg,exp,21.03.18,异喜：21.03.18A | ：21.03.12F1 | L22103127228011,other,none
+22,test_00021.jpg,date,21.03.12,：21.03.12F1 | 异喜：21.03.18A | L22103127228011,other,none
+23,test_00022.jpg,exp,2021.03.18,2021.03.18 | 221031100201 | 2021.03.12 | 合,other,none
+24,test_00022.jpg,date,2021.03.12,2021.03.12 | 合 | 2021.03.18 | 异号,other,none
+25,test_00023.jpg,exp,21.03.16,异：21.03.16A | L22103107228011 | 21.03.10F1 | 告,other,none
+26,test_00023.jpg,date,21.03.10,21.03.10F1 | 异：21.03.16A | L22103107228011 | 告,other,none
+27,test_00024.jpg,exp,2021.03.13,2021.03.13 | 100%/ | 型世0#100g()(g) | ：((,other,none
+28,test_00025.jpg,exp,2023.03.15,号7：2023-03.15 | 20006 | () 0.18% | 1剑号,other,none
+29,test_00026.jpg,exp,22.04.30,22.04.30 | MS2407 | ...,other,none
+30,test_00027.jpg,exp,2022.07,2022.07 | 31928 | 列出章： | C,other,none
+31,test_00028.jpg,exp,2021.08.18,2021.08.18 | 道 | 福 | 影,other,none
+32,test_00029.jpg,exp,2021.03.28,2021.03.28外风A训A | O | 20 | 盛,other,none
+33,test_00030.jpg,exp,2021.05.05,果号7I&2021.05.05 | 12:50 | 天,other,none
+34,test_00031.jpg,exp,2022.08.03,2022.08.03.GBH | 导 | 那会100 % | 350 g,other,none
+35,test_00032.jpg,exp,2021.02.06,2021.02.06 | ： | 从,other,none
+36,test_00033.jpg,exp,2021.08.16,"2021.08.16|(B)(5) | 191 o是(%)2,000kca0 | 1400",other,none
+37,test_00034.jpg,exp,2021.04.18,2021.04.18 14:39 | MOZZARELLACESE,other,none
+38,test_00037.jpg,date,10.08.2020,223/10.08.2020 | 10.02.2022 | 10g | 518 239 0118 (1),other,none
+39,test_00037.jpg,exp,10.02.2022,10.02.2022 | 223/10.08.2020 | 10g | 518 239 0118 (1),other,none
+40,test_00038.jpg,exp,2021.01.27,2021.01.27 | SINCE 1984 | XBES,other,none
+41,test_00039.jpg,exp,2023.01.24,2023.01.24 09:06 | 2 | 紫,other,none
+42,test_00040.jpg,exp,2021.05.07,"2021.05.07 | 金喜 | 6,280 | ou",other,none
+43,test_00041.jpg,exp,2021.08.23,2021.08.23 | 60%(仓) |   | 2050568034-4,other,none
+44,test_00043.jpg,exp,2022.01.24,2022.01.24 | No Brand  | #上旦#三#异##,other,none
+45,test_00044.jpg,exp,2022.01.06,2022.01.06 DVA07 | Brand | 气01399,other,none
+46,test_00045.jpg,exp,2021.08.08,异售刀址 2021.08.08 升引 | EASY OPEN / RESEALABLE | DRIED | FOOD,other,none
+47,test_00046.jpg,exp,2021.11.09,2021.11.09 16:28 | NUTBAR | DOUBLE CHOCO-,other,none
+48,test_00047.jpg,exp,2022.03.09,2022.03.09 DVA21 | 2409,other,none
+49,test_00048.jpg,exp,2021.10.06,2021.10.06 BUL04 | 011399 | 是召回卫,other,none
+50,test_00049.jpg,exp,2021.11.04,2021.11.04 DUK05 A | 鲁早2170% | 330g,other,none
+51,test_00050.jpg,exp,2022.02.16,2022.02.16F2D | 811809044941834 | OTHER,other,none
+52,test_00051.jpg,exp,2022.07.20,2022.07.20 | 萌！ | Jaste | Feel,other,none
+53,test_00052.jpg,exp,2023.01.17,2023.01.17 | 8 | No Brand | 809580,other,none
+54,test_00053.jpg,exp,2023.01.25,2023.01.25 | 8808018520723 | 1 | 01399,other,none
+55,test_00054.jpg,exp,02/10/2023,02/10/2023 | 天 |  Herbal Ia | PEPPERNINT,other,none
+56,test_00055.jpg,exp,2022.09.14,2022.09.14 | NoErand | 司 | NOGURTPOWDER,other,none
+57,test_00056.jpg,exp,2023.01.25,2023.01.25 | No Brand | 司 | Job's tears Tea,other,none
+58,test_00057.jpg,exp,2023.02.15,"2023.02.15 | 司 | No Brand | 9,940",other,none
+59,test_00058.jpg,exp,2022.12.13,"EP:2022.12.13 | 2""000000""338323 | MilkTea(Original)",expiration,english
+60,test_00059.jpg,exp,2022.08.31,"Best before: 2022.08.31 | Lot Nr.: 6714 | 5996071""697391",best_before,english
+61,test_00060.jpg,exp,2021.10.19,2021.10.19 | 闪本人用 | 号E | 10:50,other,none
+62,test_00061.jpg,exp,2022.01.19,2022.01.19 | 14:09 | 9%0 | # ###,other,none
+63,test_00062.jpg,exp,2023.02.14,2023.02.14 | 闪人 | ：,other,none
+64,test_00063.jpg,exp,2022.06.30,2022.06.30 | 7.7% | C,other,none
+65,test_00064.jpg,exp,JUN 2023,JUN 2023 | Best Before: | L.17520 | 2,best_before,english
+66,test_00065.jpg,exp,2021.12.04,2021.12.04 | 820 | 200 | 200ml,other,none
+67,test_00066.jpg,exp,22/09/2021,22 /09 /2021 | L- 2209 13:22 | EXP | 20,expiration,english
+68,test_00067.jpg,exp,2021/08/05,2021 /08/ 05 | Batch: 278 3 20 | Best before:,best_before,english
+69,test_00068.jpg,exp,2022.10.31,"Best before: 2022.10.31 | Lot Nr.: 6803 | 5996071""684865"" | 20",best_before,english
+70,test_00069.jpg,exp,19/12/2021,Expriy Date : 19/12/2021 | 2100000110291901 | 三本,expiration,english
+71,test_00070.jpg,exp,2021/10/17,2021/10/17 | POPPING | CHOCO | BALLS,other,none
+72,test_00071.jpg,exp,2021.03.21,2021.03.211588-1530 | 圣2101 | 919710)979(04),other,none
+73,test_00072.jpg,exp,04/2022,04/2022 | L0293 | 210000001793313 | 04:42,other,none
+74,test_00073.jpg,exp,02/2022,L03222 | 22:12 | 招品平 | 招,other,none
+75,test_00074.jpg,exp,21.04.02,导：21.04.02|B17 | 答：100g/131.4kcal150g×27H四) | BOILED | SOFT,other,none
+76,test_00075.jpg,exp,30-09-2021,30-09-2021 D4002 | STRONG |   | No Brand™,other,none
+77,test_00076.jpg,exp,21.01.22,Best Before: 21.01.22 | 08:56 0 210 209 | 920g | Froma  t ng,best_before,english
+78,test_00077.jpg,exp,18/11/2021,"18/11/2021 | 2""000000""292618"" | 正：7 | 早1399",other,none
+79,test_00078.jpg,exp,2021.11.17,"EXP 2021.11.17 | PEACH:FD&C(BLUE#1,RED#40) | PINEAPPLE:FD&C(YELLOW#S,RED#40)",expiration,english
+80,test_00079.jpg,exp,2021.07.17,EXP 2021.07.17 | LE号25 mg,expiration,english
+81,test_00080.jpg,exp,2022.04.01,2022.04.01 | pp | 5411011820405,other,none
+82,test_00081.jpg,exp,2022-10-21,2022-10-21 | 043D92VT04 14:4 | ，，,other,none
+83,test_00082.jpg,exp,29/08/2021,29/08/2021 L27021 | 300 g e 15:42 2 | 20 | 20,other,none
+84,test_00083.jpg,exp,2021/09/25,"2021/09/25 | 1 ,   |  60 g 400 %",other,none
+85,test_00084.jpg,exp,2021.11.12,2021.11.12 | Batch no.: 1306 | Best before: | Made in Romania,best_before,english
+86,test_00085.jpg,exp,15.10.2021,15.10.2021 | TLE40C 09:24 | # | N581,other,none
+87,test_00087.jpg,exp,04/04/2022,EXP 04/04/2022 | N319,expiration,english
+88,test_00088.jpg,date,2021.01.08,2021.01.08A | 2021.05.07外A | 100%/D- | 100%,other,none
+89,test_00088.jpg,exp,2021.05.07,2021.05.07外A | 2021.01.08A | 100%/D- | 100%,other,none
+90,test_00089.jpg,exp,2022.02.19,2022.02.19 | [su:pri:m] | suprême | PACKAGE,other,none
+91,test_00090.jpg,exp,2021.12.29,"2021.12.29 | :OTHER | 8:PP/含利:OTHER | 8""802989""003773",other,none
+92,test_00091.jpg,exp,2021.12.16,2021.12.16A6 | 139 | 合,other,none
+93,test_00092.jpg,exp,2020.02.18,2020.02.18 | ( | (),other,none
+94,test_00093.jpg,exp,2024.01.14,2024.01.14 | 2EX|:OTHER | 平：PP,other,none
+95,test_00094.jpg,exp,2021.11.17,2021.11.17 | 20050471173-177 | 枫 | 041-956-1434,other,none
+96,test_00095.jpg,exp,2023.02.09,2023.02.09 | 器卫 | 20090275178341 | (号27H）/02-380-5678,other,none
+97,test_00096.jpg,exp,2021.01.07,2021.01.07 | C开,other,none
+98,test_00097.jpg,exp,04-11-23,"04-11-23 | E-L M30920 | INGREDIENTI: Sale marino fino 98,9% G | Tartufi Neri 0,6%: Tartufo Estivo 0,5% Tuber",other,none
+99,test_00098.jpg,exp,25 08 2023,25 08 2023 | Bllg | V | A3,other,none
+100,test_00099.jpg,exp,17.09.2023,EER:17.09.2023 L20261 | Melis | ( | 苦异,other,none
+101,test_00100.jpg,exp,12/22,Exp.Date: 12/22 | Batch No: 652332 | KEEP OUT OF REACH OF CHILDREN. | DO NOT USE IF BLISTER SEAL IS BROKEN.,expiration,english
+102,test_00101.jpg,exp,09/06/25,BB 09/06/25 | L.WZAD2 | ACETA | BALSINN,best_before,english
+103,test_00102.jpg,date,2020.10.15,2020.10 15 | 2023.10 15 | Dour rertrBt Before: | O lace,best_before,english
+104,test_00102.jpg,exp,2023.10.15,2023.10 15 | 2020.10 15 | Dour rertrBt Before: | O lace,best_before,english
+105,test_00103.jpg,exp,27.10.2023,27.10.2023 | L30 10 | Hergestellt von / Produit par / Prodotto | MINDESTENS HALTBAR BIS: / cons. de préf. avant:,best_before,other_language
+106,test_00104.jpg,exp,11/08/23,11/08/23 | L22420 16:34 | *O世：IT BIO 009 2089 | *答：CCPB Srl,other,none
+107,test_00105.jpg,exp,05.08.2022,05.08.2022 L1 | 580 g | a | rer,other,none
+108,test_00106.jpg,exp,2022/10/22,2022/10/22 | 3017 | 0%,other,none
+109,test_00107.jpg,exp,12 10 2022,12 10 2022 | consommer de preférénce avant le: | Best Befre/ Mindestens halbar bis/ A | Da consumare preferibilente tntro l,best_before,other_language
+110,test_00108.jpg,exp,12/2021,"12/2021 L20154 08:38 | Best before date:/RE/Batch no.: | 9""001466""207911"" | Internet: www.rapso.at",best_before,english
+111,test_00109.jpg,exp,2020.10.21,列丕g:2020.10.21 | OTHER | (),other,none
+112,test_00110.jpg,exp,10 06 21,Exp:10 06 21 | www.dececco.com | 15:06 F | Lott:00120 162,expiration,english
+113,test_00111.jpg,exp,2022.07.07,2022.07.07 I LOT 0189500 | FROM DIRECT LIGHT. | STORE CLOSED IN A COOL PLACE AWAY FROM HEAT SOURCESAND | 8004275156365,other,none
+114,test_00113.jpg,exp,2022.04.02,2022.04.02 17:17枫 | 至州,other,none
+115,test_00114.jpg,exp,2022.01.17,2022.01.17NN | 世l | HACG | GELacan,other,none
+116,test_00115.jpg,exp,11.07.2021,EXP: 11.07.2021 | PRO:13.11.2020 | H184 F318 | 1,expiration,english
+117,test_00115.jpg,date,13.11.2020,PRO:13.11.2020 | EXP: 11.07.2021 | H184 F318 | 1,manufacturing,english
+118,test_00116.jpg,exp,2021.12.01,2021.12.01 | 13:48 | 卫驾合告：:080-024-231（性,other,none
+119,test_00117.jpg,exp,04-2023,L30408J 04-2023 | VALENCIANA | K,other,none
+120,test_00118.jpg,exp,2022.12.21,2022.12.21加 | 的  | 那智合C.,other,none
+121,test_00119.jpg,exp,09/07/2022,LE191 09/07/2022,other,none
+122,test_00120.jpg,exp,2022.05.04,2022.05.04  | 25965 001113 | 0 | 20,other,none
+123,test_00121.jpg,exp,31-03-2022,31-03-2022 | RPTON | WANTED | 20,other,none
+124,test_00122.jpg,exp,2023.12.21,2023.12.21 | LOT 122120 | AmMenny- | Genuine Article,other,none
+125,test_00123.jpg,exp,2022.12.19,2022.12.19 | TEL (031)-885-0860 | 异： | 人457,other,none
+126,test_00125.jpg,exp,2021.12.08,"2021.12.08枫 | 丑登(0号句4.69%,配到)6.5%8 | 380g | HAN IE PENNCOS",other,none
+127,test_00126.jpg,exp,05.2023,05.2023 | D9482 | 4 | 110 3 5 6 0 0 119,other,none
+128,test_00127.jpg,exp,09.2023,09.2023 | D0374 | 410356001926388,other,none
+129,test_00128.jpg,exp,2022.01.20,2022.01.20 | 喜7|・BEST BEFORE | 悟94g(18.8gx57 | 17H(18.8g)5 58ka,best_before,english
+130,test_00129.jpg,exp,2021.11.25,2021.11.25 | 94g(189gx57 | 17H(18.8g) | 号7|·BEST BEFORE,best_before,english
+131,test_00130.jpg,exp,2022.02.03,"2022.02.03 | Sweet SPace | Best before: | bees wax, white and yearnauba wax.",best_before,english
+132,test_00131.jpg,exp,09.10.2022,09.10.2022 | 03 0 293 316 | Best before / Lot.Nr.: | MANUFACTURED BY:,best_before,english
+133,test_00132.jpg,exp,2022.11.01,2022.11.01 | ·BEST BEFORE | 10g 225kcal,best_before,english
+134,test_00133.jpg,exp,2021.12.04,2021.12.04 | 1%/1%// | ky | 导型2星早780gh,other,none
+135,test_00134.jpg,exp,31 10 2021,31 10 2021 | www.lindt.com | LINDT SUSTAINABILITY | IT-21056 INDUNO OLONA (VA),other,none
+136,test_00135.jpg,exp,11.2022,"11.2022 L10452 a | davon Zucker/from sugar | Kohlenhydrate/Carbohydrates | dav. gesättigte Fettsäuren / Saturated Fat 20,5 g",other,none
+137,test_00136.jpg,exp,03.31,异号FI 03.31 01:31 12B | Z | Open | Dongwon,other,none
+138,test_00137.jpg,exp,2021.11.24,2021.11.24 | PEACOCK | CHOCOLATE | MILK,other,none
+139,test_00138.jpg,exp,2021/09/02,2021/09/02 | L02450 12 1522 | PEACOCK.Belgian | LA VIE DÉLICIEUSE,other,none
+140,test_00139.jpg,exp,2021.12.14,EXPIRY DATE 2021.12.14 | ，，,expiration,english
+141,test_00140.jpg,exp,2022.01.24,2022.01.24月A | SSG.COM | 豆三芒 | 起,other,none
+142,test_00141.jpg,exp,01.07.2021,U 247870906 | CHOCOCHIP  BROWNIE | COOKIE,other,none
+143,test_00142.jpg,exp,2021.08.18,2021.08.18 | HA | 意 | 喜,other,none
+144,test_00143.jpg,exp,2025-11-30,2025-11-30 | BEXP | Use-by date | 846566660261,expiration,english
+145,test_00143.jpg,date,2020-12-08,2020-12-08 | GTIN:00846566660261 | 846566660261 | 31438992,other,none
+146,test_00144.jpg,exp,21.03.25,21.03.250A6b | — | 29,other,none
+147,test_00145.jpg,exp,01/07/21,01/07/21 | L19173 A | TAGIANDO DICONTROLLO? | DIETORELLE DURE,other,none
+148,test_00146.jpg,exp,05.07.2021,"05.07.2021 | H LUH 31D 08:46 | 500ge | 4""00022""008054",other,none
+149,test_00147.jpg,exp,2022.06.11,2022.06.11  | |(Y/M/D): | 8 809159 350118 | α合c.,other,none
+150,test_00148.jpg,date,2021-01-11,PROD: 2021-01-11 | EXP: 2022-01-11 | deyonui prerentemente antes del: | 合,manufacturing,english
+151,test_00148.jpg,exp,2022-01-11,EXP: 2022-01-11 | PROD: 2021-01-11 | deyonui prerentemente antes del: | -t./ Midens haltbarbis:,expiration,english
+152,test_00149.jpg,date,2020-08-18,PROD: 2020-08-18 | EXP: 2021-08-18 | 8 | 2,manufacturing,english
+153,test_00149.jpg,exp,2021-08-18,EXP: 2021-08-18 | PROD: 2020-08-18 | 8 | 2,expiration,english
+154,test_00150.jpg,exp,26 MAR 2021,26 MAR 2021 | L 20086 | iteteo i | Bes Befor   e  itn ht,best_before,english
+155,test_00151.jpg,exp,09/09/2021,09/09/2021 | L.20-371 | wWw.OILteatoal.co.uk | M32 0T UK,other,none
+156,test_00152.jpg,exp,2022.04.18,2022.04.18 | 02933404 | ：10g|1gx10 | 升100%(78%),other,none
+157,test_00153.jpg,exp,30-04-2023,BBD:30-04-2023 | L.20.19-23.1 | SO | e a,best_before,english
+158,test_00154.jpg,exp,2021.04.05,2021.04.05 外 | www.spcsamlip.co.kr | 人(引)，喜号，是，E从个个LE号，合，合,other,none
+159,test_00155.jpg,exp,2021.04.25,2021.04.25,other,none
+160,test_00156.jpg,exp,2021.03.23,2021.03.23 | MAPLE PUDDING,other,none
+161,test_00157.jpg,exp,2021.08.04,2021.08.04 | 11:18 8 | m | 外至动望,other,none
+162,test_00158.jpg,exp,2021.07.17,2021.07.17升灯 | prenium de | Sweet | 90 g(70 kcal),other,none
+163,test_00159.jpg,exp,29/10/2021,29/10/2021 08:58 V07 | Consumir depreferência antes de: | APPLE EMNNNN | Consumir prerentemente antes del:,best_before,other_language
+164,test_00160.jpg,exp,10/09/21,BBy 10/09/21 | 10112 19:47 | 含异,best_before,english
+165,test_00161.jpg,exp,03/12/2021,BEST BY:03/12/2021 | CAL:141/160 | LOT:SIV 1/19/1 | 0,best_before,english
+166,test_00162.jpg,exp,28.07.2021,28.07.2021 | L.15 09:44:41 | BEST F0R: | TINE,best_before,other_language
+167,test_00163.jpg,exp,2021.11.05,2021.11.05 | 苦 |  司,other,none
+168,test_00164.jpg,exp,2021.02.02,2021.02.02 | 21:06项2 | TY | Si,other,none
+169,test_00165.jpg,date,11.09.2020,"11.09.2020 | 11.06.2021 | ces Pte Ltd, 47 Jalan Buroh #09-0 | Singapore 619491.",other,none
+170,test_00165.jpg,exp,11.06.2021,11.06.2021 | 20345540 | 11.09.2020 | Singapore 619491.,other,none
+171,test_00166.jpg,exp,2021.03.15,2021.03.15 | 10:48对 | SOA | WiN,other,none
+172,test_00167.jpg,exp,03.11,03.11 18:00 | Hav'eat | FERES MR,other,none
+173,test_00168.jpg,exp,2021.03.10,异：2021.03.10 | 8809152412141 | [l] | OTHER OTHER,other,none
+174,test_00169.jpg,exp,2021.04.19,202104.19 A | DCT | SV | ASY,other,none
+175,test_00170.jpg,exp,2022.01.14,2022.01.14呐 | H~ | K11901) | 20！,other,none
+176,test_00171.jpg,exp,2021.07.23,2021.07.23 | 12:40 | E5,other,none
+177,test_00172.jpg,exp,2021.06.06,2021.06.06 | (2000k | () | 0g0%192%,other,none
+178,test_00173.jpg,exp,2021.11.29,2021.11.29 | 人！ | 1,other,none
+179,test_00174.jpg,exp,2021.08.23,2021.08.23 | X | 早 ,other,none
+180,test_00175.jpg,exp,2022.12.16,2022.12.16 | 2100054,other,none
+181,test_00176.jpg,exp,2022.02.02,2022.02.02 | 7E | 叫叫 | 100%300g 鄂君生,other,none
+182,test_00177.jpg,exp,07/10/2022,"07/10/2022 | E2002704D3282 | 11/A, OLD COLOMBO ROAD, HEWAGAMA, KADUWELA, | SRI LANKA, 10640 TC/E/PR/1443/995",other,none
+183,test_00178.jpg,exp,2022/06/04,WL-2022/06/04 | 3C423 | SWAM | LO,other,none
+184,test_00179.jpg,exp,2022/10/29,2022/10/29 | 2A444 | 8935001709831 | PERFETTI,other,none
+185,test_00180.jpg,exp,07-12-21,07-12-21 17:51 10 | 0.9 | 29,other,none
+186,test_00181.jpg,exp,20/01/22,245E1YNESK | 0/00 | BEST BEFORE: (DD/MM/YY),best_before,english
+187,test_00182.jpg,exp,21.10.28,21.10.28 | HIEILC | AH君 | Go!Go!,other,none
+188,test_00183.jpg,exp,22.01.11,22.01.11 | OPEN | zegy | CHOLS?,other,none
+189,test_00184.jpg,exp,22/10/2021,EXPIRE DATE: 22/10/2021 12:15 | 07 | 0.83%，()0.6% | 12|150g(720kcal),expiration,english
+190,test_00185.jpg,exp,2021/05/12,2021/05/12 | 引0平00% | 4号25mg1%量46g14%30930%09 | 60g200 kcal,other,none
+191,test_00186.jpg,exp,2022.10.11,EXP.DATE:2022.10.11 | 200 | ITERSCO,expiration,english
+192,test_00188.jpg,exp,2021/12/15,"2021/12/15 | Best Before: | MADE IN CHINA | 6936756""228471",best_before,english
+193,test_00189.jpg,exp,2022.03.01,J | MA | M2,other,none
+194,test_00190.jpg,exp,01 09 2023,01092023 | L01IS U2 | Linguine 14 | DIVELLA,other,none
+195,test_00191.jpg,exp,23.02.2022,EXP~23.02.2022 | IMPERIAL | 1,expiration,english
+196,test_00192.jpg,exp,2026.01.09,"2026,01,09 | ·/",other,none
+197,test_00193.jpg,exp,2022.12.30,"2022,12,30 | 悟",other,none
+198,test_00194.jpg,exp,2025.08.14,2025.08.14 枫 | 88092586588,other,none
+199,test_00195.jpg,exp,19/12/20,19/12/20 B12 | BEST. BEFORE | 917834 8-2-0424-19 1125-3,best_before,english
+200,test_00196.jpg,exp,2021.03.05,"2021.03.051,000 | 引章导 | 50050% | 2000052650873000005014",other,none
+201,test_00197.jpg,exp,10/2020,10/2020 | 827182 | Son Kul. Ta: | Parti No.:,expiration,other_language
+202,test_00199.jpg,exp,31/12/2025,"EXP 31/12/2025 | Batch number 011920U0 | 8033712""202822 | Vilrbass",expiration,english
+203,test_00200.jpg,exp,28 10 21,L095 E 28 10 21 | ERED | DA,other,none
+204,test_00201.jpg,exp,30/09/2022,16:12 LJ200 30/09/2022 | Vor dped poasgohe | 80006810) | Enegi/BE/Eergi Enery.,other,none
+205,test_00202.jpg,exp,17.03.22,L0076 17.03.22 | 04:55 | L0076 170322 | DESTIVATIN,other,none
+206,test_00203.jpg,exp,06.05.2022,"06.05.2022.T030 | BAIBaa#2 | 134""667818"" | 图",other,none
+207,test_00204.jpg,exp,04 NOV 2021,04 NOV 2021 | BEST BEFORE | 14:31 LOT 309 | GUTEN RE,best_before,english
+208,test_00205.jpg,exp,25.06.2021,25.06.2021 | A consommer de préférence avant le: | Mindestens haltbar bis:,best_before,other_language
+209,test_00206.jpg,exp,2021.09.07,2021.09.07 | 2 | nlo | 自,other,none
+210,test_00207.jpg,exp,18/04/2021,18/04/2021 | 08:03 F174 | À consommer de préférence avant le :/ Best before: | POIDS NET,best_before,english
+211,test_00208.jpg,exp,2021.12.25,2021.12.25 | ：：·：150g(0k | ，[(，)( | 喜ス,other,none
+212,test_00209.jpg,exp,2022.02.04,2022.02.04ME | ey | BIE | N,other,none
+213,test_00210.jpg,exp,28.04.2021,"28.04.2021 | L1002021551 | Articel Number: 1282849 | Importeur: Fine F&B Service Co Ltd., 06017 Seoul/ Korea",other,none
+214,test_00211.jpg,exp,12.06.2021,BEST BEFORE:12.06.2021 | 2 | NETWEIGHT: | 19g 35%,best_before,english
+215,test_00212.jpg,exp,05 06 21,0506 21 T10 | 05:48 0 24 | BET BEFORE TNTHUBARTOT | Store dpla le.,best_before,english
+216,test_00213.jpg,date,27/09/2020,"Mfg:27/09/2020 | Exp:26/09/2021 | B.N:2727A | 是腾2,000ka合心",manufacturing,english
+217,test_00213.jpg,exp,26/09/2021,"Exp:26/09/2021 | Mfg:27/09/2020 | B.N:2727A | 是腾2,000ka合心",expiration,english
+218,test_00214.jpg,exp,2021.12.18,"EXP 2021.12.18 A | 73220, Thailand Tel.+66(0)2622-3434 | BEST BEFORE | 57 Moo 3 Kratumlom,Sampran,Nakomnpathon",expiration,english
+219,test_00215.jpg,exp,19/05/2021,19/05/2021 | 0140 | Minimalni trvanlivost Minimalna trvanlivost: | ConsumirpreterenmenansdnAmonsumirmnaantes del,best_before,other_language
+220,test_00216.jpg,exp,AUG 13 2021,AUG 13 2021 | Best If Used By | 02267861C 09:53 | Hark of The Non-GMO Project.,best_before,english
+221,test_00217.jpg,exp,08/2023,08/2023 | A078690 | Son Kull. Ta.: | Parti No:,expiration,other_language
+222,test_00218.jpg,exp,10.01.21,10.01.21 | 10.01.20 | 99,other,none
+223,test_00218.jpg,date,10.02.20,10.01.20 | 10.01.21 | 99,other,none
+224,test_00219.jpg,exp,06.04.2024,S.K.T.:06.04.2024 | Parti No: 190926 | (21)151368657 | (01)08699717010109,expiration,other_language
+225,test_00220.jpg,exp,2022.01.08,2022.01.08 | 8806500029815 | BU2A | 3ERFA4BREZ,other,none
+226,test_00221.jpg,exp,2022.11.12,2022.11.12 | (01)08806980026021 | 19027 | (21)19B13512404,other,none
+227,test_00222.jpg,exp,12.2020,(17) S.K.T. :12.2020 | (21)145G0V1T99XY2A | (10) 9LB00463 | (01)08699502013063,expiration,other_language
+228,test_00223.jpg,exp,2022.06.20,2022.06.20 | 平 0g 0% | 提利路 |  0mg 0% 09 0%,other,none
+229,test_00224.jpg,exp,2022.06.15,"2022.06.15加IE25 | HoT&SPICYL | ALMOND | W1,000",other,none
+230,test_00225.jpg,date,21/11/2020,MFG:21/11/2020 J23U | EXP:20/02/2022 M20159 | Date d péremption  | Best Before / Baik Sebelum /,manufacturing,english
+231,test_00225.jpg,exp,20/02/2022,EXP:20/02/2022 M20159 | MFG:21/11/2020 J23U | Date d péremption  | Best Before / Baik Sebelum /,expiration,english
+232,test_00226.jpg,date,2020.11.07,MFG:2020.11.07 | EXP:2022.01.07 | M2204563 | 10,manufacturing,english
+233,test_00226.jpg,exp,2022.01.07,EXP:2022.01.07 | MFG:2020.11.07 | M2204563 | 10,expiration,english
+234,test_00227.jpg,exp,01.2022,EXP:01.2022 | 6.1.207 4 | Malkist | Crackers,expiration,english
+235,test_00228.jpg,exp,19 10 2020,10 2020 | 0 | 1 | 2,other,none
+236,test_00229.jpg,exp,29/05/2021,29/05/2021 | LOTTO 3335 | 09:28,other,none
+237,test_00230.jpg,exp,2021.05.16,"BEST BY: 2021.05.16 | 643373 | 外装 | AtArlaedeliverwholesome,natural chesebasedonour",best_before,english
+238,test_00231.jpg,exp,2022.09.10,2022.09.10 | 人 | (开7外),other,none
+239,test_00232.jpg,exp,2021.05.12,2021.05.12 | 16%，14%,other,none
+240,test_00233.jpg,date,2020/06/01,2020/06/01 | 2023/06/01 | LOT NO:86336 | AKBAR TEA,other,none
+241,test_00233.jpg,exp,2023/06/01,2023/06/01 | LOT NO:86336 | 2020/06/01 | AKBAR TEA,other,none
+242,test_00234.jpg,date,2021.02.06,2021.02.06 | 2021.03.02 | ，,other,none
+243,test_00234.jpg,exp,2021.03.02,2021.03.02 | 2021.02.06 | ，,other,none
+244,test_00235.jpg,exp,06-11-21,06-11-21 | 311,other,none
+245,test_00236.jpg,exp,16.03.2021,16.03.2021 | BJ0917 2/01:06 | Best before | Kara,best_before,english
+246,test_00237.jpg,exp,01/12/2021,01/12/2021 | U 0246 B 18:04 | DD MMYY | #,other,none
+247,test_00238.jpg,exp,08.12.2021,EXP DATE:08.12.2021 | 1635TNG2150903F0 | 5A | ae,expiration,english
+248,test_00239.jpg,exp,22/03/2021,EXP:22/03/2021 KRPF | 2103191101 | Sevig sugetonnah rn ab c cm | Net wt.,expiration,english
+249,test_00240.jpg,exp,2021.10.11,2021.10.11 | LJ284 17:01 | 华：智 | 0129276,other,none
+250,test_00241.jpg,exp,05 2024,05.2024 | 120g | NET WEIGHT | PESO LIQUIDO,other,none
+251,test_00242.jpg,exp,2021-10-08,"BEST BY 2021-10-08 | Ingredients : Water, | LaLi | Mustard Seed, Vinegar,",best_before,english
+252,test_00243.jpg,exp,2021-09-15,"BEST BY 2021-09-15 | Ingredients : Vinegar, | Water, Mustard seed | Salt, Turmeric, Paprika",best_before,english
+253,test_00244.jpg,exp,02.10.21,02.10.21 | Best Before (异号7|) | 项验号0倍 | OTHER,best_before,english
+254,test_00245.jpg,exp,06/04/21,06/04/21 | 282 | 14:39 D | Smeteest Fransk,other,none
+255,test_00246.jpg,exp,22/04/2021,22/04/2021 | Best before: | 0229102010 | Lot:,best_before,english
+256,test_00247.jpg,exp,18-04-2021,18-04-2021 | BEST BEFORE | (EDAM) | 周,best_before,english
+257,test_00248.jpg,date,23 06 2020,Prod. 23 06 2020 | 22 06 2022 |   . | Exp.,manufacturing,english
+258,test_00248.jpg,exp,22 06 2022,22 06 2022 | Prod. 23 06 2020 | 此日期前最佳2年 | Exp.,best_before,other_language
+259,test_00249.jpg,exp,2021/04/03,Best Before: 2021/04/03 | Lot: BI-10304842,best_before,english
+260,test_00250.jpg,exp,06/12/2021,06/12/2021 | BEST BEFORE | BATCH:R 4552 | KAYA HOUSE,best_before,english
+261,test_00251.jpg,exp,APR-28-2023,EXP:APR-28-2023 | LOT:AP201095 | 0654561015 | 2000(7,expiration,english
+262,test_00252.jpg,exp,2022/10/05,2022/10/05 | HADI | w.fooreignfoe | helgnfoodkr,other,none
+263,test_00253.jpg,exp,18 07 2021,18 07 2021 | Najboje upotrijebiti do: | Aconsommer de preférence avantle/Mindestens haltbarbis/ | L.0200 1 2,best_before,other_language
+264,test_00254.jpg,exp,2021.03.18,2021.03.18 | 16:24 | L-1,other,none
+265,test_00255.jpg,exp,2021.04.28,异号社:2021.04.2819:09 | SHRED PIZZA CHEESE | 武 | 会,other,none
+266,test_00256.jpg,date,2020.12.28,2020.12.28/16:35 | 2021.12.27(3) | 构 | 沙,other,none
+267,test_00256.jpg,exp,2021.12.27,2021.12.27(3) | 2020.12.28/16:35 | 號港 | 构,other,none
+268,test_00257.jpg,exp,2021.09.29,2021.09.29 | そ | 列,other,none
+269,test_00258.jpg,exp,21-02-28,21-02-28|H | 90.42 | ),other,none
+270,test_00259.jpg,exp,2021.04.19,2021.04.19 13:36 | # # | YONSEI,other,none
+271,test_00261.jpg,exp,2021.12.29,2021.12.29 P4 | 20:56 主 | 1952 | 吾丑,other,none
+272,test_00262.jpg,exp,2023.01.20,2023.01.20 | 100 | 补100g(1g×100E|)|50%，50%|Korean Burdock.tea牛蒡茶 | 福,other,none
+273,test_00263.jpg,exp,2023.01.13,2023.01.13 | WWW.NOKCHAWON.CO.KR,other,none
+274,test_00264.jpg,exp,2021.04.02,国1202104.02 | BARLSTA,other,none
+275,test_00265.jpg,date,2021.01.29,2021.01.29 | 2021.06.28 | 00:10 A01 | http://www.orionworld.com,other,none
+276,test_00265.jpg,exp,2021.06.28,2021.06.28 | 2021.01.29 | 00:10 A01 | http://www.orionworld.com,other,none
+277,test_00266.jpg,exp,2022.01.04,2022.01.040那风(C) F2 | 圣可人从中2 | 572-5F24/871 | 24SaPE,other,none
+278,test_00267.jpg,exp,2022.12.01,2022.12.01 | d |   ,other,none
+279,test_00268.jpg,exp,2021.11.19,2021.11.19 | ： | 华P EITER | ：,other,none
+280,test_00269.jpg,exp,2020.09.10,2020.09.10 | 部6过器号程 | 257248,other,none
+281,test_00270.jpg,exp,2021.10.07,2021.10.07 | 08:26 0|立 A | ：,other,none
+282,test_00271.jpg,exp,2022.11.08,2022.11.08 | SEE-1 | 枫,other,none
+283,test_00272.jpg,exp,02/2025,02/2025 | L B93759/ 02 | Mindestens haltbar bis Ende: |  1399,best_before,other_language
+284,test_00273.jpg,exp,03 JUL 2021,03 JL 2021 | B1205:50,other,none
+285,test_00274.jpg,exp,02.01.2022,02.01.2022 | CA0702 4/23:46 | 此日期前最佳 | Digunakan sebelum,best_before,other_language
+286,test_00275.jpg,exp,2022.05.21,2022.05.21 | 11:16:4504 | COUS TERERA LON DOTE UNE | nOSUsinANOU,other,none
+287,test_00276.jpg,exp,2021.08.30,2021.08.30 | H218E33 | 03904705073 | BESTBEFORE,best_before,english
+288,test_00277.jpg,date,2020 06 24,2 | 2020 06 24 | 2021 08 24 | 50,other,none
+289,test_00277.jpg,exp,2021 08 24,2 | 2020 06 24 | 2021 08 24 | 50,other,none
+290,test_00278.jpg,exp,2021 06 30,2021 06 30 | H218A7E | BEST BEFORE | L,best_before,english
+291,test_00279.jpg,exp,01/08/2021,01/08/2021 X28 | BEST BEFORE: | 231411920AM2 | C,best_before,english
+292,test_00280.jpg,exp,21.04.04,21.04.0 UCa,other,none
+293,test_00281.jpg,exp,02/08/2022,.02/08/2022 | 300n | 1g 2% | 至00g 00%,other,none
+294,test_00282.jpg,exp,2021.05.24,2021.05.24 | Best Before | SB,best_before,english
+295,test_00283.jpg,exp,22-09-2023,22-09-2023 | www.ramirez.pt | EMAIL: RAMIREZ@RAMIREZ.PT | Phone: (351) 229997878,other,none
+296,test_00284.jpg,exp,06.2023,"06.2023 L164A | 5601010""512221 | THEL",other,none
+297,test_00285.jpg,exp,07.2023,07.2023 | Consumir preferentemente antes del fin de: ver lateral | Mindestens haltbar bis ende: siehe auf die Seite | A consommer de préférence avant fin: voir latéral,best_before,other_language
+298,test_00286.jpg,exp,04-05-2022,04-05-2022 | www.ramirez.pt | EMAIL: ramirez@ramirez.pt | Phone:(351)229997878,other,none
+299,test_00287.jpg,exp,2023.12.06,2023.12.06 | 果：8719 | 华PP 2EXIOTHER,other,none
+300,test_00288.jpg,exp,10/2022,10/2022 | 128 111641 | il mio suugo ialiano | Boniie-artianc,other,none
+301,test_00289.jpg,exp,09.03.2020,09.03.2020 | HSD: 3 năm k t ngày sán xuat | NSX: | DT:(084) 37517647 Fax: (084) 37516174,manufacturing,other_language
+302,test_00290.jpg,exp,30.12.2021,30.12.2021 | 1L240812 | Pan integral · Pane integrale | Rye Bread · Pain de seigle complet,other,none
+303,test_00291.jpg,exp,2021.12.25,2021.12.25 | 賞味期限 | サンプル品分析による推定値 | 4.5g、炭水化物38.6g、食塩相当量39.9g,best_before,other_language
+304,test_00292.jpg,exp,2021.07.05,2021.07.05 | ：号 委3%量C | 139,other,none
+305,test_00293.jpg,exp,2021.08.15,：2021.08.15 | 5%/：， | 司,other,none
+306,test_00294.jpg,exp,02.08.21,02.08.21 | préérenceavante:daconumarepreibimententoil | L190 21708 | Bestboiore:/Mindestens haltbarbis:/ à consommerde,best_before,other_language
+307,test_00295.jpg,exp,11.08.2021,EXP:11.08.2021 | 0059/08/2 | 18:58 | Przechowwać temp.4℃-10°/Kep in temperature:++10°/c,expiration,english
+308,test_00296.jpg,exp,2022.09.13,号7| 2022.09.13,other,none
+309,test_00297.jpg,exp,31/12/2022,31/12/2022 |     | Johannescurg | Uporabno najmani do/,best_before,other_language
+310,test_00298.jpg,exp,02 06 23,Exp: 02 06 23 | 11:50 L9/71 C | Lotto 00220154 | 20,expiration,english
+311,test_00299.jpg,exp,2022.06.15,BEST BFRE 202.06.15 | 3502011118:42 | farmers proud | snow-covered,best_before,english
+312,test_00300.jpg,date,25/08/2020,PROD:25/0B/2020 | EXP: 25/03/2021 H238T | 15:55 | Crème,manufacturing,english
+313,test_00300.jpg,exp,25/03/2021,EXP: 25/03/2021 H238T | PROD:25/0B/2020 | 15:55 | PRÉSIDENT Whipping,expiration,english
+314,test_00301.jpg,exp,2021.08.30,2021.08.30 | GME06B 07:48 | Best Before: | www.hellema.com,best_before,english
+315,test_00303.jpg,exp,15.05.2022,EXP:15.05.2022 | o | 20,expiration,english
+316,test_00304.jpg,exp,28/02/22,28/02/22 | L20238 | Da consumarsi preferibilmente entro il / Best before:,best_before,english
+317,test_00305.jpg,exp,2021.08.04,2021.08.04 | 圣 | ###卫 | 酷,other,none
+318,test_00306.jpg,exp,2021.02.25,2021.02.25 | 10:59 | 100%档 | 即人,other,none
+319,test_00307.jpg,exp,2021.04.07,2021.04.07 | 59 (75 kcal] | 99%,other,none
+320,test_00308.jpg,exp,2021.04.11,2021.04.11 | 国和型影中 | 7.5g | 13.6,other,none
+321,test_00309.jpg,exp,2022.12.04,2022.12.04 HB | 2k号李号M50 %50%,other,none
+322,test_00310.jpg,exp,2021.12.22,2021.12.22 A  | OTTOGI CORN MARGARINE | 号今今,other,none
+323,test_00311.jpg,exp,2021.06.21,2021.06.21 | 16:12 | Denmark | SINCE 1985,other,none
+324,test_00312.jpg,date,2020.10.14,"2020.10.14/09:25 | 村2021.04.13/8 | %,",other,none
+325,test_00312.jpg,exp,2021.04.13,村2021.04.13/8 | 2020.10.14/09:25 | CE,other,none
+326,test_00313.jpg,exp,2021.09.02,2021.09.02A | OHA | 300g(30g×10至),other,none
+327,test_00314.jpg,exp,2023.12.08,2023.12.08_F3 | 10:47 | *100%,other,none
+328,test_00315.jpg,exp,2022.07.20,2022.07.20. 11:57 ,other,none
+329,test_00316.jpg,exp,2022.01.04,2022-01-04 | 4901科 | 记人印量 Omg 0%,other,none
+330,test_00317.jpg,exp,2021.07.15,2021.07.15 A | Cham | Cham Kiwi Dressing,other,none
+331,test_00318.jpg,exp,2021.11.11,2021.11.11 | 8801492353870 | www.harim.com | (),other,none
+332,test_00319.jpg,exp,2021.03.31,2021.03.31NW | 20:10 D4 | :OTHER,other,none
+333,test_00320.jpg,exp,2024.02.13,2024.02.13 | ： | ()0/031-796-6435 | 12-4,other,none
+334,test_00321.jpg,exp,2021.07.20,2021.07.20 | 国题 | 题,other,none
+335,test_00322.jpg,exp,2021.11.09,2021.11.09A | 味 | 天,other,none
+336,test_00323.jpg,exp,2022.01.01,2022.01.01 | 哥日册 0mg 0% 出号3g 5% | WeenyBeeny. | 12200,other,none
+337,test_00324.jpg,exp,2022 08 03,2022 08 03 | 华4 | 品惠7 | 语,other,none
+338,test_00325.jpg,exp,2020.07.22,122020.07.22 | 包塑/晋昌号召176 | ·基号号， 肥,other,none
+339,test_00327.jpg,exp,2021.05.19,2021.05.19升风 | 8B(09:39) | 59% | 到8 53%,other,none
+340,test_00328.jpg,date,31 10 2020,Prod 31 10 2020 HB | Exp 30 10 2021 | YNTI | BEST BEFORE:,manufacturing,english
+341,test_00328.jpg,exp,30 10 2021,Exp 30 10 2021 | Prod 31 10 2020 HB | YNTI | L.,expiration,english
+342,test_00329.jpg,exp,14.11.2022,"EXP:14-11.,2022 | OPEN | KEPRN",expiration,english
+343,test_00330.jpg,exp,21.07.2021,21-07-2021,other,none
+344,test_00331.jpg,exp,30/06/21,EXP:30/06/21 14:53 | PRO:02/11/20 307,expiration,english
+345,test_00331.jpg,date,02/11/20,PRO:02/11/20 307 | EXP:30/06/21 14:53,manufacturing,english
+346,test_00332.jpg,exp,2022.08.24,2022.08.24 | TEA | (100-9750,other,none
+347,test_00333.jpg,exp,2020.11.18,2020.11.18 | BAKING POWDER,other,none
+348,test_00334.jpg,date,24 OCT 2019,24 OCT 2019 | 24 APR 2021 | 08:58 | BEST BEFORE,best_before,english
+349,test_00334.jpg,exp,24 APR 2021,24 APR 2021 | 24 OCT 2019 | 08:58 | Lot No. 43019,other,none
+350,test_00335.jpg,exp,2022.09.15,2022.09.15 | 咖 | o,other,none
+351,test_00336.jpg,exp,30/04/21,30/04/21 | CH 2371 | Consumir preferentemente antes del / Consui | Best before / À consommer de préférence avart In,best_before,other_language
+352,test_00337.jpg,exp,11.09.2021,11.09.2021 | EU-Landwirtschaft | DE-ÖKO-001 | e400g,other,none
+353,test_00338.jpg,exp,12.09.2021,12.09.2021 | Landwirtschaft | EU-/Nicht-EU- | DE-ÖKO-001,other,none
+354,test_00339.jpg,exp,2021.06.13,2021.06.13NN | 02:45 06 | 全电电 | 卫,other,none
+355,test_00340.jpg,exp,2021.05.17,2021.05.17 | 1 | 2+7 | 2+7,other,none
+356,test_00341.jpg,exp,2021.11.06,2021.11.06A | 11:06 | OHA,other,none
+357,test_00342.jpg,exp,04.08,品 | 中 | 20 | 0,other,none
+358,test_00343.jpg,exp,2022.09.27,2022.09.27 |  ,other,none
+359,test_00344.jpg,exp,22.06.30,22.06.30 22B D | 8 8 | 外 | ：,other,none
+360,test_00345.jpg,date,08.10.2020,PRODUCTION DATE: 08.10.2020 | BEST BEFORE DATE: 08.04.2022 | 901-28220101510 39:18 100ge | HARiBO,manufacturing,english
+361,test_00345.jpg,exp,08.04.2022,BEST BEFORE DATE: 08.04.2022 | 901-28220101510 39:18 100ge | PRODUCTION DATE: 08.10.2020 | HARiBO,best_before,english
+362,test_00346.jpg,date,11.09.2020,PRO.DATE:11.09.2020 | EXP.DATE: 11.03.2022 | L901-255 20 0101609 13:08 | Produce by-Diroduksioleh-Dan Nghip Sn Xut&uát Kh:PAMIR,manufacturing,english
+363,test_00346.jpg,exp,11.03.2022,EXP.DATE: 11.03.2022 | PRO.DATE:11.09.2020 | L901-255 20 0101609 13:08 | Produce by-Diroduksioleh-Dan Nghip Sn Xut&uát Kh:PAMIR,expiration,english
+364,test_00347.jpg,exp,01.02.22,"01.02.22 | 060223 233 | 9(2,000",other,none
+365,test_00348.jpg,exp,02.02.22,02.02.22 07:47 | 060224 242 | 9%2k,other,none
+366,test_00349.jpg,exp,21.11.11,21.11.11 | 82% | 量早2)(100g8,other,none
+367,test_00350.jpg,date,2021.01.24,2021.01.24对至 | 2021.03.24外灯 | 二,other,none
+368,test_00350.jpg,exp,2021.03.24,2021.03.24外灯 | 2021.01.24对至 | 二,other,none
+369,test_00351.jpg,exp,10/2021,Best Before 10/2021 | 041DSCLV08 | CHOCAE CGLALODIES | 20,best_before,english
+370,test_00352.jpg,exp,2022/07/29,2022/07/29 | VA351 | EXP DATE | LOT NO.,expiration,english
+371,test_00353.jpg,exp,05 07 2021,05 07 2021 | L252XA--3 | 15:51 | 20,other,none
+372,test_00354.jpg,exp,2022.03.15,2022.03.15 | 11:33 | 0%,other,none
+373,test_00355.jpg,exp,24 09 2021,24 09 2021 | L303XA- | 面 | 74,other,none
+374,test_00356.jpg,exp,2020.06.23,2020.06.23 | 聚 | www.breagarden.co.kr,other,none
+375,test_00357.jpg,exp,2020.10.09,2020.10.09 | 100% | Mango  Pop | 496 mL(62 mL X 8EA) Total 336 kcal (42 kcal X 8EA),other,none
+376,test_00358.jpg,exp,2022.12.07,2022.12.07 | () | 量导盟人2,other,none
+377,test_00359.jpg,exp,27/08/2023,27/08/2023 | . L02401 | 16:16 | 今,other,none
+378,test_00360.jpg,exp,25 09 2021,25 09 2021 HB 19 06:06 | BEST BEFORE | Ingeinajut,best_before,english
+379,test_00361.jpg,exp,12.08.2021,12.08.2021 | 示河 | L260XG-U 11 | 服,other,none
+380,test_00362.jpg,exp,2021.04.30,2021.04.30,other,none
+381,test_00363.jpg,exp,21.11.03,21.11.03 | A | 外大 | 冷A,other,none
+382,test_00364.jpg,exp,2020.05.28,2020.05.28 | www.homeplus.co.kc. | 38803217014165 | 2吧,other,none
+383,test_00365.jpg,exp,2021.02.28,2021.02.28外下|E6B | 0 | 聲,other,none
+384,test_00366.jpg,exp,2022.11.04,2022.11.04,other,none
+385,test_00367.jpg,exp,2022.09.25,2022.09.25 | D | 异髻 | 1,other,none
+386,test_00368.jpg,exp,2021.01.02,2021.01.02 B02:23  | VE1 | ： | LDPE,other,none
+387,test_00369.jpg,exp,2022.07.27,2022.07.27B | 工2合：0-2331品8) | 1506-27·号卫地位：180450617 | 37 5Wcto.co),other,none
+388,test_00370.jpg,exp,2021.10.08,2021.10.0802,other,none
+389,test_00371.jpg,exp,2021.11.21,2021.11.21 | Homeplus | Signature | U,other,none
+390,test_00372.jpg,exp,2020.12.10,2020.12.10网 | 早口互到0人E24% | 9g | KFC那,other,none
+391,test_00373.jpg,exp,2020.03.13,122020.03.13 | ORIGINAL MACADAMIA | Australia | 030,other,none
+392,test_00374.jpg,exp,2020.11.06,2020.11.06 F2 i | 早E，“： | 45 | 4.5,other,none
+393,test_00375.jpg,exp,2022.11.17,2022.11.17 T | OTHER | XIE:LDPE,other,none
+394,test_00376.jpg,exp,2022.09.03,"2022.09.03 | : | 250g，9g,01号(4g)，6g, | 18g，135ml,30g，(21cm)",other,none
+395,test_00377.jpg,exp,03/09/21,03/09/21 | 12:03 | L20312 | peramra in,other,none
+396,test_00378.jpg,exp,2021.05.28,2021.05.28 | ELT | 20 |  ,other,none
+397,test_00379.jpg,exp,2021.07.07,2021.07.07 | CAN | 20 | 品 ,other,none
+398,test_00380.jpg,exp,2022.11.14,2022.11.14 | TEL0318018-5031 FAX031)8018-5032 | 377 | ：,other,none
+399,test_00381.jpg,exp,2022.03.20,| 2022 03.20 | :PP | L7：PE | ：PP,other,none
+400,test_00382.jpg,date,21/09/2020,PR0D:21/09/2020 | EXP:15/03/2022 | An,manufacturing,english
+401,test_00382.jpg,exp,15/03/2022,EXP:15/03/2022 | PR0D:21/09/2020 | An,expiration,english
+402,test_00383.jpg,exp,2020.05.12,2020.05.12 | 4.7|E：2.0%,other,none
+403,test_00384.jpg,exp,20.07.20,20.07.20M8CF1 | 上,other,none
+404,test_00385.jpg,exp,2021.12.17,2021.1217 | 320g | 100g5t340kcal | 59g 59%,other,none
+405,test_00386.jpg,exp,21/02/21,21/02/21 | L026 17:14 | Use by: onsumar etre eike t/Bast fr: | Keep between +2°C and +C in ts n iqid.Csume immed,expiration,english
+406,test_00387.jpg,exp,2021.09.14,2021.09.14 | :85 g(412 kcal),other,none
+407,test_00388.jpg,exp,2021.05.01,2021.05.01 | 1 | 0,other,none
+408,test_00389.jpg,exp,2022.04.01,2022.04.01 | A | 20,other,none
+409,test_00390.jpg,exp,2021.07.20,2021.07.20/B | OTHER | 8809352812130,other,none
+410,test_00391.jpg,exp,2021.03.20,2021.03.20 | 图号20/%号10%1804),other,none
+411,test_00392.jpg,exp,2021.02.21,2021.0221期 | ス | 今好证 | 带,other,none
+412,test_00394.jpg,exp,2022.04.07,2022.04.07加 | 福 | FOOD | CRANBERRY,other,none
+413,test_00395.jpg,exp,2022.07.13,2022.07.13 A | 人快否 | 200合 | 三人0g 0g0% 引印0mg0% 090%,other,none
+414,test_00396.jpg,exp,2022.10.15,2022.10.15 网,other,none
+415,test_00397.jpg,exp,2021.10.07,"2021.10.07 11:15 | 8801007""185910"" | 归 | 甲话:2月惯：P",other,none
+416,test_00398.jpg,exp,2021.10.12,2021.10.12 | w.chkao.0 | 42H:LDPE,other,none
+417,test_00399.jpg,exp,2021.12.05,2021.12.05 | 青口点 | 20cal | 0%,other,none
+418,test_00400.jpg,exp,2022.06.18,2022.06.18 10:30 | E | O17H: LDPE | 暖吧,other,none
+419,test_00401.jpg,exp,2022.11.26,2022.11.26 | ·4· |  2 | ：,other,none
+420,test_00402.jpg,exp,2022.07.19,2022.07.19,other,none
+421,test_00403.jpg,exp,2022.01.06,2022.01.06 | 吉EH | HAITAI | 香45g,other,none
+422,test_00404.jpg,exp,05.2023,05.2023 | D9481 | P | 110,other,none
+423,test_00405.jpg,exp,2022.05.26,2022.05.26 | SWISS mIss | ·HOT COCOA MIX. | MADE FROM,other,none
+424,test_00406.jpg,exp,2021.11.30,2021.11.30 | Neet Up for Fun! | OTHER,other,none
+425,test_00407.jpg,exp,18/11/2022,8/11/2022 | 18/11/2020 | Production date/Best before: | http://www.boratr.co.kr,best_before,english
+426,test_00407.jpg,date,18/11/2020,18/11/2020 | Production date/Best before: | 8/11/2022 | http://www.boratr.co.kr,manufacturing,english
+427,test_00408.jpg,exp,05-10-21,05-10-21 21:04 6 | :ps /8o0/5/85,other,none
+428,test_00409.jpg,exp,11 12 2021,11122021 | 11181253 | Best Before: | Sucere,best_before,english
+429,test_00411.jpg,exp,2021 JUN 12,F | 13:44W13017 | BEST BEFORE: | Let's stay connected!,best_before,english
+430,test_00412.jpg,exp,2022.07.01,2022.07.01 | 080-215-9800 | 可() | M70237-07C18,other,none
+431,test_00413.jpg,exp,25/06/2021,25/06/2021 | ot-Ne | Best Before Date: | L4934000403495320,best_before,english
+432,test_00414.jpg,exp,2022.02.23,"2022.02.23 | TEL:604-4412231FAX:604-4412235 | 08000 SUNGAI PETANI, KEDAH, MALAYSIA | NO. 3, LORONG AYAM DIDIK, TAMAN RIA JAYA,",other,none
+433,test_00415.jpg,exp,2023.01.04,2023.01.04 | 08:38,other,none
+434,test_00416.jpg,exp,21.11.13,"21.11.13 | g(410 kcal), | CRUNCH CHON",other,none
+435,test_00417.jpg,exp,2021.11.26,2021.11.26加 | A9 | 809617,other,none
+436,test_00418.jpg,exp,2021.03.23,2021.03.23 | 14:58 | 1D | 1399·卫：080-589-3223/4,other,none
+437,test_00419.jpg,exp,2021.11.09,2021.11.09 | 人 | 昭生 | 号字婴学，吾些出身会台,other,none
+438,test_00420.jpg,exp,2021.11.01,2021.11.01 | 面 | 福 | MAN,other,none
+439,test_00421.jpg,exp,13.09.2021,13.09.2021 | L257XW--02:22 | 风 | nutella,other,none
+440,test_00422.jpg,exp,21.04.10,21.04.10,other,none
+441,test_00423.jpg,exp,06 09 2021,06 09 2021 21:05 | L315XS - U2850 | :PP | PP,other,none
+442,test_00424.jpg,exp,2022.11.04,2022.11.04 | 19:49 0|,other,none
+443,test_00425.jpg,exp,2021/09/28,BEST BEF0RE:2021/09/28 | préférence avant | A consommer de | Best Before/,best_before,english
+444,test_00426.jpg,exp,10/04/2021,EXP:10/04/2021 | from sunshine and high temperature. | 15% | 0%,expiration,english
+445,test_00427.jpg,exp,02.11.2021,02.11.2021 | FOODS | IMPERIA | 4184000810179611,other,none
+446,test_00428.jpg,exp,2020-07-14,2020-07-14 | 每份：1只（60克） | 平均每份 | 每包装份数：6,other,none
+447,test_00429.jpg,exp,12.04.2021,"EXP-12-04-2021 35 | Keep in temperature: +4℃÷+10°℃ | Najlepięjspożyćprzed,nr artii",expiration,english
+448,test_00430.jpg,exp,21 11 2022,21 11 2022 PX | www.deligmor.com | 89970C1880033 | Trans fat,other,none
+449,test_00431.jpg,exp,28 08 2022,"28 03 2022 PX | Best Before: Se on the package ( () | Kuningan, West Java | Nusa Pangan Lestari",best_before,english
+450,test_00432.jpg,exp,22-09-2021,"22-09-2021 | 266 C | milkam,au | starch(whe,miir(soannd4)rain(),",other,none
+451,test_00433.jpg,exp,2021.02.18,2021.02.18开 | 197203701网2 |   (),other,none
+452,test_00434.jpg,exp,2021.03.01,2021.03.01刀天I | 合·早01399·是，， | 异 | 动,other,none
+453,test_00435.jpg,exp,17.JAN.2022,17.JAL.2022 | BEST IF USED BY | Pouc  o   | Sr ih,best_before,english
+454,test_00436.jpg,exp,2020.12.22,2020.12.221 | 区扣格10K10% | 多98语20,other,none
+455,test_00437.jpg,exp,2020-07-13,2020-07-13 | 日 | 旭 | 营养资料,other,none
+456,test_00438.jpg,exp,2022.05.02,2022.05.02 | BEST BEFORE: | Dietary Fiber | PRODUCT OF INDONESIA,best_before,english
+457,test_00439.jpg,exp,2021.10.20,"2021.10.20 | ，,引(,个不是",other,none
+458,test_00440.jpg,exp,07/04/2021,07/04/2021 | LA281 | salsa tartu | DAmio,other,none
+459,test_00441.jpg,exp,16.02.21,Mozzarella16.02.21 | A 015 08:38 | Qualità,other,none
+460,test_00442.jpg,exp,2020.12.19,2020.12.19 | 2 | 2,other,none
+461,test_00443.jpg,exp,28/10/2021,28/10/2021 | M20302 11:27 A | Aconsommerdepréférence avantfin:/Bestbeforeend: | B.P.133-82001 MONTAUBAN CEDEX-FRANCE,best_before,english
+462,test_00444.jpg,exp,2021.03.06,2021.03.06TWI F3 | 异 | 喜,other,none
+463,test_00445.jpg,exp,2022.02.19,2022.02.19加 | 国 | PREMIUM FRESH FO | WALNUT,other,none
+464,test_00446.jpg,exp,2021.10.04,2021.10.04加 | 300g | 243798 | 培盟,other,none
+465,test_00447.jpg,exp,2022.03.05,"导导2022.03.05 | 刘至202103.06 | 809608""610398",other,none
+466,test_00447.jpg,date,2021.03.06,"刘至202103.06 | 导导2022.03.05 | 809608""610398",other,none
+467,test_00448.jpg,exp,2022.02.28,2022.02.28 23:37 98 A/0/0 | Mocha Latte | CAFÉ | Maxim,other,none
+468,test_00449.jpg,exp,2021/10/18,EXP:2021/10/18 A6 | Net Wt./N | 161306-5500.72 | 6L0859 a0de05-6 3u1018,expiration,english
+469,test_00450.jpg,exp,2021.11.12,2021.11.12 19:2228A/0V | l,other,none
+470,test_00451.jpg,exp,21.06.15,"21.06.15 | 8""801062""888832"" | 080-024-6060",other,none
+471,test_00452.jpg,exp,20.08.09,20.08.09 | 20.02.10早 | F2 D 17:04 | 8804874549397,other,none
+472,test_00452.jpg,date,20.02.10,20.02.10早 | 20.08.09 | F2 D 17:04 | 8804874549397,other,none
+473,test_00453.jpg,exp,2022.03.17,EXP:2022.03.17 | 2RD1 10:32 | PP,expiration,english
+474,test_00454.jpg,exp,2021.08.19,2021.08.19 |     | ，13,other,none
+475,test_00455.jpg,exp,2021.08.25,2021.08.25加 | http://www.lotteconf.co.kr | 型E单080-024-6060,other,none
+476,test_00456.jpg,exp,2021.01.16,2021.01.16 | 早1399 | ，,other,none
+477,test_00457.jpg,exp,17.09.2021,17.09.2021 | L296XG-U 10,other,none
+478,test_00458.jpg,exp,2022.11.17,2022.11.17 | 今.吾！ | OUT,other,none
+479,test_00459.jpg,exp,21.12.13,21.12.13 | /ww.lotteconf.co.kr | 080-024-60,other,none
+480,test_00460.jpg,exp,2021.11.01,2021.11.01 | E | 5明,other,none
+481,test_00461.jpg,exp,2021.12.02,2021.12.02 | 2020.12.03B,other,none
+482,test_00461.jpg,date,2020.12.03,2020.12.03B | 2021.12.02 | 8801111912075,other,none
+483,test_00462.jpg,exp,21.12.02,21.12.02 |    | 量合,other,none
+484,test_00463.jpg,exp,2021.06.27,2021.06.27 | 51B03:41 | N826 | 足,other,none
+485,test_00464.jpg,exp,30.06.2021,30.06.2021 3A | JVE27B 21:21 | N580 | 00%()0.08%),other,none
+486,test_00465.jpg,exp,15-09-2021,15-09-2021 | RHE37D 15:25 | 150g | 100g 525 kcal,other,none
+487,test_00466.jpg,exp,17-09-2021,17-09-2021 | 个 | 是圣%)200kcal | 7%,other,none
+488,test_00467.jpg,exp,2023.01.03,"2023.01.03 | 500 g (1,800 kcal) | #子个#盟子个#子个",other,none
+489,test_00468.jpg,exp,2022.10.12,2022.10.12 | 外 | 中三盘卫善炎创咖盟全 | Brand,other,none
+490,test_00469.jpg,exp,2021.04.12,2021.04.12 | ： | ·,other,none
+491,test_00470.jpg,exp,2022.08.07,2022.08.07 | 52200808-01 | K|,other,none
+492,test_00471.jpg,exp,2023.11.18,2023.11.18 | 卫:061)334-1160-2(www.gavo.co.kr) | 9 | 2,other,none
+493,test_00472.jpg,exp,2022.11.21,2022.11.21 | 25 g(3~4 E|),other,none
+494,test_00473.jpg,exp,2022.03.29,2022.03.29 L31 | 合 | ，,other,none
+495,test_00474.jpg,exp,2022.06.27,2022.06.27 | 卫 | 刻慧 | SOOREAN HOT PP,other,none
+496,test_00475.jpg,exp,2023.12.06,2023.12.06 10:13 | () | 080-019-9 | awjungonesho.oanm,other,none
+497,test_00476.jpg,exp,2021.01.11,2021.01.11 A | 号 903) | 250g | Seasoning Salt,other,none
+498,test_00477.jpg,exp,16/07/2022,16/07/2022 D20G17 | Baik digunakan sebelum: lihat kemasan | na zadnej strane obalu. | dátum vyroby / Minimána ryanlivost do:,best_before,other_language
+499,test_00478.jpg,exp,2021.06.09,"2021.06.09  | 14:51 B11 | 外大态/252 g(910kcal,18 gX14)",other,none
+500,test_00479.jpg,exp,01.30,01.30. 18:04  测 | BE | Enty the Cullty,other,none
+501,test_00480.jpg,exp,2021.03.28,号号71站1：2021.03.28外天 | CON | 99% | E,other,none
+502,test_00481.jpg,exp,02/02/21,02/02/21 | L21 004 | 00 | 20,other,none
+503,test_00482.jpg,exp,2021.09.25,BEST BEFORE:2021.09.25 | PROD.DATE.:2020.09.25 | Best before/Consumir preferentemente antes del/À consommer de préférence | avant/Dat  validade ,best_before,english
+504,test_00482.jpg,date,2020.09.25,PROD.DATE.:2020.09.25 | BEST BEFORE:2021.09.25 | Best before/Consumir preferentemente antes del/À consommer de préférence | avant/Dat  validade ,manufacturing,english
+505,test_00483.jpg,exp,2021.12.29,2021.12.29.C | 件用 | 全日 | 让,other,none
+506,test_00484.jpg,exp,2021.07.10,2021.07.10 | FRUS | Lychee | peach,other,none
+507,test_00485.jpg,exp,2021 11 30,"2021 11 30 | L1640 441 14:24 | Best before: | 3""046920""028004""",best_before,english
+508,test_00486.jpg,exp,2021.09.30,EXP:2021.09.30 | 0g0%三0g印0mg0%型00%0是7元 | 2 | 0139到卫,expiration,english
+509,test_00488.jpg,exp,2021.03.07,2021.03.07 | 19:42 F1,other,none
+510,test_00489.jpg,exp,2021.02.16,2021.02.16 | 21 | 号 | 20,other,none
+511,test_00490.jpg,exp,2022.08.25,2022.08.25 | 9718246 | S7I | 2g,other,none
+512,test_00491.jpg,exp,2022.03.30,"2022.03.30树 | ： | 8""803662""170041""",other,none
+513,test_00492.jpg,exp,2021.05.22,2021.05.22 | ・ざる,other,none
+514,test_00493.jpg,exp,2021.10.14,2021.10.14外 | HACCP | ：02)2049-2000,other,none
+515,test_00494.jpg,exp,2022.11.09,2022.11.09 | 5/μg | 告8 | 卫合DB,other,none
+516,test_00495.jpg,exp,2022.01.09,2022.01.09 | 12:56  A | ：,other,none
+517,test_00496.jpg,exp,2021.09.21,2021.09.21 A | 卫2收图每 | 080-996-777 | 个时,other,none
+518,test_00497.jpg,exp,2022.06.21,2022.06.21 F3 | 16:43 | 21:100合LC | 合,other,none
+519,test_00498.jpg,exp,MAR/01/22,MAR/01/22 08:55 | BEST IF USED BY | 20(ME2 | 创人,best_before,english
+520,test_00499.jpg,exp,01.25,Expiry Date F1 01. 25  | 异フ | Denmark,expiration,english
+521,test_00500.jpg,exp,2021.07.12,2021.07.12A | 2021.01.13对A,other,none
+522,test_00500.jpg,date,2021.01.13,2021.01.13对A | 2021.07.12A,other,none
+523,test_00501.jpg,exp,2021.12.11,2021.12.11升 | 2020.12.12刊 | Poul Baret,other,none
+524,test_00501.jpg,date,2020.12.12,2020.12.12刊 | 2021.12.11升 | Poul Baret,other,none
+525,test_00502.jpg,exp,22.01.11,22.01.11 22:19 | htto://www.lotteconf.co.kr | 台寻早号080-024-6060,other,none
+526,test_00503.jpg,exp,2021.04.22,2021.04.22 | 09:51 | 监电/（/20 0.),other,none
+527,test_00504.jpg,exp,2022.01.14,2022.01.14 | 告语 | 19960355183170,other,none
+528,test_00505.jpg,exp,2021.12.10,2021.12.10 | O | 10ml | 100m890 kcal,other,none
+529,test_00506.jpg,exp,2021.06.30,"2021.06.30 | 0B25仓1337 | 8801043""005814 | 6g",other,none
+530,test_00507.jpg,exp,2021.07.11,2021.07.11 | 02:36,other,none
+531,test_00508.jpg,exp,2021.10.26,2021.10.26 | 啊 | 139,other,none
+532,test_00509.jpg,exp,2021.04.25,2021.04.25 | 圣合 | 芒晋是卫，甘卫，号，为登是从号,other,none
+533,test_00510.jpg,exp,2020.04.23,2020.04.23 | 卫( | 080-996-77,other,none
+534,test_00511.jpg,exp,2021.06.13,2021.06.13  | 型封室 08:34 B02 | &,other,none
+535,test_00512.jpg,exp,10 2021,10 2021 13:42 | L010276141000 | O | 0,other,none
+536,test_00513.jpg,exp,2021.09.20,2021.09.20 | ()1.% | 40g (160 kcal) | ARONIA puff,other,none
+537,test_00514.jpg,exp,21.02.16,21.02.16刀I | 20.11.17早E | H | 2,other,none
+538,test_00514.jpg,date,21.11.17,20.11.17早E | 21.02.16刀I | 29 | H,other,none
+539,test_00515.jpg,exp,2021.07.24,2021.07.24 | 12:14 | Holoo,other,none
+540,test_00517.jpg,exp,2021 02 09,2021 02 09 | PP | 语,other,none
+541,test_00518.jpg,exp,2023/07/18,2023/07/18 | ..L02012 | 00:52 | 雕,other,none
+542,test_00519.jpg,exp,21.09.17,A2 | 21.09.17X|RTF2 | 1986 |   ,other,none
+543,test_00520.jpg,exp,07.2021,07.2021 | Topping | 11:24 | Mousse à Fouetter - Slagschuim,other,none
+544,test_00521.jpg,exp,10.10.21,10.10.21 | BEST BEFORE: | 2010 | lot:,best_before,english
+545,test_00522.jpg,exp,18.09.2021,18.09.202 | L:267 17:03 | 31 | 60,other,none
+546,test_00523.jpg,exp,02.01.22,"Best before:02.01.22 | Net Weight: | 800mg | 23,3g",best_before,english
+547,test_00524.jpg,exp,18/04/21,18/04/21 | M1/ 259/294B | Ame | ted,other,none
+548,test_00525.jpg,exp,20-04-21,20-04-21 | 268/296 L4 A | Aoerr | tedepinDe,other,none
+549,test_00526.jpg,exp,2021.11.11,2021.1 | 2020.11.12区 | 11.11码刀A,other,none
+550,test_00526.jpg,date,2020.11.12,2020.11.12区 | 11.11码刀A | 2021.1 | ·早 暑 今 ·,other,none
+551,test_00527.jpg,exp,2021.03.16,"2021.03.16 | 8""809488""883110 | E | OTHER",other,none
+552,test_00528.jpg,exp,2021.03.03,2021.03.03 | 00 | 01副立 | 16:43,other,none
+553,test_00529.jpg,exp,20-06-21,20-06-21 | 120917 | Prote/pPet. stsa19g. | Cabaae,other,none
+554,test_00530.jpg,exp,05/2022,05/2022 | L0134 | BEST BEFORE END: | G,best_before,english
+555,test_00531.jpg,date,26.11.2020,26.11.2020 | 25.05.2021 | CH | 2038,other,none
+556,test_00531.jpg,exp,25.05.2021,25.05.2021 | 26.11.2020 | CH | 2038,other,none
+557,test_00532.jpg,date,2020/08/13,PR 2020/08/13 | EXP 2022/08/13 | 04:53 | Naturally Pure,manufacturing,english
+558,test_00532.jpg,exp,2022/08/13,EXP 2022/08/13 | PR 2020/08/13 | 04:53 | Naturally Pure,expiration,english
+559,test_00533.jpg,exp,2021.03.18,2021.03.18加I | 2 | A,other,none
+560,test_00534.jpg,exp,2021.04.30,2021.04.30 | 20 | 高 | 高,other,none
+561,test_00535.jpg,exp,2021.03.25,2021.03.25I | 2 | 食 | 20,other,none
+562,test_00536.jpg,exp,2021.07.08,2021.07.08 | 賞味期限（未開封) | Net Weight 125g | BRIE,best_before,other_language
+563,test_00537.jpg,exp,14.06.2021,"14.06.2021 | 1398 | Batch no., and best before (dd/mm/yy) | 5711953""063954",best_before,english
+564,test_00538.jpg,exp,2021.06.07,2021.06.07 17:57 08578 | 20 | 20 | 20,other,none
+565,test_00539.jpg,exp,2021.05.14,2021.05.14 | AOIEC | Doubleup,other,none
+566,test_00540.jpg,exp,2021.03.26,2021.03.26 | /料 | /,other,none
+567,test_00541.jpg,exp,JUN 28 2021,BEST IF USED BY JUN 28 2021 | YW2R 0E0036 1749 | 2440 | 5.98d,best_before,english
+568,test_00542.jpg,exp,OCT.21.2021,OCT.21.2021 | OCT.22.2020 | Serving Suggestion | Expir Date/Baik digunakan sebelum,expiration,english
+569,test_00542.jpg,date,OCT.22.2021,OCT.22.2020 | OCT.21.2021 | Expir Date/Baik digunakan sebelum | Production Date/Tanggal Produksi,expiration,english
+570,test_00543.jpg,exp,MAY 22 21,BEST BY HAY 22 21 PG 13 JZ-2 SP1 | 02:43,best_before,english
+571,test_00544.jpg,exp,2022.01.17,2022.01.17 | ·早·019 | 是,other,none
+572,test_00545.jpg,exp,AUG 16 2022,BEST BY: AUG 16 2022 | PK03306 | 83823 | 09661914337,best_before,english
+573,test_00546.jpg,exp,21.11.19,"21.11.19 | 20.11.20D | 8801062""005390",other,none
+574,test_00546.jpg,date,20.11.20,20.11.20D | 21.11.19 | ，,other,none
+575,test_00547.jpg,exp,21.07.13,21.07.13A17:12 | ulmuone | 厨,other,none
+576,test_00548.jpg,exp,2021.12.13,2021.12.13 | 19960355183167,other,none
+577,test_00549.jpg,exp,NOV 05 2022,EXP NOV 05 2022 | ACAEV051120 | LOT,expiration,english
+578,test_00550.jpg,exp,12.10.2025,12.10.2025 | 952546,other,none
+579,test_00551.jpg,exp,2022.09.17,2022.09.17 | L 17.09.20,other,none
+580,test_00552.jpg,exp,21.09.2022,21.09.2022 | BEST BEFORE END AND LOT: | cesur | La Española,best_before,english
+581,test_00553.jpg,exp,10/2021,EXP 10<2021 | LOT 93042,expiration,english
+582,test_00554.jpg,exp,21.08.18,21.08.18 | 100% | 十十十 | LOT,other,none
+583,test_00555.jpg,exp,2023/06/26,Best Before: 2023/06/26,best_before,english
+584,test_00556.jpg,exp,2021.04.13,2021.04.13 | 03:09 | | | WHIPPING CREAM,other,none
+585,test_00557.jpg,exp,2021.07.20,2021.07.20 21:14 | 寻 | 早,other,none
+586,test_00558.jpg,exp,2022/12/02,"EXPI2022/12. | .... | 8""801005""000703"" | 2:02",expiration,english
+587,test_00559.jpg,exp,2023.10.24,2023.10.24 | ·Rose Water· Cleanses·Tones | Distributed by | HENRY THAYER COMPANY,other,none
+588,test_00560.jpg,exp,AUG 11 2021,BEST BY AUG 11 2021 | Dole | FRUIT BOWLS®,best_before,english
+589,test_00561.jpg,exp,2022/08/25,2022/08/25 | 2392871 | Exp.: | Lot.:,expiration,english
+590,test_00563.jpg,exp,2022.10.13,2022.10.13 | Before | Best | 100%,best_before,english
+591,test_00564.jpg,exp,2022.01.15,2022.01.15 | 000NN22ASIA | TEL:60-441431FAX164-4412235 | NOCONOONVANDKTAMANRIAJYAA.,other,none
+592,test_00565.jpg,exp,16.03.2021,16.03.2021 | 300g | 13% | 7g,other,none
+593,test_00566.jpg,exp,2021 09 13,20210913 | EXP | 20 | NENL,expiration,english
+594,test_00567.jpg,date,2021.03.05,2021.03.05 | (),other,none
+595,test_00567.jpg,exp,2021.03.08,2021.03.08 | () | 100g(),other,none
+596,test_00568.jpg,exp,2022/JUN/14,2022/JUN/14 | BEST IF USED BY | 112436960(A)13:29 | OVEN-READY,best_before,english
+597,test_00569.jpg,exp,28.02.2022,28.02.2022 | Best before | Lot nr: 6536 | 5,best_before,english
+598,test_00570.jpg,exp,2021.08.21,2021.08.21川天 | 2020.08.22早日 | PP | ：,other,none
+599,test_00570.jpg,date,2020.08.22,2020.08.22早日 | 2021.08.21川天 | PP | ：,other,none
+600,test_00571.jpg,exp,2022.01.29,2022.01.29 | DM47200130 | 保站：,other,none
+601,test_00572.jpg,exp,2021.12,2021.12 | TX49K | 300錠 | 使用,other,none
+602,test_00573.jpg,exp,26/04/2022,8 | PACK7DATE:26/07/2021LOT:480242,other,none
+603,test_00573.jpg,date,24/01/2021,8 | PACK7DATE:26/07/2021LOT:480242,other,none
+604,test_00573.jpg,date,26/07/2021,8 | PACK7DATE:26/07/2021LOT:480242,other,none
+605,test_00574.jpg,exp,07/2022,BEST BY 07/2022 0068 | LOT# 3114412 | 00:26,best_before,english
+606,test_00575.jpg,exp,2023.05.06,"号社：2023.05.06 | 20003 | Ver,00960108 | 号：www.hanmi.co.kr",other,none
+607,test_00576.jpg,exp,28/03/2022,2820362926-2129-272,other,none
+608,test_00577.jpg,exp,21.04.04,21.04.04期 UCa | 本查是吗EB，， | 明B：EB程， | 吧人日1500是)，号,other,none
+609,test_00578.jpg,exp,21.09.21,21.09.21 | 11:28 | THEBORN,other,none
+610,test_00579.jpg,exp,11/2022,11/2022-L103190 1112 | Best before end:/Batch: | PP,best_before,english
+611,test_00580.jpg,exp,2021.03.30,2021.03.30外E | Fresh Sandwich Bread,other,none
+612,test_00581.jpg,exp,16.10.2021,EXD:16.10.2021 | 20:15L11H345/2 | PRD:10.12.2020 | Bet Befor ED D..D,expiration,english
+613,test_00581.jpg,date,10.12.2020,PRD:10.12.2020 | EXD:16.10.2021 | Bet Befor ED D..D | 20:15L11H345/2,manufacturing,english
+614,test_00582.jpg,exp,06.11.2021,EXD: 06.11.2021 | PRD: 04.11.2020 | 13:41 L101V2 309/1 | Best Befor ED:DD..DD,expiration,english
+615,test_00582.jpg,date,04.11.2020,PRD: 04.11.2020 | EXD: 06.11.2021 | 13:41 L101V2 309/1 | Best Befor ED:DD..DD,manufacturing,english
+616,test_00583.jpg,exp,28-01-2022,EXP.28-01-2022 L0197 | PRD.15-07-2020 08:46 | 75ge | KINGDOM OF BELGIUM,expiration,english
+617,test_00583.jpg,date,15-07-2020,PRD.15-07-2020 08:46 | EXP.28-01-2022 L0197 | 75ge | KINGDOM OF BELGIUM,manufacturing,english
+618,test_00584.jpg,exp,02/06/2022,BEST BEFORE:02/06/2022 | CHNHHNHB1 | KEEP COOL & DRY | 60°-75°℉/15°-24°℃,best_before,english
+619,test_00585.jpg,exp,07-21,00000 | Best before end / Consumir preferente- | A consommer de préférence avant fin / | mente antes del fin de:,best_before,english
+620,test_00586.jpg,exp,20.09.2021,"Exp.20.09.2021 | Prod.20.09.2020 D49A | Makati City, Philippines | New Zealand",expiration,english
+621,test_00586.jpg,date,20.09.2020,"Prod.20.09.2020 D49A | Exp.20.09.2021 | Makati City, Philippines | New Zealand",manufacturing,english
+622,test_00587.jpg,exp,2022 03 21,2022.03.21  | 0 | HAND,other,none
+623,test_00588.jpg,exp,09 OCT 21,"09 OCT 21 | 三早 LE 刘 (Fruit & Nut Cheese) | 日归引达65.1%，10.9%至6.9%达6.9%5.5%,4.3% | Fruit & Nut Cheese",other,none
+624,test_00589.jpg,exp,2021.08.15,2021.08.15外 | 12| | 大,other,none
+625,test_00590.jpg,exp,2023.01.17,2023.01.17 | L00350176 | 標準ゆで時間 | 05:42,other,none
+626,test_00591.jpg,exp,2023 03 03,2023. 03 03 | STBFFORE | WWW | Lolipops,best_before,english
+627,test_00592.jpg,exp,2023.02.01,2023.02.01 | 外F2 | OC | No Brand,other,none
+628,test_00593.jpg,exp,04/2023,04/2023L5011901716 | Best before end/Batch: | Consumir preferentemente ntesdel | finde/Lote:,best_before,english
+629,test_00594.jpg,exp,01.07.2023,01.07.2023 | PREFERENTEMENTE ANTES DEL/MINÓSÉGÉT MEGÓRZI (nap/0/éy) | ASECONSUMADEPREFERINTAINAINTEDE/BESTBEFORE/CONSUMIR | SUSENE TESTENINEIZ PŠENINEGA DROBADURUM /SUSENATJSTENNTSTN,best_before,other_language
+630,test_00595.jpg,exp,20 10 2020,D:20 10 2020 | 20-53-2A | CHIN-SU. | 刘晋写：礼个引全人(卫￥13%,other,none
+631,test_00596.jpg,exp,2021.11.05,2021.11.05外入 | 4号 | 20 | P,other,none
+632,test_00597.jpg,exp,2022.04.01,"2022.04.01 | PP | 2suval) | 5""411011""822652",other,none
+633,test_00598.jpg,exp,28 07 2021,28 07 2021 | Best before:/Aconsommer de préférence avant le: | Da consumarsi preferibmente entro il:/ |  ,best_before,english
+634,test_00599.jpg,exp,10 02 2022,02 2022B1 | T0 | 2,other,none
+635,test_00600.jpg,exp,2022.07.29,2022.07.29 | Best Before: | 8 | Packs,best_before,english
+636,test_00602.jpg,exp,2021.05.27,EXP:2021.05.27 YP1DD | チョコチップクッキー | チョコチップを使用した手作りのような味わい | Cookies,expiration,english
+637,test_00603.jpg,exp,2021/09/13,EXP:2021/09/13 A1 | Net Wt./Net Contents 120g | CRACKER SANDWICH | SUPER CHOCO,expiration,english
+638,test_00604.jpg,exp,2021.10.06,BB 2021.10.06 | HATARI | XSW | FOODS,best_before,english
+639,test_00605.jpg,exp,2021.09.24,BB 2021.09.24 | lux | SW | ODS,best_before,english
+640,test_00606.jpg,exp,12 09 2021,EXPIRY 12 09 2021 | PROD12 09 2020 | ... | sigti.9 17,expiration,english
+641,test_00606.jpg,date,12 09 2020,PROD12 09 2020 | EXPIRY 12 09 2021 | BEST BEFORE | ...,manufacturing,english
+642,test_00607.jpg,exp,08.09.2021,Prod. Date BEST BEFORE 08.09.2021 | HETWT.90 9 | Exp. Date: BNF: 200909-A |  ,best_before,english
+643,test_00608.jpg,exp,05/05/2022,"05/05/2022 | 31020 | T.E.T.T/BBE : | 8""698701""013843",best_before,english
+644,test_00609.jpg,exp,28.01.2022,28.01.20 | LF20210 | Min.:+15℃/59℉ Max.:+21°℃/68℉ | ennen/Najlepiej spożyćprzed:,best_before,other_language
+645,test_00610.jpg,exp,31 10 2021,31 10 2021 | L340XA- | ROCHER | FERRERO,other,none
+646,test_00611.jpg,exp,07.07.2021,"Best before: 07.07.2021 | Product of Switzerland, Emmi Schweiz AG, | CH-6002 Luzern www.emmi.com | emulsifying salt, skimmed milk powder, salt. Contains Milk.",best_before,english
+647,test_00613.jpg,exp,2021.05.03,2021.05.03 | 达 | 下天区 | 150g,other,none
+648,test_00614.jpg,exp,2021/08/20,Best Before 2021/08/20 |  110mg 37% | 87%,best_before,english
+649,test_00615.jpg,exp,10.10.21,10.10.21 | P6141020 | BEST BEFORE: | Product of England.,best_before,english
+650,test_00616.jpg,exp,04.10,04.10 | 4 16 | E | 191,other,none
+651,test_00617.jpg,exp,04.05,ME 04.05 | 买习叫习非96.1 15g(0 | 125g170 | H,other,none
+652,test_00618.jpg,exp,02/10/23,02/10/23 | N12021020B | wwivealimentos.com.br. | Validade:,expiration,other_language
+653,test_00619.jpg,exp,31/07/2023,31/07/2023 | L03152717 | 1.1 | antes de/enminste houdbar tot eide,best_before,other_language
+654,test_00620.jpg,exp,2021.10.15,2021.10.15 | 丑 | 1579481 | H,other,none
+655,test_00622.jpg,exp,2021.09.10,2021.09.10 外 | 8312 | E导 | OTHER,other,none
+656,test_00623.jpg,exp,21.08.06,21.08.06 | 21.03.07 | A 7 | 05:16,other,none
+657,test_00623.jpg,date,21.03.07,"21.03.07 | 21.08.06 | 8801019""609053 | 05:16",other,none
+658,test_00624.jpg,exp,2021.09.25,2021.09.25 | 2021.01.26/01:33 | 外 | 早,other,none
+659,test_00624.jpg,date,2021.01.26,2021.01.26/01:33 | 2021.09.25 | 早 | 外,other,none
+660,test_00625.jpg,exp,2022.01.31,2022.01.31 | 2021.02.01/10:08 | 7 | 异喜,other,none
+661,test_00625.jpg,date,2021.02.01,2021.02.01/10:08 | 2022.01.31 | 早 | 异喜,other,none
+662,test_00626.jpg,exp,2022.12.22,2022.12.22/P | 寻人马 | 早耳早16.07%，型7.1%(号个个33.3%) | 人马,other,none
+663,test_00627.jpg,exp,2022/12/02,E 2022/12/02 K1H9 07:16 | YYYY/M/0D.03801 | H | 722-41-T0597C,other,none
+664,test_00628.jpg,exp,04/12/2022,营,other,none
+665,test_00630.jpg,exp,05.05.2022,EXP105.05.2022 | 05 SG MT1 11:15 | ii0,expiration,english
+666,test_00631.jpg,exp,26/11/2021,"Hoàng | ”1 | "" | MFG",manufacturing,english
+667,test_00631.jpg,date,26/11/2020,"Hoàng | ”1 | "" | MFG",manufacturing,english
+668,test_00632.jpg,exp,2021.10.21,2021.10.21外列(平B)(5) | ： | PEACOCK,other,none
+669,test_00633.jpg,exp,2021.10.07,2021.10.07  | 2020:10:0 | 26,other,none
+670,test_00633.jpg,date,2020.10.08,2020:10:0 | 2021.10.07  | 吉,other,none
+671,test_00634.jpg,exp,OCT 2022,Oct 2022 | . L02831 | BEST BEFORE END | 03:21,best_before,english
+672,test_00635.jpg,exp,2023/06/11,2023/06/11 | L50M Z | 346 01:35 | 9F,other,none
+673,test_00636.jpg,exp,01.07.2023,01.07.2023 | 01.07.2020 | Da consumarsi preferibilmente entro il- Best before | keep in the refrigerator and consume within 5 days,best_before,english
+674,test_00636.jpg,date,01.07.2020,01.07.2020 | 01.07.2023 | Da consumarsi preferibilmente entro il- Best before | keep in the refrigerator and consume within 5 days,best_before,english
+675,test_00637.jpg,exp,02/DEC/2023,02/DEC/2023 | alimentaire de 2000 calories. | feribilmente | tro il:,best_before,other_language
+676,test_00638.jpg,exp,21-04-2023,Best if used before: 21-04-2023 | alind | 510 | 20,best_before,english
+677,test_00639.jpg,exp,2022.04.04,EXP:2022.04.04 | 24455202 | ocol | CREAM COOKIE,expiration,english
+678,test_00640.jpg,exp,2023.02.06,2023.02.06 | 2100270 | www.tfood.go.krol|0|引,other,none
+679,test_00641.jpg,exp,03/2025,03/2025 | CH20002 | Exp.: | LOT,expiration,english
+680,test_00642.jpg,exp,2020-09-01,2020-09-01 | MADE IN KOREA | ，,other,none
+681,test_00643.jpg,exp,13/08/2021,13/08/2021 | C09-20226-8-17-0-230 | STICK | DIPPING,other,none
+682,test_00644.jpg,exp,2019.09.03,2019.09.03 | 2019.03.04,other,none
+683,test_00644.jpg,date,2019.03.04,2019.03.04 | 2019.09.03,other,none
+684,test_00645.jpg,exp,AUG 29 2020,AUG292020 | ZZ082926A | 10:48 | AL,other,none
+685,test_00646.jpg,exp,11.03.2021,DATE:11.03.2021 | SEEAD | IED | SRLNR:070,other,none
+686,test_00647.jpg,exp,2021-07-05,ECRE:2021107-05 | E-Mail. thitinan_bee@yahoo.com | FAX. (66) 2459-1349 | TEL. (66) 2454-9649,other,none
+687,test_00648.jpg,exp,2021.08.03,EXP:2021.08.03 VP14 | 豊かな手作りのような味わい | バタークッキー | utter,expiration,english
+688,test_00649.jpg,exp,2022.02.07,BBE 2022 02 07 | PH 232 | A | 2000,best_before,english
+689,test_00650.jpg,exp,2021.10.20,EXP:2021.10.20 | GREEN TEA CREAM COOKIE,expiration,english
+690,test_00651.jpg,exp,02/09/2021,号：02/09/2021 | Production date: 03/09/2020 | Freezing date: | 03/09/2020,other,none
+691,test_00651.jpg,date,2021.03.29,Buraat | Valcolatte | frozen | 2021.03.29,other,none
+692,test_00651.jpg,date,03/09/2020,Production date: 03/09/2020 | 号：02/09/2021 | Freezing date: | 03/09/2020,manufacturing,english
+693,test_00651.jpg,date,03/09/2020,03/09/2020 | Production date: 03/09/2020 | 号：02/09/2021 | Freezing date:,other,none
+694,test_00651.jpg,date,2021.04.27,Buraat | Valcolatte | frozen | 2021.03.29,other,none
+695,test_00652.jpg,exp,2021.09.01,"2021.09.01 | D1 | A | 12866%,7E125%",other,none
+696,test_00653.jpg,exp,MAY 24 21,USE BY MAY 24 21 N C | 1M716310:44 | STICKS | COLBY,expiration,english
+697,test_00654.jpg,exp,01 JUN 2021,01-J0-2021-0-02-16103 | 0g | TOTAL | 170mg,other,none
+698,test_00656.jpg,exp,2021.12.26,2021.12.26 07:36 | た | “ 。,other,none
+699,test_00657.jpg,exp,2021.11.03,"EXP:2021.11.03 | :250g,100g 397kcal | 4三1,470mg(74%)，75.6g(23%)，异4.2g(4%)，5.7g(11%), | 三利0g，平利0.67g(4%)，音印0mg(0%)，11g(20%)",expiration,english
+700,test_00658.jpg,exp,APR/29/21,BEST BY APR/29/21 10:00FL6D | FORMAGGI | CLASSIIC TALIAN | EATTI IN  AMMERICA,best_before,english
+701,test_00659.jpg,exp,30.10.2021,30.10.2021 | 00Y4204452 | 此日期前最佳(日/月/年): | Nutrition Information,best_before,other_language
+702,test_00660.jpg,exp,2021/07/02,11:37 L20184 2021/07/02 | 1-L-L-LL--1 | -r-r-r | 1,other,none
+703,test_00661.jpg,exp,2021/06/19,"2021/06/19 | NO.13-7&08,JINYUAN INDUSTRIAL PARK | CHAOSHAN RD,SHANTOU,CHINA | Madein China",other,none
+704,test_00662.jpg,exp,2021/06/01,"202006/01 | Best Bei: | Product of China | AndustralPark,Chaoshan Road,Shantou,Guangdong.Chin",best_before,english
+705,test_00663.jpg,exp,24/01/2022,24/01/2022 | N305 07:09 | Made in talby  | N1,other,none
+706,test_00665.jpg,exp,30 12 23,301223 | CASA FONDATA | LEONE | NEL 1857,other,none
