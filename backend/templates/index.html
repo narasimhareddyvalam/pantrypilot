@@ -24,6 +24,71 @@
     <section id="view-scan" class="view" aria-labelledby="scan-title">
       <h1 id="scan-title">Scan a package</h1>
       <p class="lead">Take a photo of the printed date. You check what we read before anything is saved.</p>
+
+      <!-- Start: pick a photo, or type the details in -->
+      <div id="scan-start" class="panel">
+        <button id="take-photo-button" class="button button-primary" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          Take photo
+        </button>
+        <button id="choose-photo-button" class="button button-secondary" type="button">Choose photo</button>
+        <input id="photo-take" class="file-input" type="file" accept="image/*" capture="environment" tabindex="-1" aria-hidden="true">
+        <input id="photo-choose" class="file-input" type="file" accept="image/*" tabindex="-1" aria-hidden="true">
+      </div>
+
+      <!-- Preview: the photo, then reading it -->
+      <div id="scan-preview" class="panel" hidden>
+        <figure id="photo-frame" class="photo-frame">
+          <img id="preview-image" alt="The photo you chose">
+          <div class="scan-line" aria-hidden="true"></div>
+        </figure>
+        <div id="preview-actions">
+          <button id="read-date" class="button button-primary" type="button">Read the date</button>
+          <button id="retake" class="button button-secondary" type="button">Retake</button>
+        </div>
+        <p id="scan-loading" class="status-line" role="status" hidden>Reading the date…</p>
+      </div>
+
+      <!-- Error: what went wrong, and a way forward -->
+      <div id="scan-error" class="notice notice-error" role="alert" hidden>
+        <p id="scan-error-text"></p>
+        <button id="scan-retry" class="button button-secondary" type="button">Try again</button>
+      </div>
+
+      <!-- Review: check and fix what was read, then save -->
+      <form id="review-form" class="panel" novalidate hidden>
+        <h2 id="review-title" class="review-title" tabindex="-1">Check what we read</h2>
+        <img id="review-photo" class="review-photo" alt="Your photo of the package" hidden>
+        <div id="raw-text-box" class="print-window">
+          <p class="print-caption">We read</p>
+          <p id="raw-text" class="stamp"></p>
+        </div>
+        <div id="review-notice" class="notice notice-review" role="status" hidden></div>
+
+        <div class="field">
+          <label for="review-name">Product</label>
+          <input id="review-name" name="productName" type="text" maxlength="80" autocomplete="off" placeholder="For example, Rolled oats">
+        </div>
+        <div class="field">
+          <label for="review-label">Label on the package</label>
+          <select id="review-label" name="labelType">
+            <option value="best_before">Best before</option>
+            <option value="expiration">Use by / Expires</option>
+            <option value="sell_by">Sell by</option>
+            <option value="manufacturing">Made on</option>
+            <option value="other">Other date</option>
+            <option value="">No label, or not sure</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="review-date">Date</label>
+          <input id="review-date" name="date" type="date">
+          <p class="hint">Leave it empty if the package has no date.</p>
+        </div>
+
+        <p id="review-error" class="field-error" role="alert" hidden></p>
+        <button id="review-retake" class="button button-secondary" type="button">Retake</button>
+      </form>
     </section>
 
     <!-- ================= Pantry tab ================= -->
