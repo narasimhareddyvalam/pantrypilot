@@ -4,3 +4,4 @@ pillow>=10.0
 rapidocr>=3.10
 onnxruntime>=1.32
 tensorflow>=2.21
+keras-hub>=0.33

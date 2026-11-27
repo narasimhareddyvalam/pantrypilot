@@ -91,6 +91,38 @@ def read_text(photo, box):
     return ""
 
 
+def read_nearby_lines(photo, boxes, date_box, how_many=3):
+    """Read the lines closest to the date line, nearest first (BERT uses them in PP-04)."""
+    # A label word like "Best before" is often on its own line next to the
+    # date. In PP-03's 120 test photos it sits on the date line or one of the
+    # 3 nearest lines about 9 times in 10 (about 8 in 10 over all ExpDate photos).
+    # This uses the shared OCR engine, so in the app it must run while
+    # scanner_lock is held, like the other engine calls.
+    date_x = (date_box[0] + date_box[2]) / 2
+    date_y = (date_box[1] + date_box[3]) / 2
+    distances = []
+    for box in boxes:
+        if box == date_box:
+            continue
+        box_x = (box[0] + box[2]) / 2
+        box_y = (box[1] + box[3]) / 2
+        distance = ((box_x - date_x) ** 2 + (box_y - date_y) ** 2) ** 0.5
+        distances.append((distance, box))
+    distances.sort()
+
+    texts = []
+    for distance, box in distances[:how_many]:
+        text = read_text(photo, box)
+        if text != "":
+            texts.append(text)
+    return texts
+
+
+def label_text(date_line, nearby_lines):
+    """Join the date line and its nearby lines the way BERT learned them: "a | b | c"."""
+    return " | ".join([date_line] + nearby_lines)
+
+
 def looks_like_date(text):
     """True if the text has a date-like part, such as 2025.01.28, 28/01 or 21-01-22."""
     return re.search(DATE_PATTERN, text) is not None

@@ -188,6 +188,7 @@ The project emphasizes combining AI techniques with useful software functionalit
 
 - ExpDate dataset (CC BY 4.0), created at the Korea Institute of Science and Technology (KIST). Seker, A. C., & Ahn, S. C. (2022). A generalized framework for recognition of expiration dates on product packages using fully convolutional networks. *Expert Systems with Applications*, 203, 117310. https://doi.org/10.1016/j.eswa.2022.117310
 - [RapidOCR](https://github.com/RapidAI/RapidOCR) (Apache-2.0), which runs PaddleOCR's PP-OCRv6 models.
+- BERT (Devlin et al., 2019): the `bert_tiny_en_uncased` weights (Turc et al., 2019) through [KerasHub](https://github.com/keras-team/keras-hub) (Apache-2.0).
 
 ## License
 

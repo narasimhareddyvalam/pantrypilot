@@ -11,10 +11,12 @@ __pycache__/
 data/
 
 # Model weights stay out of Git (see models/cnn/README.md and models/bert/README.md).
-# The one exception is the date CNN: it is small (6 MB) and the app needs it to read dates.
+# The exceptions are the two small models the scanner needs to read labels:
+# the date CNN (6 MB) and the label-type BERT (18 MB).
 *.keras
 *.h5
 !models/cnn/date_cnn.keras
+!models/bert/label_model/*.h5
 
 # macOS
 .DS_Store
