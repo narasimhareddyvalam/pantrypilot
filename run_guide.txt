@@ -28,6 +28,11 @@ What you need
      py -3.12 -m venv .venv
      .venv\Scripts\pip install -r requirements.txt
 
+   This downloads about 0.5 GB (more on Linux) and needs about 2 GB of disk
+   space, mostly TensorFlow for the scanner, so it can take a few minutes.
+   Set up before? After pulling, run the install line again, because the
+   scanner needs TensorFlow, RapidOCR and KerasHub.
+
 
 3. Make your settings file
 
@@ -43,7 +48,8 @@ What you need
    Mac or Linux:  .venv/bin/python app.py
    Windows:       .venv\Scripts\python app.py
 
-   It prints two addresses, for example:
+   It first loads the scanner's models (a few seconds), then prints two
+   addresses, for example:
      On this laptop: http://localhost:5001
      On your phone (same Wi-Fi): http://192.168.1.20:5001
 

@@ -108,7 +108,13 @@ Potential areas of exploration include:
 | Classification Models | Categorize extracted information and identify date types |
 | Generative AI | Provide contextual explanations and optional food assistance |
 
-Specific models, datasets, frameworks, and evaluation methods will be documented after the technical design is finalized.
+The scanner's models, data and results are in [models/cnn/README.md](models/cnn/README.md) (finding and reading the date) and [models/bert/README.md](models/bert/README.md) (the label type). The whole scan was measured with `backend/measure_scans.py` on 402 package photos that no model learned from:
+
+- 61% of scans (244) came back without "Please check this". All 244 dates are printed on the package. 240 match the dataset's labels. The other 4 are mistakes in the labels: the photos print the date the app read.
+- The right printed date was filled in for 64% of photos. 59 of the photos print a date that can be read two ways, so the date is left empty for the user to type in.
+- When the date was right, the label type was right 97% of the time.
+
+A date counts as right when it is one of the dates printed on the package. 32 of the 402 photos print two or more dates, often a production date and an expiry date, and the label type tells them apart.
 
 ## Technology Stack
 
@@ -154,7 +160,7 @@ cp .env.example .env
 .venv/bin/python app.py
 ```
 
-The app prints two addresses. Open the first one on this computer, or the second one on a phone connected to the same Wi-Fi. Until the pantry and assistant APIs are ready, the Pantry and Assistant tabs use sample data. To see the review screen for an unclear photo, open the address with `/?sample=ambiguous` at the end.
+The install downloads about 0.5 GB (more on Linux) and needs about 2 GB of disk space, mostly TensorFlow for the scanner. Set up before? After pulling, run the install line again, because the scanner needs TensorFlow, RapidOCR and KerasHub. On start, the app loads the scanner's models (a few seconds), then prints two addresses. Open the first one on this computer, or the second one on a phone connected to the same Wi-Fi. Until the pantry and assistant APIs are ready, the Pantry and Assistant tabs use sample data. To see the review screen for an unclear photo, open the address with `/?sample=ambiguous` at the end.
 
 Windows commands and more details are in [run_guide.txt](run_guide.txt).
 
@@ -163,7 +169,7 @@ Windows commands and more details are in [run_guide.txt](run_guide.txt).
 | Method | Path | What it does |
 |---|---|---|
 | GET | `/` | the phone page with the Scan, Pantry and Assistant tabs |
-| POST | `/scans` | read the date label from a photo (form field `image`) |
+| POST | `/scans` | read the date and its label type from a photo (form field `image`); `?sample=readable`, `ambiguous` or `unreadable` returns a test example instead |
 | GET, POST | `/pantry/items` | list or add pantry items (coming, Yuhao) |
 | PATCH, DELETE | `/pantry/items/<id>` | change or remove one item (coming, Yuhao) |
 | POST | `/assistant` | ask a question about label dates (coming, Sreeja) |
