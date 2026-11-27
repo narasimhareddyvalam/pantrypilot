@@ -125,6 +125,11 @@ function showTab(name) {
     }
   }
   window.scrollTo(0, 0);
+
+  // The pantry may have changed on another tab, so I load it fresh every time.
+  if (name === "pantry") {
+    refreshPantry();
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -570,6 +575,181 @@ function resetScan() {
 }
 
 // ---------------------------------------------------------------------------
+// Pantry tab
+// ---------------------------------------------------------------------------
+
+let editingId = null;   // the id of the item open in the edit dialog
+let editBusy = false;   // true while an edit is being saved
+
+// Sort by date, soonest first. Items without a date go last, and items with
+// the same date are sorted by name.
+function sortItems(items) {
+  const sorted = items.slice();
+  sorted.sort(function (first, second) {
+    if (first.date === second.date) {
+      return first.productName.localeCompare(second.productName, "en", { sensitivity: "base" });
+    }
+    if (first.date === null) {
+      return 1;
+    }
+    if (second.date === null) {
+      return -1;
+    }
+    // Dates written as YYYY-MM-DD sort correctly as plain text.
+    if (first.date < second.date) {
+      return -1;
+    }
+    return 1;
+  });
+  return sorted;
+}
+
+// Make a small page element with a class and some text.
+// I only ever use textContent, so a name like "<b>Oats</b>" shows as plain text.
+function makeElement(tag, className, text) {
+  const element = document.createElement(tag);
+  element.className = className;
+  element.textContent = text;
+  return element;
+}
+
+// Build one row of the pantry list.
+function makeItemRow(item) {
+  const row = makeElement("li", "item", "");
+
+  // Left side: the product name and its label badge.
+  const about = makeElement("div", "item-about", "");
+  about.appendChild(makeElement("p", "item-name", item.productName));
+  if (item.labelType && LABEL_NAMES[item.labelType]) {
+    about.appendChild(makeElement("span", "badge badge-" + item.labelType, LABEL_NAMES[item.labelType]));
+  } else {
+    about.appendChild(makeElement("span", "badge badge-none", "No label type"));
+  }
+
+  // Right side: the printed date, and how far away it is.
+  const when = makeElement("div", "item-date", "");
+  if (parseDate(item.date) === null) {
+    when.appendChild(makeElement("span", "no-date", "No date"));
+  } else {
+    when.appendChild(makeElement("span", "stamp", formatDate(item.date)));
+  }
+  when.appendChild(makeElement("span", "item-when", describeDays(daysFromToday(item.date))));
+
+  // Bottom: Edit and Delete. The longer names help people who use a screen reader.
+  const actions = makeElement("div", "item-actions", "");
+  const editButton = makeElement("button", "edit-button", "Edit");
+  editButton.type = "button";
+  editButton.setAttribute("aria-label", "Edit " + item.productName);
+  editButton.addEventListener("click", function () {
+    openEditDialog(item);
+  });
+  const deleteButton = makeElement("button", "delete-button", "Delete");
+  deleteButton.type = "button";
+  deleteButton.setAttribute("aria-label", "Delete " + item.productName);
+  deleteButton.addEventListener("click", function () {
+    confirmDelete(item);
+  });
+  actions.appendChild(editButton);
+  actions.appendChild(deleteButton);
+
+  row.appendChild(about);
+  row.appendChild(when);
+  row.appendChild(actions);
+  return row;
+}
+
+// Draw the whole pantry list.
+function renderPantry(items) {
+  const list = $("pantry-list");
+  list.textContent = "";
+  for (const item of sortItems(items)) {
+    list.appendChild(makeItemRow(item));
+  }
+  $("pantry-empty").hidden = items.length > 0;
+  // If the browser blocks storage, I warn that the list won't be kept.
+  $("storage-notice").hidden = !(USE_SAMPLE_PANTRY && storageBlocked);
+}
+
+// Load the pantry again and draw it, or show what went wrong.
+async function refreshPantry() {
+  $("pantry-error").hidden = true;
+  try {
+    const items = await loadPantry();
+    renderPantry(items);
+  } catch (error) {
+    $("pantry-error-text").textContent = error.message;
+    $("pantry-error").hidden = false;
+  }
+}
+
+// After the list is drawn again, put the focus back on one item's Edit button,
+// so a keyboard user doesn't lose their place. If it isn't there, use the heading.
+function focusEditButton(productName) {
+  for (const button of document.querySelectorAll("#pantry-list .edit-button")) {
+    if (button.getAttribute("aria-label") === "Edit " + productName) {
+      button.focus();
+      return;
+    }
+  }
+  $("pantry-title").focus();
+}
+
+// Open the edit dialog with one item's details in it.
+function openEditDialog(item) {
+  editingId = item.id;
+  fillItemForm($("edit-form"), item);
+  $("edit-error").hidden = true;
+  $("edit-dialog").showModal();
+}
+
+// Save the changes from the edit dialog.
+async function saveEditedItem(event) {
+  event.preventDefault();
+  if (editBusy) {
+    return;
+  }
+
+  let changes;
+  try {
+    changes = readItemForm($("edit-form"));
+  } catch (problem) {
+    showFormError("edit-error", problem.message);
+    return;
+  }
+
+  editBusy = true;
+  try {
+    await updatePantryItem(editingId, changes);
+    $("edit-dialog").close();
+    showToast("Saved changes to " + changes.productName + ".");
+    await refreshPantry();
+    focusEditButton(changes.productName);
+  } catch (error) {
+    showFormError("edit-error", error.message);
+  } finally {
+    editBusy = false;
+  }
+}
+
+// Delete one item, after the user says yes.
+async function confirmDelete(item) {
+  // The browser asks first, so one wrong tap can't delete anything.
+  if (!window.confirm("Delete " + item.productName + " from your pantry?")) {
+    return;
+  }
+  try {
+    await deletePantryItem(item.id);
+    showToast("Deleted " + item.productName + ".");
+    await refreshPantry();
+    // The row is gone, so the focus goes to the pantry heading.
+    $("pantry-title").focus();
+  } catch (error) {
+    $("pantry-error-text").textContent = error.message;
+    $("pantry-error").hidden = false;
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Start the page
 // ---------------------------------------------------------------------------
 
@@ -599,6 +779,16 @@ function setUpPage() {
   $("retake").addEventListener("click", resetScan);
   $("review-retake").addEventListener("click", resetScan);
   $("review-form").addEventListener("submit", saveScannedItem);
+
+  // Pantry tab
+  $("edit-form").addEventListener("submit", saveEditedItem);
+  $("edit-cancel").addEventListener("click", function () {
+    $("edit-dialog").close();
+  });
+  $("go-scan").addEventListener("click", function () {
+    showTab("scan");
+  });
+  $("pantry-retry").addEventListener("click", refreshPantry);
 
   // The badges tell testers the page is showing sample data, not the real APIs.
   $("sample-badge-pantry").hidden = !USE_SAMPLE_PANTRY;

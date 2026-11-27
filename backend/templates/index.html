@@ -100,6 +100,19 @@
         <span id="sample-badge-pantry" class="sample-badge" hidden>Sample data</span>
       </div>
       <p class="lead">Sorted by date, soonest first.</p>
+
+      <p id="storage-notice" class="notice notice-review" role="status" hidden>Your pantry won't be kept after you close this page.</p>
+      <div id="pantry-error" class="notice notice-error" role="alert" hidden>
+        <p id="pantry-error-text"></p>
+        <button id="pantry-retry" class="button button-secondary" type="button">Try again</button>
+      </div>
+
+      <ul id="pantry-list" class="shelf"></ul>
+
+      <div id="pantry-empty" class="empty" hidden>
+        <p>Your pantry is empty. Scan a package to add your first item.</p>
+        <button id="go-scan" class="button button-primary" type="button">Scan a package</button>
+      </div>
     </section>
 
     <!-- ================= Assistant tab ================= -->
@@ -113,6 +126,35 @@
 
     <p id="safety-note" class="safety-note">Printed dates don't prove food is safe to eat.</p>
   </main>
+
+  <!-- Edit one pantry item -->
+  <dialog id="edit-dialog" aria-labelledby="edit-title">
+    <form id="edit-form" novalidate>
+      <h2 id="edit-title">Edit item</h2>
+      <div class="field">
+        <label for="edit-name">Product</label>
+        <input id="edit-name" name="productName" type="text" maxlength="80" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="edit-label">Label on the package</label>
+        <select id="edit-label" name="labelType">
+          <option value="best_before">Best before</option>
+          <option value="expiration">Use by / Expires</option>
+          <option value="sell_by">Sell by</option>
+          <option value="manufacturing">Made on</option>
+          <option value="other">Other date</option>
+          <option value="">No label, or not sure</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="edit-date">Date</label>
+        <input id="edit-date" name="date" type="date">
+      </div>
+      <p id="edit-error" class="field-error" role="alert" hidden></p>
+      <button class="button button-primary" type="submit">Save changes</button>
+      <button id="edit-cancel" class="button button-secondary" type="button">Cancel</button>
+    </form>
+  </dialog>
 
   <nav class="tab-bar" aria-label="Sections">
     <button id="tab-scan" class="tab" type="button">
