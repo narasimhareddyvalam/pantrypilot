@@ -48,6 +48,13 @@ def test_unknown_address_gives_json_not_found():
     assert response.get_json() == {"error": "We couldn't find that page.", "code": "not_found"}
 
 
+def test_static_files_are_served():
+    # The page needs its script, its styles and its sample data.
+    for file_name in ["app.js", "style.css", "sample_data.js"]:
+        response = client.get(f"/static/{file_name}")
+        assert response.status_code == 200
+
+
 def test_port_is_free_spots_a_busy_port():
     # Here I keep a port open myself, the way another program would.
     busy = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -109,6 +116,18 @@ def test_server_error_is_json():
         response, status = handle_http_error(InternalServerError())
     assert status == 500
     assert response.get_json() == {"error": "Something went wrong on our side. Please try again.", "code": "server_error"}
+
+
+def test_page_needs_nothing_from_the_internet():
+    # The demo Wi-Fi may have no internet, so the page and its fonts come from this app only.
+    page = client.get("/").get_data(as_text=True)
+    assert "https://" not in page
+    assert "http://" not in page
+    for font_file in ["atkinson-hyperlegible-next.woff2", "doto.woff2"]:
+        response = client.get(f"/static/fonts/{font_file}")
+        assert response.status_code == 200
+        assert response.data[:4] == b"wOF2"
+        response.close()
 
 
 def test_find_lan_address_looks_like_an_ip():
