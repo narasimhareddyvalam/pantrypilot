@@ -10,9 +10,11 @@ __pycache__/
 *.db
 data/
 
-# Model weights are too big for Git (see models/cnn/README.md and models/bert/README.md)
+# Model weights stay out of Git (see models/cnn/README.md and models/bert/README.md).
+# The one exception is the date CNN: it is small (6 MB) and the app needs it to read dates.
 *.keras
 *.h5
+!models/cnn/date_cnn.keras
 
 # macOS
 .DS_Store
