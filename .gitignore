@@ -1,0 +1,21 @@
+# Secrets and local settings
+.env
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Data that each computer makes for itself
+*.db
+data/
+
+# Model weights are too big for Git (see models/cnn/README.md and models/bert/README.md)
+*.keras
+*.h5
+
+# macOS
+.DS_Store
+
+# Scratch files from the AI coding assistant (local only)
+.superpowers/
