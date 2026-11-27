@@ -276,6 +276,169 @@ h2 {
 }
 
 /* ------------------------------------------------------------------ */
+/* Scan tab                                                            */
+/* ------------------------------------------------------------------ */
+
+.photo-frame {
+  position: relative;
+  margin: 0 0 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #000;
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  max-height: 52vh;
+  object-fit: contain;
+}
+
+/* The one moving thing on the page: a scan line while the date is being read. */
+.scan-line {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 3px;
+  background: var(--stamp);
+  box-shadow: 0 0 14px 2px var(--stamp);
+}
+
+.photo-frame.is-reading .scan-line {
+  display: block;
+  animation: scan-down 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes scan-down {
+  from { top: 6%; }
+  to { top: 94%; }
+}
+
+.status-line {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.review-title {
+  margin: 0 0 12px;
+}
+
+/* A smaller copy of the photo, so the person can check the text against it. */
+.review-photo {
+  display: block;
+  width: 100%;
+  max-height: 30vh;
+  margin-bottom: 14px;
+  object-fit: contain;
+  border-radius: var(--radius-small);
+  background: #000;
+}
+
+/* The text that was read, shown like the blank window on a package where dates are printed. */
+.print-window {
+  margin-bottom: 16px;
+  padding: 12px 16px 14px;
+  border: 2px dashed var(--shelf);
+  border-radius: var(--radius-small);
+  background: var(--surface);
+}
+
+.print-caption {
+  margin: 0 0 2px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.stamp {
+  font-family: var(--font-stamp);
+  font-weight: 800;
+  color: var(--stamp);
+  letter-spacing: 0.04em;
+}
+
+/* The size follows the screen width, so a label like "BEST BEFORE 2027-01-05"
+   stays on one line on a phone instead of breaking in the middle of the date. */
+#raw-text {
+  margin: 0;
+  font-size: clamp(18px, 5.2vw, 26px);
+  line-height: 1.2;
+  overflow-wrap: break-word;
+}
+
+/* ------------------------------------------------------------------ */
+/* Notices and forms                                                   */
+/* ------------------------------------------------------------------ */
+
+.notice {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border-radius: var(--radius-small);
+}
+
+.notice p {
+  margin: 0 0 10px;
+}
+
+.notice p:last-child {
+  margin-bottom: 0;
+}
+
+.notice-review {
+  background: var(--review-bg);
+  color: var(--review-ink);
+}
+
+.notice-error {
+  background: var(--error-bg);
+  color: var(--error-ink);
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.field input,
+.field select,
+.ask-form input {
+  width: 100%;
+  min-height: 50px;
+  padding: 10px 14px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+
+.field input:focus,
+.field select:focus,
+.ask-form input:focus {
+  border-color: var(--brand);
+}
+
+.hint {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.field-error {
+  margin: 0 0 12px;
+  color: var(--error-ink);
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------------ */
 /* Safety note, tab bar and toast                                      */
 /* ------------------------------------------------------------------ */
 
