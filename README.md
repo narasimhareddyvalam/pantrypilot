@@ -6,6 +6,8 @@ PantryPilot is a smart food inventory management application designed to help us
 
 By combining computer vision, natural language processing, and generative AI, PantryPilot aims to simplify the process of managing everyday food products.
 
+Some parts of PantryPilot were built with help from AI coding tools (vibe coding).
+
 > **Project Status:** Planning & Early Development  
 > PantryPilot is currently under development. The features and capabilities described below are planned and may evolve as the project progresses.
 
@@ -110,17 +112,17 @@ Specific models, datasets, frameworks, and evaluation methods will be documented
 
 ## Technology Stack
 
-The technology stack is currently under evaluation.
+Most of the stack is chosen. The rest is decided as each part is built.
 
 | Component | Status |
 |---|---|
-| Frontend | To be decided |
-| Backend | To be decided |
-| Database | To be decided |
+| Frontend | Phone web page (HTML, CSS, plain JavaScript) served by Flask |
+| Backend | Python 3.12 + Flask |
+| Database | SQLite |
 | Computer Vision / OCR | To be decided |
-| Machine Learning Framework | To be decided |
+| Machine Learning Framework | TensorFlow Keras for the scanner (CNN, BERT); the GAN and VAE owners choose theirs |
 | Generative AI Integration | To be decided |
-| Deployment | To be decided |
+| Deployment | Runs on the demo laptop; phones open it over Wi-Fi |
 
 Technology choices will prioritize maintainability, practical performance, and suitability for the project's scope.
 
@@ -142,11 +144,31 @@ PantryPilot is currently in the planning stage.
 
 A detailed development roadmap will be maintained separately as the project progresses.
 
-## Getting Started
+## Run
 
-PantryPilot is not yet available for local installation or public use.
+```bash
+cd backend
+python3.12 -m venv .venv            # or: uv venv -p 3.12 --seed .venv
+.venv/bin/pip install -r requirements.txt
+cp .env.example .env
+.venv/bin/python app.py
+```
 
-Setup instructions, dependencies, environment configuration, and application startup commands will be documented once the initial technology stack and project structure are established.
+The app prints two addresses. Open the first one on this computer, or the second one on a phone connected to the same Wi-Fi. Until the pantry and assistant APIs are ready, the Pantry and Assistant tabs use sample data. To see the review screen for an unclear photo, open the address with `/?sample=ambiguous` at the end.
+
+Windows commands and more details are in [run_guide.txt](run_guide.txt).
+
+## API so far
+
+| Method | Path | What it does |
+|---|---|---|
+| GET | `/` | the phone page with the Scan, Pantry and Assistant tabs |
+| POST | `/scans` | read the date label from a photo (form field `image`) |
+| GET, POST | `/pantry/items` | list or add pantry items (coming, Yuhao) |
+| PATCH, DELETE | `/pantry/items/<id>` | change or remove one item (coming, Yuhao) |
+| POST | `/assistant` | ask a question about label dates (coming, Sreeja) |
+
+Every error comes back as `{"error": "<one polite sentence>", "code": "<code>"}`.
 
 ## Contributing
 

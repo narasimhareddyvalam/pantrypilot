@@ -1,0 +1,73 @@
+PantryPilot run guide
+=====================
+Started Nov 26, 2026. It will be finished in PP-06.
+
+What you need
+- Python 3.12. Check with: python3.12 --version (Windows: py -3.12 --version).
+  If that doesn't work, install Python 3.12 from https://www.python.org/downloads/
+- Optional: a phone on the same Wi-Fi as this computer
+
+
+1. Get the code and open the backend folder
+
+   With git:
+     git clone https://github.com/narasimhareddyvalam/pantrypilot.git
+     cd pantrypilot/backend
+
+   From a ZIP file: unzip it, then open a terminal in the "backend" folder inside it.
+
+
+2. Make a virtual environment and install the packages
+
+   Mac or Linux:
+     python3.12 -m venv .venv
+     (or, if you use uv: uv venv -p 3.12 --seed .venv)
+     .venv/bin/pip install -r requirements.txt
+
+   Windows:
+     py -3.12 -m venv .venv
+     .venv\Scripts\pip install -r requirements.txt
+
+
+3. Make your settings file
+
+   Mac or Linux:  cp .env.example .env
+   Windows:       copy .env.example .env
+
+   The defaults work. If the app says port 5001 is in use, change PORT in .env,
+   for example to PORT=5002.
+
+
+4. Start the app
+
+   Mac or Linux:  .venv/bin/python app.py
+   Windows:       .venv\Scripts\python app.py
+
+   It prints two addresses, for example:
+     On this laptop: http://localhost:5001
+     On your phone (same Wi-Fi): http://192.168.1.20:5001
+
+   If the computer asks whether Python may accept incoming network connections,
+   choose Allow. The phone needs that to reach the app.
+
+
+5. Use it
+
+   - Open the first address in a browser on this computer, or the second one on
+     your phone. The phone must be on the same Wi-Fi as this computer.
+   - If the phone can't open it, some Wi-Fi networks (for example on campus)
+     block phones from reaching laptops. Turn on your phone's hotspot, connect
+     this computer to it, start the app again, and use the new address it prints.
+   - The Pantry and Assistant tabs use sample data until the pantry and
+     assistant APIs are ready.
+   - To try the other scan results, add one of these to the end of the address:
+       /?sample=ambiguous     a date that could be read two ways
+       /?sample=unreadable    a photo where nothing could be read
+       /?assistant=offline    the assistant is down, then comes back on Try again
+   - Add to Home Screen: on iPhone it opens full screen like an app. On Android
+     it opens in a Chrome tab. Add the icon again if this computer's address changes.
+
+
+6. Stop the app
+
+   Press Ctrl+C in the terminal.

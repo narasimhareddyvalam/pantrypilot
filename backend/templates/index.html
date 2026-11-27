@@ -6,6 +6,16 @@
   <title>PantryPilot</title>
   <meta name="description" content="Scan the date on a food package, keep a pantry list, and ask what label dates mean.">
 
+  <!-- Add to Home Screen: the name, icon and colors the phone uses -->
+  <meta name="theme-color" content="#1f6e5b" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#131a19" media="(prefers-color-scheme: dark)">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="PantryPilot">
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/apple-touch-icon.png') }}">
+
   <!-- Everything, including the fonts, comes from this app, so the page works on a Wi-Fi with no internet -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
@@ -122,6 +132,20 @@
         <span id="sample-badge-assistant" class="sample-badge" hidden>Sample data</span>
       </div>
       <p class="lead">Ask what a label means, or about something in your pantry.</p>
+
+      <div id="chat" class="chat" aria-live="polite"></div>
+
+      <div id="suggestions" class="suggestions">
+        <button class="chip" type="button">What does best before mean?</button>
+        <button class="chip" type="button">What is a sell by date?</button>
+        <button class="chip" type="button">What date is on my oats?</button>
+      </div>
+
+      <form id="ask-form" class="ask-form">
+        <label for="question" class="visually-hidden">Your question</label>
+        <input id="question" name="question" type="text" maxlength="300" autocomplete="off" placeholder="Ask a question">
+        <button id="ask-send" class="button button-primary" type="submit" disabled>Ask</button>
+      </form>
     </section>
 
     <p id="safety-note" class="safety-note">Printed dates don't prove food is safe to eat.</p>
