@@ -40,6 +40,11 @@ SAMPLE_FILES = {
 # The label types the team agreed on in the design.
 LABEL_TYPES = ["expiration", "best_before", "sell_by", "manufacturing", "other"]
 
+# The label types of dates that look ahead (use by, best before, sell by),
+# unlike a production date, which looks back. When the scanner finds more than
+# one date line, a date with one of these labels is filled in first.
+EXPIRY_TYPES = ["expiration", "best_before", "sell_by"]
+
 # Phone photos are about 12 to 50 megapixels. A bigger picture could use too much
 # memory to open, so anything over this many pixels is refused.
 MAX_PIXELS = 50_000_000
@@ -67,7 +72,7 @@ def read_photo(file):
         raise PantryError("Please add a photo of the package.")
 
     # Step 2: Open the file as a picture. A phone can send any kind of file,
-    # so if Pillow can't open it as a JPEG or PNG, it is not a photo we can use.
+    # so if Pillow can't open it as a JPEG or PNG, it is not a usable photo.
     try:
         picture = Image.open(file.stream, formats=PHOTO_FORMATS)
 
@@ -96,20 +101,84 @@ def load_sample(name):
         return json.load(sample_file)
 
 
+def choose_date_line(date_lines):
+    """Choose the date the user needs when the scanner finds more than one date line.
+
+    date_lines is a list of (date_line, nearby_lines): best CNN score first, or
+    in reading order for the whole-photo backup. Returns (date_line,
+    label_type, sure, clear): the chosen line, its label type from BERT, how
+    sure BERT is (0 to 1), and clear, which is False when the photo shows
+    different dates and the label words don't settle which one to use.
+    """
+    # Step 1: Keep the lines that hold a date, each with its date and its
+    # label type from BERT. A price like "45.00" or a barcode can look like a
+    # date to the scanner, but holds none. An unsure date (like 03/04/27, or
+    # the misread 2021.10.2077) is kept with the date None, because it can
+    # still be the expiry date.
+    kept = []
+    for date_line, nearby_lines in date_lines:
+        date, unsure = parse_date(date_line)
+        if date is not None or unsure:
+            label_type, sure = find_label_type(label_text(date_line, nearby_lines))
+            kept.append((date_line, date, label_type, sure))
+
+    # If no line holds a date, the first line is still used, so the user sees
+    # what was read.
+    if len(kept) == 0:
+        date_line, nearby_lines = date_lines[0]
+        label_type, sure = find_label_type(label_text(date_line, nearby_lines))
+        return date_line, label_type, sure, True
+
+    # Step 2: Lines with an expiry-type label come first, like "EXP" over
+    # "MFG". Only when there are none do all the lines take part.
+    choices = []
+    for date_line, date, label_type, sure in kept:
+        if label_type in EXPIRY_TYPES:
+            choices.append((date_line, date, label_type, sure))
+    if len(choices) == 0:
+        choices = kept
+
+    # Step 3: Among the choices, the latest date wins, because an expiry date
+    # always comes after the production date. Dates written as YYYY-MM-DD text
+    # sort in date order, so ">" finds the later one. If no choice has a date,
+    # the first one is used.
+    chosen = choices[0]
+    for date_line, date, label_type, sure in choices:
+        chosen_date = chosen[1]
+        if date is not None and (chosen_date is None or date > chosen_date):
+            chosen = (date_line, date, label_type, sure)
+    chosen_line, chosen_date, chosen_label, chosen_sure = chosen
+
+    # Step 4: The choice is clear when every other line holds the same date,
+    # or when the chosen date has an expiry label and the other lines are
+    # labelled as production dates. Otherwise the user checks it.
+    clear = True
+    for date_line, date, label_type, sure in kept:
+        if date_line == chosen_line:
+            continue
+        same_date = date is not None and date == chosen_date
+        production_beside_expiry = chosen_label in EXPIRY_TYPES and label_type == "manufacturing"
+        if not same_date and not production_beside_expiry:
+            clear = False
+
+    return chosen_line, chosen_label, chosen_sure, clear
+
+
 def read_label(picture):
     """Read the date and its label type from a photo, in the agreed response shape."""
     # Step 1: Turn the photo the right way up, in RGB colours, like the training photos.
     photo = ImageOps.exif_transpose(picture).convert("RGB")
 
-    # Step 2: Find the date line and the lines near it.
-    date_line, nearby_lines, how = find_date_in_photo(photo)
+    # Step 2: Find the date lines and the lines near each one.
+    date_lines, how = find_date_in_photo(photo)
     if how == "not found":
         return {"rawText": "", "labelType": None, "date": None, "requiresReview": True}
 
-    # Step 3: BERT decides the label type from the date line and the lines near
-    # it. Its "other" means no label word goes with the date, so the page gets
-    # null, which it shows as "No label, or not sure".
-    label_type, sure = find_label_type(label_text(date_line, nearby_lines))
+    # Step 3: BERT decides the label type of each date line, and the expiry
+    # date is chosen over a production date (see choose_date_line). BERT's
+    # "other" means no label word goes with the date, so the page gets null,
+    # which it shows as "No label, or not sure".
+    date_line, label_type, sure, clear = choose_date_line(date_lines)
     if label_type == "other":
         label_type = None
 
@@ -119,13 +188,15 @@ def read_label(picture):
 
     # Step 5: Ask the user to check whenever something is uncertain: no date,
     # a date that can mean more than one day, a date found only by the
-    # whole-photo backup, or a label type BERT isn't sure about. (A label type
-    # of null is not a guess: the page shows "No label, or not sure".)
+    # whole-photo backup, a label type BERT isn't sure about, or different
+    # dates that the label words don't settle. (A label type of null is not a
+    # guess: the page shows "No label, or not sure".)
     requires_review = (
         date is None
         or unsure
         or how == "whole photo"
         or sure < SURE_ENOUGH
+        or not clear
     )
     return {"rawText": date_line, "labelType": label_type, "date": date, "requiresReview": requires_review}
 

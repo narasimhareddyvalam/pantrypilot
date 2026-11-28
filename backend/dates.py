@@ -89,14 +89,80 @@ def readings_of_three_numbers(first, middle, last):
 
 
 # -------------------------------------------------------------------
-# 2. PARSE A DATE
+# 2. READ ONE DATE
+# -------------------------------------------------------------------
+def read_first_date(text):
+    """Read one date in the text (already in capital letters, see parse_date).
+
+    The date shapes are tried in a fixed order: month names first, then numbers.
+    Returns (date as YYYY-MM-DD or None, unsure, used). used is the part of
+    the text that was read as a date, or "" when the text holds no date.
+    """
+    # Dates with a month name are never mixed up: 27 MAY 2027, MAY 27 2027.
+    # group(1) is the first ( ) from the left, group(2) the second, and so on;
+    # the ( ) around the month names in MONTH counts too.
+    # [:3] keeps the first 3 letters, so "SEPTEMBER" is looked up as "SEP".
+    found = re.search(DAY_MONTHNAME_YEAR, text)
+    if found:
+        day = int(found.group(1))
+        month = MONTH_NAMES[found.group(2)[:3]]
+        year = full_year(found.group(3))
+        if real_date(year, month, day):
+            return as_text(year, month, day), False, found.group(0)
+    found = re.search(MONTHNAME_DAY_YEAR, text)
+    if found:
+        month = MONTH_NAMES[found.group(1)[:3]]
+        day = int(found.group(2))
+        year = full_year(found.group(3))
+        if real_date(year, month, day):
+            return as_text(year, month, day), False, found.group(0)
+    found = re.search(MONTHNAME_YEAR, text)
+    if found:
+        month = MONTH_NAMES[found.group(1)[:3]]
+        year = int(found.group(2))
+        if real_date(year, month, 1):
+            return last_day_of_month(year, month), True, found.group(0)
+
+    # Three numbers, like 2025.01.28 or 21.01.22. If the numbers can mean more
+    # than one real date, or no date that can be trusted (like 2027.02.30 or
+    # 2021.10.2077, probably misreads), the date is unsure and the user checks it.
+    found = re.search(THREE_NUMBERS, text)
+    if found:
+        readings = readings_of_three_numbers(found.group(1), found.group(2), found.group(3))
+        if len(readings) == 1:
+            year, month, day = readings[0]
+            return as_text(year, month, day), False, found.group(0)
+        return None, True, found.group(0)
+
+    # Month and year only, like 05/2027 or 2027.05. Packages mean the end of
+    # that month, so the last day is used, and the user checks it.
+    found = re.search(MONTH_YEAR, text)
+    if found:
+        month = int(found.group(1))
+        year = int(found.group(2))
+        if real_date(year, month, 1):
+            return last_day_of_month(year, month), True, found.group(0)
+    found = re.search(YEAR_MONTH, text)
+    if found:
+        year = int(found.group(1))
+        month = int(found.group(2))
+        if real_date(year, month, 1):
+            return last_day_of_month(year, month), True, found.group(0)
+
+    # No date that can be trusted.
+    return None, False, ""
+
+
+# -------------------------------------------------------------------
+# 3. PARSE A DATE
 # -------------------------------------------------------------------
 def parse_date(text):
     """Return (date as YYYY-MM-DD or None, unsure) for the date in the text.
 
-    unsure is True when the date could mean more than one day, when the line
-    has two dates, or when only the month and year are printed. Then the app
-    asks the user to check it.
+    unsure is True when the date could mean more than one day, when it can't
+    be trusted (like 2027.02.30, probably a misread), when the line has two
+    dates, or when only the month and year are printed. Then the app asks the
+    user to check it.
     """
     # Step 1: Use capital letters, and put a space between digits and letters,
     # so "27may27" reads as "27 MAY 27". (\1 and \2 put back the digit and the
@@ -108,62 +174,18 @@ def parse_date(text):
     # no date shape can take the hour or the minutes as a day, month or year.
     text = re.sub(r"\d{2}:\d{2}", " TIME ", text)
 
-    # Step 2: Dates with a month name are never mixed up: 27 MAY 2027, MAY 27 2027.
-    # group(1) is the first ( ) from the left, group(2) the second, and so on;
-    # the ( ) around the month names in MONTH counts too.
-    # [:3] keeps the first 3 letters, so "SEPTEMBER" is looked up as "SEP".
-    found = re.search(DAY_MONTHNAME_YEAR, text)
-    if found:
-        day = int(found.group(1))
-        month = MONTH_NAMES[found.group(2)[:3]]
-        year = full_year(found.group(3))
-        if real_date(year, month, day):
-            return as_text(year, month, day), False
-    found = re.search(MONTHNAME_DAY_YEAR, text)
-    if found:
-        month = MONTH_NAMES[found.group(1)[:3]]
-        day = int(found.group(2))
-        year = full_year(found.group(3))
-        if real_date(year, month, day):
-            return as_text(year, month, day), False
-    found = re.search(MONTHNAME_YEAR, text)
-    if found:
-        month = MONTH_NAMES[found.group(1)[:3]]
-        year = int(found.group(2))
-        if real_date(year, month, 1):
-            return last_day_of_month(year, month), True
-
-    # Step 3: Three numbers, like 2025.01.28 or 21.01.22. A line with two such
-    # dates (like "PRD 16.01.2021 EXP 15.01.2022") doesn't say which one is
-    # meant, so the user checks it. If the numbers can mean more than one real
-    # date, the date is unsure. If they make no real date (like 2027.02.30,
-    # probably a misread), there is no date to trust.
-    if len(re.findall(THREE_NUMBERS, text)) > 1:
-        return None, True
-    found = re.search(THREE_NUMBERS, text)
-    if found:
-        readings = readings_of_three_numbers(found.group(1), found.group(2), found.group(3))
-        if len(readings) == 1:
-            year, month, day = readings[0]
-            return as_text(year, month, day), False
-        if len(readings) > 1:
-            return None, True
+    # Step 2: Read one date on the line.
+    date, unsure, used = read_first_date(text)
+    if used == "":
         return None, False
 
-    # Step 4: Month and year only, like 05/2027 or 2027.05. Packages mean the
-    # end of that month, so the last day is used, and the user checks it.
-    found = re.search(MONTH_YEAR, text)
-    if found:
-        month = int(found.group(1))
-        year = int(found.group(2))
-        if real_date(year, month, 1):
-            return last_day_of_month(year, month), True
-    found = re.search(YEAR_MONTH, text)
-    if found:
-        year = int(found.group(1))
-        month = int(found.group(2))
-        if real_date(year, month, 1):
-            return last_day_of_month(year, month), True
-
-    # Step 5: No date we can trust.
-    return None, False
+    # Step 3: A line with a second date, like "PRD 16.01.2021 EXP 15.01.2022"
+    # or "MFG 10 AUG 2020 EXP 12/2022", doesn't say which one is meant, so the
+    # user checks it. The date that was read is taken out, and the rest is read
+    # again. Numbers that make no date, like a lot code, don't count, and
+    # neither does the same date printed twice.
+    rest = text.replace(used, " ", 1)
+    second_date, second_unsure, second_used = read_first_date(rest)
+    if second_used != "" and (second_date is None or second_date != date):
+        return None, True
+    return date, unsure

@@ -4,14 +4,14 @@ Finds and reads the printed date on a package photo (ticket PP-03).
 
 1. RapidOCR finds every line of text on the photo.
 2. A small Keras CNN scores each line: how likely is it the date?
-3. RapidOCR reads the 3 best-scoring lines. The first one that looks like a date wins.
-4. If none of them does, RapidOCR reads the whole photo instead.
+3. RapidOCR reads the 3 best-scoring lines and keeps the ones that look like a date. `find_date` returns the best-scoring one. The app's scan endpoint labels each one with BERT and fills in the expiry date over a production date (see `choose_date_line` in `backend/scan.py`).
+4. If none of them looks like a date, RapidOCR reads the whole photo instead.
 
 | File | What it does |
 |---|---|
 | `prepare_data.py` | Cuts every text line out of 400 training photos and labels it date or not date. Saves `data/crops.npz`. |
 | `train_cnn.py` | Trains the CNN and saves `date_cnn.keras`. |
-| `read_date.py` | `find_date(photo_path)`, plus the numbers on 120 test photos. The app's scan endpoint uses `find_date_in_photo(photo)`, which also reads the 3 lines nearest the date for BERT. |
+| `read_date.py` | `find_date(photo_path)`, plus the numbers on 120 test photos. The app's scan endpoint uses `find_date_in_photo(photo)`, which returns every date line among the best 3, each with the 3 lines nearest to it for BERT. |
 
 ## Data
 
@@ -45,24 +45,26 @@ Test photos: the first 120 of the ExpDate evaluation set. The CNN never trained 
 |---|---|
 | The top-scoring box holds the expiry date | 0.80 |
 | Boxes scoring 0.5 or more (precision / recall) | 0.76 / 0.70 |
-| Box reading: the best 3 boxes plus the date pattern | 0.82, 0.21 s per photo |
-| Whole-photo reading plus the date pattern | 0.51, 0.58 s per photo |
-| Full scanner: box reading, then whole photo | 0.84 |
+| Box reading: the best 3 boxes plus the date pattern | 0.82, 0.19 s per photo |
+| Whole-photo reading plus the date pattern | 0.52, 0.51 s per photo |
+| Full scanner: box reading, then whole photo | 0.85 |
 
 - A box counts as the date when the centre of the real date box is inside it.
 - A read counts as right when the real date's digits appear in the text read.
 - Whole-photo reading often stops at a different number first, such as `69.2%`, `5.3g` or a phone number.
+- Box reading counts the best-scoring date line, the one `find_date` returns.
+- The test photos were scored again on Nov 27, after month-name dates were added (see below). Before that: whole-photo reading 0.51 and full scanner 0.84. The other scores were the same, and the times change a little from run to run.
 
 Validation (training photos 340-399): accuracy 0.98, precision 0.72, recall 0.65.
 
 What was tried:
 - **Epochs.** 10 epochs gave a validation loss of 0.12. It kept falling until epoch 14 (0.07) and rose after about epoch 17, so the CNN trains for 14.
 - **Date pattern.** Two stricter patterns were checked on 300 training photos the CNN never used (photos 400-699). Full scanner: simple pattern 0.870, strict pattern 0.847, strict pattern plus a rule for dates like `2021 12 04` 0.877. Neither gained a full point, so the simple pattern stayed.
+- **Month names.** On Nov 27, looking into a phone test with a real package showed that dates like `10 AUG 2022` or `15JAN27` were skipped. A month name with a number after it, like `10 AUG 2022` or `JAN 2027`, now counts as a date too.
 
 Known limits:
 - The text finder never boxes the date on about 1 photo in 17 (7 of the 120 test photos).
-- The CNN finds dates, not which kind. A production date can win over the expiry date. Telling them apart is PP-04 (the BERT label step).
-- Dates with month names, like `29 NOV 2021`, don't match the date pattern.
+- The CNN finds dates, not which kind, and a production date can score higher than the expiry date. So the app reads every date line among the best 3. A date with an expiry label wins (BERT, PP-04). Without one, the app uses the latest date and asks the user to check it, because an expiry date always comes after the production date. When both dates are on one line, the user types the date in.
 - The date must be the right way up in the photo. Sideways or upside-down text is usually missed or misread, because the rotation step is off on purpose, and a misread can still look like a date.
 
 ## Credit

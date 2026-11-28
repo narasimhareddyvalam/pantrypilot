@@ -10,7 +10,7 @@ BERT reads the date line plus the 3 lines nearest to it, joined with `" | "`. Fo
 | `collect_real_lines.py` | Reads real lines from ExpDate photos with the PP-03 OCR code: for every labelled date, the line that holds it (found with the dataset's date box, not the CNN) and its 3 nearest lines. 706 lines come from the evaluation photos, and 417 test lines from training photos `img_00701.jpg` to `img_01102.jpg`. |
 | `real_lines.csv`, `test_lines.csv` | Those real lines with their labels (made with AI help, see below). |
 | `train_bert.py` | Trains `bert_tiny_en_uncased`, tests it next to keyword rules, and saves `label_model/`. |
-| `label_type.py` | `find_label_type(text)` returns the label type and how sure BERT is. The scan endpoint (`backend/scan.py`) uses it, and sends `other` to the page as null ("No label, or not sure"). |
+| `label_type.py` | `find_label_type(text)` returns the label type and how sure BERT is. The scan endpoint (`backend/scan.py`) uses it on every date line the scanner finds, fills in the expiry date over a production date, and sends `other` to the page as null ("No label, or not sure"). |
 | `label_model/` | The trained model (18 MB). It is in Git, so the app runs without any training. |
 
 ## Run
@@ -58,7 +58,7 @@ Test lines: 417 lines from training photos `img_00701.jpg` to `img_01102.jpg`. N
 | Best before (55) | **0.84** | 0.56 |
 | Manufacturing (10) | **0.90** | 0.60 |
 
-- The test lines start from the right date line. In the app, the CNN picks the line. Measured with `backend/measure_scans.py` on 402 photos, the label type was right on 249 of the 257 scans whose date was right (0.97). Scans with a wrong or missing date aren't counted.
+- The test lines start from the right date line. In the app, the CNN picks the line. Measured with `backend/measure_scans.py` on 402 photos, the label type was right on 267 of the 278 scans whose date was right (0.96). Scans with a wrong or missing date aren't counted.
 - The keyword rules use the same English words as the practice lines and the same 4 labelling rules. They miss typos and joined words like `Bestbefore` or `Best Befre`. They also find dates with PP-03's number pattern, so a label word with a month-name date (`MFG DEC2020`) counts as a label line. That is their one miss on lines with no label word.
 - BERT reads typos, but sometimes gives a label type to a line that has no label word.
 - Training: 5,000 practice lines plus 558 real lines (evaluation photos `test_00001` to `test_00532`), each real line used 3 times. Validation: 148 real lines (`test_00533` to `test_00665`), accuracy 0.90.

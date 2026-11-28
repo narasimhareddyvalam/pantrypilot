@@ -110,11 +110,15 @@ Potential areas of exploration include:
 
 The scanner's models, data and results are in [models/cnn/README.md](models/cnn/README.md) (finding and reading the date) and [models/bert/README.md](models/bert/README.md) (the label type). The whole scan was measured with `backend/measure_scans.py` on 402 package photos that no model learned from:
 
-- 61% of scans (244) came back without "Please check this". All 244 dates are printed on the package. 240 match the dataset's labels. The other 4 are mistakes in the labels: the photos print the date the app read.
-- The right printed date was filled in for 64% of photos. 59 of the photos print a date that can be read two ways, so the date is left empty for the user to type in.
-- When the date was right, the label type was right 97% of the time.
+- 61% of scans (245) came back without "Please check this". All 245 dates are printed on the package. 241 match the dataset's labels. The other 4 are mistakes in the labels: the photos print the date the app read.
+- The right printed date was filled in for 69% of photos (278). 59 of the photos print a date that can be read two ways, so the date is left empty for the user to type in.
+- When the date was right, the label type was right 96% of the time.
+- A scan takes about 0.2 seconds on a MacBook with an M4 chip, plus the time to send the photo.
+- 19 photos print two or more different dates that can each be read as one day, usually a production date and an expiry date. The app filled in the latest one, the expiry date, on 14 of them. It never showed an earlier date as sure: on the 3 photos where it filled one in, it asked the user to check it. On the last 2, the user types the date in.
 
-A date counts as right when it is one of the dates printed on the package. 32 of the 402 photos print two or more dates, often a production date and an expiry date, and the label type tells them apart.
+A date counts as right when it is one of the dates printed on the package.
+
+These numbers are from after a fix on Nov 27. A phone test with a real package showed that the app could fill in the production date instead of the expiry date. Looking into it also showed that dates with month names, like `10 AUG 2022`, were skipped. Before the fix, the same photos gave 61% shown as sure and 64% with the right date (257).
 
 ## Technology Stack
 

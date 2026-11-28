@@ -4,10 +4,12 @@ read_date.py - PP-03, step 3 of 3.
 find_date(photo_path) finds and reads the date on a package photo:
   1. RapidOCR finds every line of text on the photo.
   2. The CNN from train_cnn.py scores each line: how likely is it the date?
-  3. RapidOCR reads the 3 best-scoring lines. The first that looks like a date wins.
+  3. RapidOCR reads the 3 best-scoring lines and keeps the ones that look like
+     a date. find_date returns the best-scoring one.
   4. If none of them looks like a date, RapidOCR reads the whole photo instead.
-The app's scan endpoint uses find_date_in_photo(photo), which does the same on
-an opened photo and also reads the 3 lines nearest the date for BERT (PP-04).
+The app's scan endpoint uses find_date_in_photo(photo). It returns every date
+line from step 3, each with the 3 lines nearest to it, so BERT (PP-04) can label
+each one and the app can choose the expiry date over a production date.
 
 Run from the project folder.
   Measure it on the first 120 test photos (the numbers for the slides):
@@ -45,6 +47,14 @@ MODEL_FILE = os.path.join(CNN_DIR, "date_cnn.keras")
 
 BOXES_TO_READ = 3                       # read the 3 best-scoring boxes
 DATE_PATTERN = r"\d{1,4}[./ -]\d{1,4}"  # digits, then . / space or -, then digits
+# A month name with a number after it, like 10 AUG 2022, AUG 10 2022 or
+# JAN 2027, with the same month names as backend/dates.py. \b is a word edge,
+# so "MARINATED 2" is not March. The number must come after the month, so a
+# line like "VITAMIN B6, MAY CONTAIN MILK" is not a date.
+MONTH = (r"\b(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|SEPT|OCT|NOV|DEC|JANUARY|FEBRUARY|MARCH|APRIL"
+         r"|JUNE|JULY|AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER)\b")
+SEP = r"[,./\- ]{1,3}"                  # 1 to 3 of , . / - or space, as in backend/dates.py
+MONTH_DATE_PATTERN = MONTH + SEP + r"\d"
 NUMBER_OF_TEST_PHOTOS = 120
 SCORE_CUTOFF = 0.5                      # a box scoring 0.5 or more is called "date"
 
@@ -126,42 +136,55 @@ def label_text(date_line, nearby_lines):
 
 
 def looks_like_date(text):
-    """True if the text has a date-like part, such as 2025.01.28, 28/01 or 21-01-22."""
-    return re.search(DATE_PATTERN, text) is not None
+    """True if the text has a date-like part, such as 2025.01.28, 28/01, 21-01-22 or 10 AUG 2022."""
+    if re.search(DATE_PATTERN, text) is not None:
+        return True
+    # A month name with a number after it. First a space goes between digits
+    # and letters, so "15JAN27" reads as "15 JAN 27", as in backend/dates.py.
+    text = text.upper()
+    text = re.sub(r"(\d)([A-Z])", r"\1 \2", text)
+    text = re.sub(r"([A-Z])(\d)", r"\1 \2", text)
+    return re.search(MONTH_DATE_PATTERN, text) is not None
 
 
 def read_from_boxes(photo, boxes, scores):
-    """Read the best-scoring boxes; return the first date-like text and its box, or ("", None)."""
+    """Read the best-scoring boxes; return every date-like text with its box, best score first."""
     # Pair each score with its box, then sort so the highest score comes first.
     pairs = []
     for i in range(len(boxes)):
         pairs.append((scores[i], boxes[i]))
     pairs.sort(reverse=True)
 
+    # A package can print more than one date (like a production date and an
+    # expiry date), so all 3 boxes are read, not only up to the first date.
+    found = []
     for score, box in pairs[:BOXES_TO_READ]:
         text = read_text(photo, box)
         if looks_like_date(text):
-            return text, box
-    return "", None
+            found.append((text, box))
+    return found
 
 
 def read_whole_photo(photo):
-    """Backup plan: read every line on the photo and return the first that looks like a date."""
+    """Backup plan: read every line on the photo and return the ones that look like a date, in reading order."""
     # Find and read in one call. The rotation step stays off, as in read_text.
     result = engine(photo, use_det=True, use_cls=False, use_rec=True)
+    found = []
     if result.txts:
         for text in result.txts:
             if looks_like_date(text):
-                return text
-    return ""
+                found.append(text)
+    return found
 
 
 def find_date_in_photo(photo):
-    """Find and read the date on an opened photo, and the lines near it.
+    """Find and read the date lines on an opened photo, and the lines near each one.
 
-    Returns (text, nearby_lines, how). how is "box", "whole photo" or
-    "not found". nearby_lines are the 3 lines nearest the date line, for BERT;
-    the whole-photo backup gives none.
+    Returns (date_lines, how). date_lines is a list of (text, nearby_lines),
+    best CNN score first: every date-like line among the 3 best-scoring lines,
+    each with the 3 lines nearest to it, for BERT. how is "box", "whole photo"
+    or "not found". The whole-photo backup gives its date-like lines in
+    reading order, without nearby lines.
     """
     with scanner_lock:
         # Step 1: Find every line of text.
@@ -170,23 +193,32 @@ def find_date_in_photo(photo):
         # Step 2: Give every line a CNN score.
         scores = score_boxes(photo, boxes)
 
-        # Step 3: Read the best 3 lines and keep the first that looks like a
-        # date, with the 3 lines nearest to it.
-        text, date_box = read_from_boxes(photo, boxes, scores)
-        if text != "":
-            return text, read_nearby_lines(photo, boxes, date_box), "box"
+        # Step 3: Read the best 3 lines and keep the ones that look like a
+        # date, each with the 3 lines nearest to it.
+        date_lines = []
+        for text, box in read_from_boxes(photo, boxes, scores):
+            date_lines.append((text, read_nearby_lines(photo, boxes, box)))
+        if len(date_lines) > 0:
+            return date_lines, "box"
 
-        # Step 4: Backup plan: read the whole photo.
-        text = read_whole_photo(photo)
-        if text != "":
-            return text, [], "whole photo"
-        return "", [], "not found"
+        # Step 4: Backup plan: read the whole photo. (date_lines is still empty here.)
+        for text in read_whole_photo(photo):
+            date_lines.append((text, []))
+        if len(date_lines) > 0:
+            return date_lines, "whole photo"
+        return [], "not found"
 
 
 def find_date(photo_path):
-    """Find and read the date on one photo file. Returns (text, how), as in find_date_in_photo."""
-    text, nearby_lines, how = find_date_in_photo(load_photo(photo_path))
-    return text, how
+    """Find and read the date on one photo file.
+
+    Returns (text, how), as in find_date_in_photo, with the first date line
+    found: the best-scoring one when how is "box", and "" when nothing was found.
+    """
+    date_lines, how = find_date_in_photo(load_photo(photo_path))
+    if len(date_lines) == 0:
+        return "", how
+    return date_lines[0][0], how
 
 
 # -------------------------------------------------------------------
@@ -240,12 +272,18 @@ def measure_on_test_photos():
         start = time.time()
         boxes = find_text_boxes(engine, photo)
         scores = score_boxes(photo, boxes)
-        box_text, chosen_box = read_from_boxes(photo, boxes, scores)    # chosen_box isn't needed here
+        found = read_from_boxes(photo, boxes, scores)
+        box_text = ""
+        if len(found) > 0:
+            box_text = found[0][0]    # the best-scoring date line (its box isn't needed here)
         box_seconds += time.time() - start
 
         # Step 2: Whole-photo reading of the same photo, timed, to compare.
         start = time.time()
-        whole_photo_text = read_whole_photo(photo)
+        found_lines = read_whole_photo(photo)
+        whole_photo_text = ""
+        if len(found_lines) > 0:
+            whole_photo_text = found_lines[0]    # the first date-like line, in reading order
         whole_photo_seconds += time.time() - start
 
         # Step 3: Does the highest-scoring box hold the expiry date?
