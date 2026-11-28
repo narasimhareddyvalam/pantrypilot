@@ -827,7 +827,10 @@ async function askAssistant(question) {
     const items = await loadPantry();
     return sampleAnswer(question, items);
   }
-  const data = await apiRequest("POST", "/assistant", { question: question });
+  // The pantry list goes with the question, so the assistant can answer about
+  // saved items wherever the pantry is kept (on this phone, or in the pantry API).
+  const items = await loadPantry();
+  const data = await apiRequest("POST", "/assistant", { question: question, items: items });
   return data.answer;
 }
 
@@ -953,7 +956,8 @@ function setUpPage() {
     offlineTriesLeft = 1;
   }
 
-  // The badges tell testers the page is showing sample data, not the real APIs.
+  // The badges show while a switch is on: the pantry is saved on this phone,
+  // and the assistant gives sample answers instead of using the real API.
   $("sample-badge-pantry").hidden = !USE_SAMPLE_PANTRY;
   $("sample-badge-assistant").hidden = !USE_SAMPLE_ASSISTANT;
 
