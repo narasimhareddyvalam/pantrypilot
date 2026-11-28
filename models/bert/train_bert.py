@@ -137,7 +137,7 @@ print("Test lines:", len(test_rows), "real")
 # -------------------------------------------------------------------
 # 3. BUILD THE MODEL
 # -------------------------------------------------------------------
-# Step 4: Load the pre-trained BERT with a new last layer for our 5 label types.
+# Step 4: Load the pre-trained BERT with a new last layer for the 5 label types.
 # A "preset" is KerasHub's name for a saved model folder: settings, weights and
 # word list. The first run downloads this one (about 17 MB) once.
 # The preprocessor turns text into word pieces ("expiry" -> "ex", "##pi", "##ry")

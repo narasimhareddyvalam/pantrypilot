@@ -1,5 +1,5 @@
-// Sample data for the phone page. The page uses it until Yuhao's pantry API
-// and Sreeja's assistant API are ready (see the switches at the top of app.js).
+// Sample data for the phone page. The page uses it until the pantry API
+// and the assistant API are ready (see the switches at the top of app.js).
 
 // A few pantry items, in the same shape the pantry API will use.
 const SAMPLE_PANTRY = [

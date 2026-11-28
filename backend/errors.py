@@ -1,7 +1,7 @@
 """The one error type that every part of PantryPilot raises.
 
-When something goes wrong because of the user's input or a service we use,
-I raise PantryError with a short, polite sentence. app.py turns it into JSON
+When something goes wrong because of the user's input or a service the app
+uses, the code raises PantryError with a short, polite sentence. app.py turns it into JSON
 like {"error": "...", "code": "..."} so the phone page can show the sentence.
 """
 
