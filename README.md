@@ -2,111 +2,52 @@
 
 **An AI-powered pantry assistant for smarter food inventory management.**
 
-PantryPilot is a smart food inventory management application designed to help users organize their groceries, understand food date labels, track upcoming expiration and best-before dates, and reduce avoidable food waste.
+PantryPilot helps people keep track of the food they have at home. Take a photo of a food package, and the app finds the printed date and tells you what kind of date it is. You check what it read, and the item goes into your pantry list, sorted by the date that comes first. An assistant answers questions about date labels and about the items in your pantry.
 
-By combining computer vision, natural language processing, and generative AI, PantryPilot aims to simplify the process of managing everyday food products.
+PantryPilot is the team project for CSYE 7380, Theory and Practical Applications of AI Generative Modeling (Northeastern University, Fall 2026).
 
 Some parts of PantryPilot were built with help from AI coding tools (vibe coding).
 
-> **Project Status:** Planning & Early Development  
-> PantryPilot is currently under development. The features and capabilities described below are planned and may evolve as the project progresses.
+> **Status (Nov 27, 2026):** The phone page and the scanner work on real photos. The Pantry and Assistant tabs use sample data until the pantry API and the assistant API are connected. The GAN and VAE experiments are in progress.
 
-## Overview
+## Features
 
-Keeping track of groceries can be difficult, especially when products have different date-label formats, unclear packaging information, or no printed expiration date at all.
+### Scan a package
 
-PantryPilot aims to address these challenges by providing a centralized inventory system supported by AI-powered product scanning and date-label interpretation.
+- Take a photo with the phone's camera, or choose one from the phone.
+- The app finds the printed date, reads it, and names its label type: Use by / Expires, Best before, Sell by, or Made on.
+- When a package prints a production date and an expiry date, the expiry date is filled in. If no label word says which is which, the app uses the later date and asks you to check it.
+- When the app isn't sure, it says "Please check this". You can correct the details, type them in yourself, or retake the photo. Nothing is saved until you have checked it.
 
-Instead of manually tracking every product, users will be able to photograph food packaging, review extracted information, and maintain an organized inventory of their food products.
+### Your pantry
 
-## Key Features
+- Every item shows its label type, its date, and how many days are left.
+- The list is sorted by date, soonest first. Items without a date go last.
+- Add, edit and delete items, including items with no date.
 
-The following capabilities are planned for PantryPilot.
+### Ask about dates
 
-### Intelligent Product Scanning
+- Ask what a label means, like "What does best before mean?", or ask about an item, like "When does my yogurt expire?".
+- The answers explain the words on the label. They never promise that food is safe to eat.
 
-- Upload or capture images of food packaging.
-- Detect and extract visible product information.
-- Recognize printed dates and associated labels.
-- Allow users to review and correct extracted information before saving.
+### Made for phones
 
-### Smart Date Recognition
+- One web page with three tabs, served by the laptop. Any phone on the same Wi-Fi can open it.
+- It works in iPhone Safari and Android Chrome, in light and dark mode. On iPhone it can be added to the Home Screen and opens full screen.
 
-- Identify common labels such as **Expiration**, **Use By**, **Best Before**, and **Sell By**.
-- Distinguish manufacturing dates from expiration-related dates.
-- Interpret explicitly stated shelf-life information where available.
-- Handle ambiguous or unreadable dates without inventing missing information.
+## How the scan works
 
-### Pantry Inventory Management
+| Step | What happens | Built with |
+|---|---|---|
+| 1 | Find every line of text on the photo. | RapidOCR (PP-OCRv6 models) |
+| 2 | Score each line: how likely is it the date? | A small CNN trained on the ExpDate dataset |
+| 3 | Read the 3 best-scoring lines and keep the ones that look like a date. | RapidOCR |
+| 4 | Name the label type of each date line from the line and the 3 lines nearest to it. A date with an expiry label is chosen over a production date; with no label word, the latest date is used. | BERT (`bert_tiny_en_uncased`), fine-tuned |
+| 5 | Turn the date into YYYY-MM-DD, and send anything unsure to "Please check this". | Simple rules in `backend/dates.py` |
 
-- Add, view, edit, and remove food products.
-- Maintain product information and relevant dates.
-- Organize inventory by category.
-- Track products with upcoming date-label deadlines.
-- Support products that do not have a known expiration date.
+If no line looks like a date, the app reads the whole photo instead and asks the user to check what it found.
 
-### Date Tracking and Notifications
-
-- Highlight products approaching their recorded dates.
-- Organize products by date and priority.
-- Provide reminders for upcoming dates, subject to implementation scope.
-- Help users identify products that may need attention.
-
-### AI-Powered Food Assistance
-
-Potential future enhancements include:
-
-- Recipe recommendations based on available ingredients.
-- Ingredient prioritization based on recorded dates.
-- Food storage guidance.
-- Natural-language assistance for understanding product information.
-
-These enhancements are exploratory and are not part of the confirmed initial feature set.
-
-## How PantryPilot Works
-
-The proposed user workflow consists of five steps:
-
-1. **Scan:** Capture or upload an image of a food product.
-2. **Analyze:** Extract product details and identify available date information.
-3. **Verify:** Review and correct AI-generated results when necessary.
-4. **Organize:** Save the product to the pantry inventory.
-5. **Track:** Monitor upcoming dates and manage inventory from a centralized dashboard.
-
-## Handling Real-World Edge Cases
-
-Food products do not always contain a clearly identifiable expiration date.
-
-PantryPilot is designed around the principle that **missing or uncertain information should never be presented as a confirmed fact**.
-
-The application will aim to handle scenarios including:
-
-| Scenario | Intended Behavior |
-|---|---|
-| Clearly printed expiration date | Extract and record the date |
-| Best-before or sell-by label | Preserve the original date-label type |
-| Manufacturing date only | Record the manufacturing date without assuming expiration |
-| Explicit shelf-life instructions | Calculate a derived date when sufficient information is available |
-| No printed date | Allow the product to be stored without a known expiration date |
-| Blurry or unreadable label | Request another image or manual entry |
-| Ambiguous date format | Request user confirmation |
-| Multiple printed dates | Distinguish and record the relevant date types |
-
-**Food safety note:** Printed date labels and estimated freshness windows do not independently establish whether a product is safe to consume. PantryPilot is intended as an inventory and informational tool, not a food-safety certification system.
-
-## AI and Machine Learning
-
-PantryPilot is being designed to explore how multiple AI techniques can work together within a practical application.
-
-Potential areas of exploration include:
-
-| Area | Proposed Application |
-|---|---|
-| Computer Vision | Analyze packaging images and locate relevant information |
-| Optical Character Recognition | Extract printed text and dates |
-| Natural Language Processing | Interpret date labels and surrounding context |
-| Classification Models | Categorize extracted information and identify date types |
-| Generative AI | Provide contextual explanations and optional food assistance |
+## Results
 
 The scanner's models, data and results are in [models/cnn/README.md](models/cnn/README.md) (finding and reading the date) and [models/bert/README.md](models/bert/README.md) (the label type). The whole scan was measured with `backend/measure_scans.py` on 402 package photos that no model learned from:
 
@@ -120,39 +61,39 @@ A date counts as right when it is one of the dates printed on the package.
 
 These numbers are from after a fix on Nov 27. A phone test with a real package showed that the app could fill in the production date instead of the expiry date. Looking into it also showed that dates with month names, like `10 AUG 2022`, were skipped. Before the fix, the same photos gave 61% shown as sure and 64% with the right date (257).
 
-## Technology Stack
+## Real-world cases
 
-Most of the stack is chosen. The rest is decided as each part is built.
+PantryPilot follows one rule: missing or uncertain information is never shown as a confirmed fact.
 
-| Component | Status |
+| What the package shows | What the app does |
 |---|---|
-| Frontend | Phone web page (HTML, CSS, plain JavaScript) served by Flask |
-| Backend | Python 3.12 + Flask |
-| Database | SQLite |
-| Computer Vision / OCR | RapidOCR (PP-OCRv6 models) finds and reads the text; a small Keras CNN picks the date line |
-| Machine Learning Framework | TensorFlow Keras for the scanner (CNN, BERT); the GAN and VAE owners choose theirs |
-| Generative AI Integration | To be decided |
-| Deployment | Runs on the demo laptop; phones open it over Wi-Fi |
+| A clearly printed expiry date | Reads it and fills it in. |
+| A best-before or sell-by date | Fills it in and keeps the label type. |
+| A manufacturing date only | Fills it in as "Made on", not as an expiry date. |
+| A production date and an expiry date | Fills in the expiry date. If no label word says which is which, it uses the later date and asks the user to check it. |
+| A date that can be read two ways, like 03/04/27, or two dates on one line | Leaves the date empty and asks the user to type it in. |
+| Month and year only, like 05/2027 | Uses the last day of that month and asks the user to check it. |
+| No printed date | The item can be saved without a date. |
+| A blurry or unreadable label | Asks the user to retake the photo or type the details in. |
+| A date printed sideways | Usually missed. Hold the phone so the date is upright. |
 
-Technology choices will prioritize maintainability, practical performance, and suitability for the project's scope.
+Shelf-life text, like "use within 3 days of opening", is not read. The user types the date in.
 
-## Development Roadmap
+**Food safety note:** Printed date labels do not prove whether a product is safe to eat. PantryPilot is an inventory and information tool, not a food-safety system.
 
-PantryPilot is currently in the planning stage.
+## Technology stack
 
-- [x] Define the initial project concept
-- [x] Create the GitHub repository
-- [x] Establish repository code ownership
-- [ ] Finalize the minimum viable product (MVP)
-- [ ] Select AI models and supporting technologies
-- [ ] Design the application architecture
-- [ ] Implement product scanning and date extraction
-- [ ] Implement inventory management
-- [ ] Integrate and evaluate AI components
-- [ ] Test real-world scenarios and edge cases
-- [ ] Prepare the application for demonstration
-
-A detailed development roadmap will be maintained separately as the project progresses.
+| Part | Built with |
+|---|---|
+| Phone page | HTML, CSS and plain JavaScript, served by Flask |
+| Backend | Python 3.12 and Flask |
+| Text finding and reading | RapidOCR (PP-OCRv6 models on ONNX Runtime) |
+| Date finder | A small CNN in TensorFlow Keras |
+| Label types | BERT through KerasHub |
+| Pantry storage | SQLite (coming, with the pantry API) |
+| Assistant | An LLM (coming, with the assistant API) |
+| Synthetic date-label images | A GAN and a VAE (in progress) |
+| Running it | On the demo laptop; phones open it over Wi-Fi |
 
 ## Run
 
@@ -168,7 +109,7 @@ The install downloads about 0.5 GB (more on Linux) and needs about 2 GB of disk 
 
 Windows commands and more details are in [run_guide.txt](run_guide.txt).
 
-## API so far
+## API
 
 | Method | Path | What it does |
 |---|---|---|
@@ -178,27 +119,34 @@ Windows commands and more details are in [run_guide.txt](run_guide.txt).
 | PATCH, DELETE | `/pantry/items/<id>` | change or remove one item (coming, Yuhao) |
 | POST | `/assistant` | ask a question about label dates (coming, Sreeja) |
 
-Every error comes back as `{"error": "<one polite sentence>", "code": "<code>"}`.
+A scan comes back as `{"rawText": "...", "labelType": "...", "date": "YYYY-MM-DD", "requiresReview": true}`. `labelType` and `date` are null when they are not known. Every error comes back as `{"error": "<one polite sentence>", "code": "<code>"}`.
 
-## Contributing
+## Project structure
 
-PantryPilot is currently developed by a small project team.
+| Folder | What is in it |
+|---|---|
+| `backend/` | The Flask app: the phone page, the scan endpoint, the date rules, and `measure_scans.py` |
+| `models/cnn/` | The date finder: data preparation, CNN training, and the trained CNN |
+| `models/bert/` | The label-type classifier: training lines, training, and the trained BERT |
+| `shared/fixtures/` | The example scan results the team agreed on |
+| `run_guide.txt` | Step-by-step run instructions, including Windows |
 
-Development follows a feature-branch and pull-request workflow. Changes to the protected `main` branch are subject to repository review requirements.
+## Team
 
-Detailed contribution guidelines will be added as the development workflow is finalized.
+| Person | Parts |
+|---|---|
+| Narasimha | Phone page, scanner (CNN and OCR), BERT label types, release |
+| Yuhao | Pantry API and SQLite storage, GAN |
+| Sreeja | Assistant API with the LLM, VAE |
 
-## Project Background
-
-PantryPilot is being developed as a team project exploring practical applications of artificial intelligence and generative modeling.
-
-The project emphasizes combining AI techniques with useful software functionality, handling real-world uncertainty, and evaluating the reliability of model-generated results.
+Changes go into the protected `main` branch through pull requests.
 
 ## Credits
 
 - ExpDate dataset (CC BY 4.0), created at the Korea Institute of Science and Technology (KIST). Seker, A. C., & Ahn, S. C. (2022). A generalized framework for recognition of expiration dates on product packages using fully convolutional networks. *Expert Systems with Applications*, 203, 117310. https://doi.org/10.1016/j.eswa.2022.117310
 - [RapidOCR](https://github.com/RapidAI/RapidOCR) (Apache-2.0), which runs PaddleOCR's PP-OCRv6 models.
 - BERT (Devlin et al., 2019): the `bert_tiny_en_uncased` weights (Turc et al., 2019) through [KerasHub](https://github.com/keras-team/keras-hub) (Apache-2.0).
+- Fonts: Atkinson Hyperlegible Next and Doto (SIL Open Font License).
 
 ## License
 
