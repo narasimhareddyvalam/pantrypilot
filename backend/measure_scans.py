@@ -8,6 +8,8 @@ photos and no setting was chosen with them. For each photo it checks:
     the user to check ("Please check this"). A date counts as right when it is
     one of the dates printed on the package (some print a production date too).
   - the label type, when the date is right (against models/bert/test_lines.csv)
+  - on photos that print two or more different dates, whether the app filled
+    in the latest one: an expiry date always comes after a production date
 
 Run from the project folder (needs the ExpDate photos, see models/cnn/README.md):
     backend/.venv/bin/python backend/measure_scans.py
@@ -56,12 +58,16 @@ if __name__ == "__main__":
     photos_with_two_way_dates = 0
     labels_checked = 0
     labels_right = 0
+    photos_with_two_dates = 0     # photos that print two or more different dates
+    gave_latest_date = 0
+    gave_earlier_date = 0
     seconds = 0.0
 
     for count, name in enumerate(photo_names, start=1):
         # Step 2: The real dates on this photo as YYYY-MM-DD, using the same
-        # rules as the app. A printed date that can be read two ways has no
-        # single right answer, so the right result for it is "check".
+        # rules as the app. A printed date that can't be read as one day (it
+        # can be read two ways, or it isn't a real date) has no single right
+        # answer, so the right result for it is "check".
         real_dates = {}
         two_way = False
         for label in labels[name]["ann"]:
@@ -107,17 +113,28 @@ if __name__ == "__main__":
                 if result["labelType"] == expected:
                     labels_right += 1
 
+        # Step 6: When the photo prints two or more different dates, the one
+        # the user needs is the latest: an expiry date always comes after the
+        # production date. max() finds it, because YYYY-MM-DD text sorts in
+        # date order.
+        if len(real_dates) >= 2:
+            photos_with_two_dates += 1
+            if result["date"] == max(real_dates):
+                gave_latest_date += 1
+            elif result["date"] in real_dates:
+                gave_earlier_date += 1
+
         if count % 100 == 0:
             print("Done", count, "photos")
 
-    # Step 6: Print the numbers for the slides.
+    # Step 7: Print the numbers for the slides.
     total = len(photo_names)
     sure = outcomes["sure, right date"] + outcomes["sure, wrong date"]
     check = total - sure
     right_filled = outcomes["sure, right date"] + outcomes["check, right date filled in"]
     print()
     print(f"Photos: {total} (ExpDate training photos img_00701.jpg to img_01102.jpg)")
-    print(f"  with a printed date that can be read two ways: {photos_with_two_way_dates}")
+    print(f"  with a printed date that can't be read as one day: {photos_with_two_way_dates}")
     print()
     print(f"Shown as sure (no \"Please check this\"):  {sure:3d}  ({sure / total:.2f})")
     print(f"  right date:                            {outcomes['sure, right date']:3d}")
@@ -130,4 +147,7 @@ if __name__ == "__main__":
     print()
     if labels_checked > 0:
         print(f"Label type, when the date is right:      {labels_right} of {labels_checked}  ({labels_right / labels_checked:.2f})")
+    print(f"Photos with two or more different dates: {photos_with_two_dates:3d}")
+    print(f"  latest date filled in:                 {gave_latest_date:3d}")
+    print(f"  an earlier date filled in:             {gave_earlier_date:3d}")
     print(f"Time per scan:                           {seconds / total:.2f} s")
