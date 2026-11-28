@@ -6,6 +6,8 @@ find_date(photo_path) finds and reads the date on a package photo:
   2. The CNN from train_cnn.py scores each line: how likely is it the date?
   3. RapidOCR reads the 3 best-scoring lines. The first that looks like a date wins.
   4. If none of them looks like a date, RapidOCR reads the whole photo instead.
+The app's scan endpoint uses find_date_in_photo(photo), which does the same on
+an opened photo and also reads the 3 lines nearest the date for BERT (PP-04).
 
 Run from the project folder.
   Measure it on the first 120 test photos (the numbers for the slides):
@@ -53,7 +55,7 @@ engine = RapidOCR(params={"Global.log_level": "warning"})
 # Only one photo at a time may go through the engine and the CNN. RapidOCR
 # keeps the settings of the current call (use_det, use_rec ...) inside the
 # engine, so two scans at the same moment (two phones using the app) would
-# mix them up. find_date holds this lock while it works.
+# mix them up. find_date_in_photo holds this lock while it works.
 scanner_lock = threading.Lock()
 
 
@@ -129,7 +131,7 @@ def looks_like_date(text):
 
 
 def read_from_boxes(photo, boxes, scores):
-    """Read the best-scoring boxes and return the first text that looks like a date."""
+    """Read the best-scoring boxes; return the first date-like text and its box, or ("", None)."""
     # Pair each score with its box, then sort so the highest score comes first.
     pairs = []
     for i in range(len(boxes)):
@@ -139,8 +141,8 @@ def read_from_boxes(photo, boxes, scores):
     for score, box in pairs[:BOXES_TO_READ]:
         text = read_text(photo, box)
         if looks_like_date(text):
-            return text
-    return ""
+            return text, box
+    return "", None
 
 
 def read_whole_photo(photo):
@@ -154,12 +156,13 @@ def read_whole_photo(photo):
     return ""
 
 
-def find_date(photo_path):
-    """Find and read the date on one photo.
+def find_date_in_photo(photo):
+    """Find and read the date on an opened photo, and the lines near it.
 
-    Returns (text, how), where how is "box", "whole photo" or "not found".
+    Returns (text, nearby_lines, how). how is "box", "whole photo" or
+    "not found". nearby_lines are the 3 lines nearest the date line, for BERT;
+    the whole-photo backup gives none.
     """
-    photo = load_photo(photo_path)
     with scanner_lock:
         # Step 1: Find every line of text.
         boxes = find_text_boxes(engine, photo)
@@ -167,16 +170,23 @@ def find_date(photo_path):
         # Step 2: Give every line a CNN score.
         scores = score_boxes(photo, boxes)
 
-        # Step 3: Read the best 3 lines and keep the first that looks like a date.
-        text = read_from_boxes(photo, boxes, scores)
+        # Step 3: Read the best 3 lines and keep the first that looks like a
+        # date, with the 3 lines nearest to it.
+        text, date_box = read_from_boxes(photo, boxes, scores)
         if text != "":
-            return text, "box"
+            return text, read_nearby_lines(photo, boxes, date_box), "box"
 
         # Step 4: Backup plan: read the whole photo.
         text = read_whole_photo(photo)
         if text != "":
-            return text, "whole photo"
-        return "", "not found"
+            return text, [], "whole photo"
+        return "", [], "not found"
+
+
+def find_date(photo_path):
+    """Find and read the date on one photo file. Returns (text, how), as in find_date_in_photo."""
+    text, nearby_lines, how = find_date_in_photo(load_photo(photo_path))
+    return text, how
 
 
 # -------------------------------------------------------------------
@@ -230,7 +240,7 @@ def measure_on_test_photos():
         start = time.time()
         boxes = find_text_boxes(engine, photo)
         scores = score_boxes(photo, boxes)
-        box_text = read_from_boxes(photo, boxes, scores)
+        box_text, chosen_box = read_from_boxes(photo, boxes, scores)    # chosen_box isn't needed here
         box_seconds += time.time() - start
 
         # Step 2: Whole-photo reading of the same photo, timed, to compare.
@@ -266,7 +276,7 @@ def measure_on_test_photos():
         if read_is_right(whole_photo_text, expiry_text):
             whole_photo_reads_right += 1
 
-        # The full scanner makes the same choice as find_date:
+        # The full scanner makes the same choice as find_date_in_photo:
         # the box reading first, and the whole photo as the backup.
         if box_text != "":
             scanner_text = box_text

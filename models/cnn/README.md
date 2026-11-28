@@ -11,7 +11,7 @@ Finds and reads the printed date on a package photo (ticket PP-03).
 |---|---|
 | `prepare_data.py` | Cuts every text line out of 400 training photos and labels it date or not date. Saves `data/crops.npz`. |
 | `train_cnn.py` | Trains the CNN and saves `date_cnn.keras`. |
-| `read_date.py` | `find_date(photo_path)`, plus the numbers on 120 test photos. |
+| `read_date.py` | `find_date(photo_path)`, plus the numbers on 120 test photos. The app's scan endpoint uses `find_date_in_photo(photo)`, which also reads the 3 lines nearest the date for BERT. |
 
 ## Data
 
