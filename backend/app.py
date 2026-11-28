@@ -57,14 +57,14 @@ HTTP_ERRORS = {
 
 @app.errorhandler(PantryError)
 def handle_pantry_error(error):
-    # Here I send our own errors back as JSON, with the status code the error carries.
+    # A PantryError goes back as JSON, with the status code the error carries.
     return jsonify({"error": error.message, "code": error.code}), error.status
 
 
 @app.errorhandler(HTTPException)
 def handle_http_error(error):
-    # Here I catch Flask's own errors (wrong address, wrong method, file too big,
-    # or a crash) and give them the same JSON shape as our own errors.
+    # Flask's own errors (wrong address, wrong method, file too big, or a
+    # crash) get the same JSON shape as a PantryError.
     if error.code in HTTP_ERRORS:
         code, message = HTTP_ERRORS[error.code]
     else:
@@ -97,9 +97,10 @@ app.register_blueprint(scan_blueprint)
 # ---------------------------------------------------------------------------
 
 def find_lan_address():
-    """Find this laptop's address on the Wi-Fi, so I can tell the phone where to go."""
+    """Find this laptop's address on the Wi-Fi, to tell the phone where to go."""
     # Connecting a UDP socket sends nothing. It only makes the computer pick the
-    # network it would use to reach the internet, and then I read our address on it.
+    # network it would use to reach the internet, and then the laptop's address
+    # on that network can be read.
     connection = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
         connection.connect(("8.8.8.8", 80))
@@ -115,7 +116,7 @@ def find_lan_address():
 def port_is_free(port):
     """Check that no other program is using this port, so the app can start on it."""
     test_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # Flask's server sets this option too, so a port our own app just let go of still counts as free.
+    # Flask's server sets this option too, so a port this app just let go of still counts as free.
     test_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     try:
         test_socket.bind(("0.0.0.0", port))
@@ -128,10 +129,10 @@ def port_is_free(port):
 
 if __name__ == "__main__":
     # With DEBUG on, Flask starts this file a second time so it can reload code
-    # changes. That second start already owns the port, so I only check the port
-    # and print the addresses the first time.
+    # changes. That second start already owns the port, so the port is checked
+    # and the addresses are printed only the first time.
     if not is_running_from_reloader():
-        # If another program already uses the port, I say so plainly and stop,
+        # If another program already uses the port, say so plainly and stop,
         # instead of printing addresses that would not work.
         if not port_is_free(PORT):
             print(f"Port {PORT} is already used by another program on this computer.")

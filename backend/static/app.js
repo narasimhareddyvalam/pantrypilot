@@ -6,7 +6,7 @@
 // Settings
 // ---------------------------------------------------------------------------
 
-// Until Yuhao's pantry API and Sreeja's assistant API are ready, the page uses
+// Until the pantry API and the assistant API are ready, the page uses
 // the sample data in sample_data.js. Set a switch to false when its API is ready.
 const USE_SAMPLE_PANTRY = true;
 const USE_SAMPLE_ASSISTANT = true;
@@ -45,8 +45,8 @@ function makeNetworkError() {
   return error;
 }
 
-// Send a request to our API and return its JSON answer.
-// If something goes wrong, I throw an error with a sentence the user can read.
+// Send a request to the app's API and return its JSON answer.
+// If something goes wrong, it throws an error with a sentence the user can read.
 async function apiRequest(method, url, body) {
   const options = { method: method, headers: {} };
   if (body instanceof FormData) {
@@ -56,7 +56,7 @@ async function apiRequest(method, url, body) {
     options.body = JSON.stringify(body);
   }
 
-  // If the server doesn't answer in time, I stop waiting, so the user gets the
+  // If the server doesn't answer in time, the page stops waiting, so the user gets the
   // Wi-Fi message and a Try again button instead of a screen that never changes.
   const controller = new AbortController();
   options.signal = controller.signal;
@@ -80,7 +80,7 @@ async function apiRequest(method, url, body) {
       if (controller.signal.aborted) {
         throw makeNetworkError();
       }
-      // Some errors don't come back as JSON, so I fall back to a plain sentence below.
+      // Some errors don't come back as JSON, so the plain sentence below is used instead.
     }
 
     if (!response.ok) {
@@ -126,7 +126,7 @@ function showTab(name) {
   }
   window.scrollTo(0, 0);
 
-  // The pantry may have changed on another tab, so I load it fresh every time.
+  // The pantry may have changed on another tab, so it is loaded fresh every time.
   if (name === "pantry") {
     refreshPantry();
   }
@@ -140,7 +140,7 @@ const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 const ONE_DAY = 24 * 60 * 60 * 1000;
 
 // Turn "2027-01-05" into a Date at midnight on that day, in this phone's time zone.
-// I build it from the three parts on purpose: new Date("2027-01-05") is read as
+// It is built from the three parts on purpose: new Date("2027-01-05") is read as
 // UTC, and in the US that would show the day before.
 function parseDate(text) {
   if (!text || !DATE_PATTERN.test(text)) {
@@ -151,7 +151,7 @@ function parseDate(text) {
   const month = Number(parts[1]);
   const day = Number(parts[2]);
   const date = new Date(year, month - 1, day);
-  // A date like 2027-02-30 rolls over into March, so I check it stayed the same day.
+  // A date like 2027-02-30 rolls over into March, so the check makes sure it stayed the same day.
   if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
     return null;
   }
@@ -204,7 +204,7 @@ function describeDays(days) {
 // ---------------------------------------------------------------------------
 
 // Read a product form and return a clean item.
-// If something is missing or wrong, I throw an error with a sentence to show.
+// If something is missing or wrong, it throws an error with a sentence to show.
 function readItemForm(form) {
   const productName = form.elements.productName.value.trim();
   const labelType = form.elements.labelType.value;
@@ -217,7 +217,7 @@ function readItemForm(form) {
     throw new Error("The product name can be at most 80 characters.");
   }
   // On a laptop, the date box can hold a half-typed date (like 01/05/yyyy). Its value
-  // is then empty, so I check for that instead of saving "no date" by mistake.
+  // is then empty, so that is checked first, instead of saving "no date" by mistake.
   if (form.elements.date.validity.badInput) {
     throw new Error("Please finish the date, or clear it if the package has no date.");
   }
@@ -252,13 +252,13 @@ function showFormError(elementId, message) {
 }
 
 // ---------------------------------------------------------------------------
-// Pantry storage: the sample list in this browser, or Yuhao's pantry API
+// Pantry storage: the sample list in this browser, or the pantry API
 // ---------------------------------------------------------------------------
 
 const ITEM_FIELDS = ["productName", "labelType", "date"];
 
-// If the browser blocks storage (for example in private browsing), I keep the
-// list in memory instead, so the page still works until it is closed.
+// If the browser blocks storage (for example in private browsing), the list
+// is kept in memory instead, so the page still works until it is closed.
 let memoryPantry = null;
 let storageBlocked = false;
 
@@ -278,7 +278,7 @@ function readSampleItems() {
     try {
       return JSON.parse(saved);
     } catch (brokenData) {
-      // The saved list is broken, so I start again from the sample items below.
+      // The saved list is broken, so the page starts again from the sample items below.
     }
   }
   if (memoryPantry === null) {
@@ -410,14 +410,14 @@ function shrinkPhoto(file) {
       canvas.getContext("2d").drawImage(picture, 0, 0, width, height);
       URL.revokeObjectURL(fileUrl);
       canvas.toBlob(function (blob) {
-        // If the browser can't make a JPEG, I send the original file instead.
+        // If the browser can't make a JPEG, the original file is sent instead.
         resolve(blob || file);
       }, "image/jpeg", PHOTO_QUALITY);
     };
 
     picture.onerror = function () {
       // This browser can't open the photo (for example HEIC on some laptops),
-      // so I send the original file and let the server answer.
+      // so the original file is sent and the server answers.
       URL.revokeObjectURL(fileUrl);
       resolve(file);
     };
@@ -438,7 +438,7 @@ async function choosePhoto(file) {
   previewUrl = URL.createObjectURL(currentPhoto);
   $("preview-image").src = previewUrl;
   showScanStep("preview");
-  // The buttons the user just used are now hidden, so I move the focus to the next step.
+  // The buttons the user just used are now hidden, so the focus moves to the next step.
   $("read-date").focus();
 }
 
@@ -464,7 +464,7 @@ async function readDate() {
     problem = error;
   }
 
-  // The waiting is over, so I put the buttons back first.
+  // The waiting is over, so the buttons come back first.
   scanBusy = false;
   $("scan-loading").hidden = true;
   $("preview-actions").hidden = false;
@@ -473,7 +473,7 @@ async function readDate() {
   if (problem !== null) {
     $("scan-error-text").textContent = problem.message;
     $("scan-error").hidden = false;
-    // On a small screen the message can end up below the tab bar, so I scroll it into view.
+    // On a small screen the message can end up below the tab bar, so it is scrolled into view.
     $("scan-error").scrollIntoView({ block: "nearest" });
     return;
   }
@@ -513,6 +513,7 @@ function showReview(result) {
   }
 
   $("review-error").hidden = true;
+  $("review-retake").textContent = "Retake";
   showScanStep("review");
   // The focus moves to the new step, so a screen reader reads it out.
   $("review-title").focus();
@@ -529,6 +530,8 @@ function startManualEntry() {
   $("raw-text-box").hidden = true;
   $("review-notice").hidden = true;
   $("review-error").hidden = true;
+  // No photo was taken, so the button that goes back says Cancel, not Retake.
+  $("review-retake").textContent = "Cancel";
   showScanStep("review");
   $("review-title").focus();
 }
@@ -605,7 +608,7 @@ function sortItems(items) {
 }
 
 // Make a small page element with a class and some text.
-// I only ever use textContent, so a name like "<b>Oats</b>" shows as plain text.
+// Only textContent is used, so a name like "<b>Oats</b>" shows as plain text.
 function makeElement(tag, className, text) {
   const element = document.createElement(tag);
   element.className = className;
@@ -666,7 +669,7 @@ function renderPantry(items) {
     list.appendChild(makeItemRow(item));
   }
   $("pantry-empty").hidden = items.length > 0;
-  // If the browser blocks storage, I warn that the list won't be kept.
+  // If the browser blocks storage, a notice warns that the list won't be kept.
   $("storage-notice").hidden = !(USE_SAMPLE_PANTRY && storageBlocked);
 }
 
@@ -786,7 +789,7 @@ function sampleAnswer(question, items) {
   const questionWords = wordsIn(question);
 
   // Step 1: if the question names something in the pantry (any word of 3 or
-  // more letters from its name, like "oats"), I answer about that item.
+  // more letters from its name, like "oats"), the answer is about that item.
   for (const item of items) {
     for (const word of wordsIn(item.productName)) {
       if (word.length >= 3 && questionWords.includes(word)) {
@@ -795,7 +798,7 @@ function sampleAnswer(question, items) {
     }
   }
 
-  // Step 2: otherwise I look for a label word and explain it.
+  // Step 2: otherwise, a label word in the question gets explained.
   const lowerQuestion = question.toLowerCase();
   if (lowerQuestion.includes("best before")) {
     return SAMPLE_ANSWERS.best_before;
@@ -812,7 +815,7 @@ function sampleAnswer(question, items) {
   return SAMPLE_ANSWERS.fallback;
 }
 
-// Get an answer from the sample assistant, or from Sreeja's assistant API.
+// Get an answer from the sample assistant, or from the assistant API.
 async function askAssistant(question) {
   if (USE_SAMPLE_ASSISTANT) {
     if (offlineTriesLeft > 0) {
@@ -945,7 +948,7 @@ function setUpPage() {
     });
   }
   // /?assistant=offline makes the first question fail, so testers can see
-  // the error and Try again before Sreeja's real assistant is connected.
+  // the error and Try again before the real assistant is connected.
   if (new URLSearchParams(window.location.search).get("assistant") === "offline") {
     offlineTriesLeft = 1;
   }
